@@ -129,16 +129,20 @@ button { font-family:inherit; cursor:pointer; }
 
 .home__center {
   position:relative; z-index:10; text-align:center; width:100%; padding:0 2rem;
-  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  display:flex; flex-direction:column; align-items:center; 
+  /* CAMBIO: En lugar de centro, forzamos a que empiece arriba */
+  justify-content:flex-start; 
+  /* CAMBIO: Le damos un margen fijo desde el menú para que siempre quede alto */
+  padding-top: 22vh; 
   height: 100vh;
   pointer-events: none; 
 }
 
-/* Grupo del logo y texto centrados juntos matemáticamente */
+/* Grupo del logo y texto */
 .home__brand-group {
   display: flex; flex-direction: column; align-items: center;
   pointer-events: auto; 
-  transform: translateY(-8vh); 
+  /* Eliminamos el transform negativo porque ahora usamos flex-start arriba */
 }
 
 /* Base del Logo Principal (Grande del centro) */
@@ -173,7 +177,8 @@ button { font-family:inherit; cursor:pointer; }
 /* Contenedor del GIF GIGANTE */
 .home__wormhole-bg {
   position: absolute;
-  bottom: -6vh; 
+  /* CAMBIO: Se ajusta a la base exacta de la pantalla, sin cortarse */
+  bottom: 0; 
   left: 50%;
   transform: translateX(-50%);
   z-index: 2; 
@@ -189,7 +194,7 @@ button { font-family:inherit; cursor:pointer; }
 }
 .home__wormhole-bg a:hover img { filter: brightness(1.1); }
 
-/* CUADRÍCULA ELIMINADA (Fondo 100% negro liso) */
+/* CUADRÍCULA ELIMINADA */
 .home__grid {
   display: none;
 }
@@ -201,7 +206,6 @@ button { font-family:inherit; cursor:pointer; }
   top:30%; left:50%; transform:translate(-50%,-50%);
   pointer-events:none;
 }
-
 
 /* ============ SUBPAGE ============ */
 .sub { padding:clamp(2rem,4vw,4rem) clamp(1.2rem,3vw,2.5rem); }
