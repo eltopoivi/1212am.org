@@ -2,7 +2,8 @@
    12⋮12am™ — Design System
    ============================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Share+Tech+Mono&family=Exo+2:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
+/* CAMBIO: Se añadió la fuente 'Sedgwick Ave' para el estilo grafiti */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Sedgwick+Ave&family=Share+Tech+Mono&family=Exo+2:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
 
 :root {
   --y: #FFD600;
@@ -50,7 +51,7 @@ button { font-family:inherit; cursor:pointer; }
   padding:0 clamp(1rem,3vw,2.5rem);
 }
 
-/* Base de los Logos (Pequeño de arriba) */
+/* Base de los Logos (Pequeño de arriba - Se queda en estilo limpio/futurista) */
 .nav__logo {
   font-family:'Orbitron',sans-serif; font-weight:900; font-size:1.25rem;
   color:var(--y); letter-spacing:2px; cursor:pointer;
@@ -59,22 +60,19 @@ button { font-family:inherit; cursor:pointer; }
 }
 .nav__logo:hover { opacity:.85; }
 
-/* =========================================================
-   SISTEMA DE PROPORCIONES PERFECTAS (AMBOS LOGOS)
-   ========================================================= */
-.nav__logo .vdots, .home__brand .vd {
+.nav__logo .vdots {
   display:inline-flex; flex-direction:column; align-items:center;
   line-height:.32; font-size:.92em; margin:0 .04em; position:relative; top:-.05em;
 }
-.nav__logo .am, .home__brand .am {
+.nav__logo .am {
   font-size:.54em;
   font-weight:400; letter-spacing:1px; position:relative; top:-.08em;
 }
-.nav__logo .tm, .home__brand .tm {
+.nav__logo .tm {
   font-size:.28em; position:relative; top:-1.2em; margin-left:.05em;
 }
-/* ========================================================= */
 
+/* Enlaces de navegación */
 .nav__links { display:flex; align-items:center; gap:0; list-style:none; }
 .nav__links a {
   font-family:'Orbitron',sans-serif; font-weight:700;
@@ -131,7 +129,6 @@ button { font-family:inherit; cursor:pointer; }
   position:relative; z-index:10; text-align:center; width:100%; padding:0 2rem;
   display:flex; flex-direction:column; align-items:center; 
   justify-content:flex-start; 
-  /* CAMBIO: Logo aún más arriba para evitar el GIF por completo */
   padding-top: 6vh; 
   height: 100vh;
   pointer-events: none; 
@@ -143,16 +140,36 @@ button { font-family:inherit; cursor:pointer; }
   pointer-events: auto; 
 }
 
-/* Base del Logo Principal (Grande del centro) */
+/* CAMBIO: Base del Logo Principal (Grafiti gigante en el centro) */
 .home__brand {
-  font-family:'Orbitron',sans-serif; font-weight:900;
-  font-size:clamp(4rem, 10vw, 8.5rem); color:var(--y);
-  text-shadow:0 0 50px var(--y-glow-s),0 0 100px var(--y-glow);
-  letter-spacing:.04em; line-height:1;
-  display:flex; align-items:baseline; justify-content:center;
-  animation:brandIn 1.2s var(--ease);
+  font-family: 'Sedgwick Ave', cursive; /* Fuente Grafiti */
+  font-weight: normal; /* El grafiti no necesita bold extra */
+  font-size: clamp(4rem, 10vw, 8.5rem); color: var(--y);
+  text-shadow: 0 0 50px var(--y-glow-s), 0 0 100px var(--y-glow);
+  letter-spacing: .02em; line-height: 1;
+  display: flex; align-items: baseline; justify-content: center;
+  animation: brandIn 1.2s var(--ease);
 }
 @keyframes brandIn { from{opacity:0;transform:translateY(30px);filter:blur(8px);} to{opacity:1;transform:none;filter:none;} }
+
+/* Ajustes finos para que la fuente grafiti cuadre perfecta */
+.home__brand .vd {
+  display:inline-flex; flex-direction:column; align-items:center;
+  line-height:.35; font-size:.85em; margin:0 .06em; position:relative; top:-.05em;
+  font-family:'Orbitron',sans-serif; /* Mantenemos los puntitos en limpio */
+}
+.home__brand .am {
+  font-size:.55em;
+  position:relative; top:-.02em;
+}
+.home__brand .tm {
+  font-family:'Orbitron',sans-serif; /* Mantenemos el TM en limpio para legibilidad */
+  font-size:.12em; /* CAMBIO: TM muchísimo más pequeño */
+  position:relative; top:-3.5em; /* Ajuste para subir el texto chiquito */
+  margin-left:.15em;
+  letter-spacing: 0;
+}
+
 
 /* Grupo del texto de Join the Wormhole y la flecha */
 .home__join-group {
@@ -160,10 +177,10 @@ button { font-family:inherit; cursor:pointer; }
   flex-direction: column;
   align-items: center;
   margin-top: 1.5rem;
-  gap: 0.5rem; /* Separación entre el texto y la flecha */
+  gap: 0.5rem;
 }
 
-/* Texto estático (Sin efecto Hover) */
+/* Texto estático */
 .home__join-text {
   font-family:'Orbitron',sans-serif; font-weight: 500;
   font-size:clamp(.85rem, 1.5vw, 1.1rem);
@@ -177,19 +194,17 @@ button { font-family:inherit; cursor:pointer; }
 .home__join-arrow {
   color: var(--gr-l);
   font-size: 1.2rem;
-  /* Animación suave flotando hacia abajo para indicar que mires ahí */
   animation: floatArrow 2s ease-in-out infinite;
 }
 @keyframes floatArrow {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(6px); color: var(--lt); } /* Baja y brilla ligeramente */
+  50% { transform: translateY(6px); color: var(--lt); } 
 }
 
 
 /* Contenedor del GIF GIGANTE */
 .home__wormhole-bg {
   position: absolute;
-  /* CAMBIO: Subido un poco respecto al borde inferior */
   bottom: 8vh; 
   left: 50%;
   transform: translateX(-50%);
@@ -204,7 +219,6 @@ button { font-family:inherit; cursor:pointer; }
   filter: brightness(0.85); 
   transition: filter .4s;
 }
-/* Único hover activo en la pantalla inicial */
 .home__wormhole-bg a:hover img { filter: brightness(1.1); transform: scale(1.02); }
 
 
@@ -217,7 +231,6 @@ button { font-family:inherit; cursor:pointer; }
 .home__glow {
   position:absolute; width:70vmax; height:70vmax; border-radius:50%;
   background:radial-gradient(circle,rgba(255,214,0,.06) 0%,transparent 60%);
-  /* CAMBIO: Subido al 15% para que esté exactamente detrás del logo */
   top:15%; 
   left:50%; transform:translate(-50%,-50%);
   pointer-events:none;
