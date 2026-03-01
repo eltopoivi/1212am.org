@@ -6,21 +6,10 @@
   <meta name="description" content="12⋮12am™ — The time is now.">
   <title>12⋮12am™</title>
   <link rel="stylesheet" href="css/styles.css">
-  <style>
-    /* Añadimos esto para que tus fotos se vean circulares y no rompan el diseño */
-    .logo-img img {
-      width: 100%;
-      height: auto;
-      max-width: 220px;
-      display: block;
-      margin: 0 auto;
-      border-radius: 50%;
-      object-fit: cover;
-    }
-  </style>
 </head>
 <body>
 
+  <!-- NAVIGATION -->
   <nav class="nav">
     <div class="nav__inner">
       <a class="nav__logo" data-home>
@@ -53,6 +42,7 @@
     <a data-page="contact">Contact</a>
   </div>
 
+  <!-- ============ HOME ============ -->
   <div class="page page--flex home active" id="pg-home">
     <div class="home__grid"></div>
     <div class="home__glow"></div>
@@ -64,6 +54,7 @@
     </div>
   </div>
 
+  <!-- ============ STORE ============ -->
   <div class="page" id="pg-store">
     <div class="sub">
       <div class="sub__back" data-back>← Back</div>
@@ -111,13 +102,19 @@
     </div>
   </div>
 
+  <!-- ============ ROOOM ============ -->
   <div class="page" id="pg-rooom">
     <div class="sub">
       <div class="sub__back" data-back>← Back</div>
       <div class="sub__wrap">
         <div class="section-hero">
+          <!--
+            ▸ TO ADD YOUR OWN LOGO:
+            ▸ Place your image file in an "img" folder (e.g. img/logo-rooom.png)
+            ▸ Then change the src below to: src="img/logo-rooom.png"
+          -->
           <div class="logo-img logo-img--rooom">
-            <img src="rooom.jpg" alt="rooom logo">
+            <img src="img/logo-rooom.png" alt="rooom logo">
           </div>
           <h1 class="section-hero__title">Always your rooom</h1>
           <p class="section-hero__desc">This is your rooom. If you want to be a roommate or want to hang out in your room, you can make a reservation!</p>
@@ -136,13 +133,19 @@
     </div>
   </div>
 
+  <!-- ============ DRAGON12 ============ -->
   <div class="page" id="pg-dragon12">
     <div class="sub">
       <div class="sub__back" data-back>← Back</div>
       <div class="sub__wrap">
         <div class="section-hero">
+          <!--
+            ▸ TO ADD YOUR OWN LOGO:
+            ▸ Place your image file in an "img" folder (e.g. img/logo-dragon12.png)
+            ▸ Then change the src below to: src="img/logo-dragon12.png"
+          -->
           <div class="logo-img logo-img--dragon">
-            <img src="dragon12.jpg" alt="Dragon12 logo">
+            <img src="img/logo-dragon12.png" alt="Dragon12 logo">
           </div>
           <h1 class="section-hero__title">Chasing the Dragon</h1>
           <p class="section-hero__sub">Dragon12 — Est. 12⋮12am™</p>
@@ -154,11 +157,148 @@
             For more information, please add the customer service contact below to request an appointment.
           </p>
           <div class="btn-row">
-            <a href="https://line.me" target="_blank" rel="noopener" class="btn btn--solid">📅 Book Appointment</a>
+            <a href="https://liff.line.me/1645278921-kWRPP32q/?accountId=653tumka&utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnjKKRHPSisKNfHRqg7wVTn6EG5FT8DF_oaWCOZxN0qbbcQsXK47uPzPJ5jUE_aem_JtU39fARA-g_ESTkixYxuA" target="_blank" rel="noopener" class="btn btn--solid">📅 Book Appointment</a>
             <a href="https://www.instagram.com/dra9on12/" target="_blank" rel="noopener" class="btn btn--ig">
               <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
               @dra9on12
             </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ LAST SURVIVORS ============ -->
+  <div class="page" id="pg-lastsurvivors">
+    <div class="sub">
+      <div class="sub__back" data-back>← Back</div>
+      <div class="sub__wrap">
+        <div class="section-hero">
+          <div class="section-hero__icon">⚔️</div>
+          <h1 class="section-hero__title">Last Survivors</h1>
+          <p class="section-hero__desc">The ultimate survival game. Do you have what it takes to be the last one standing?</p>
+        </div>
+        <div class="features">
+          <div class="feature">
+            <div class="feature__icon">⚔️</div>
+            <h3 class="feature__title">Combat</h3>
+            <p class="feature__text">Real-time tactical combat system with unique mechanics.</p>
+          </div>
+          <div class="feature">
+            <div class="feature__icon">🗺️</div>
+            <h3 class="feature__title">Exploration</h3>
+            <p class="feature__text">Procedurally generated map that changes with every match.</p>
+          </div>
+          <div class="feature">
+            <div class="feature__icon">🛡️</div>
+            <h3 class="feature__title">Crafting</h3>
+            <p class="feature__text">Build tools, weapons and shelters to survive.</p>
+          </div>
+          <div class="feature">
+            <div class="feature__icon">👥</div>
+            <h3 class="feature__title">Alliances</h3>
+            <p class="feature__text">Form teams or betray. Trust is a scarce resource.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 36912AI ============ -->
+  <div class="page" id="pg-ai36912">
+    <div class="sub">
+      <div class="sub__back" data-back>← Back</div>
+      <div class="sub__wrap">
+        <div class="section-hero">
+          <div class="section-hero__icon">🧠</div>
+          <h1 class="section-hero__title">36912ai</h1>
+          <p class="section-hero__desc">Intelligence that evolves — tools and models designed to boost creativity and automate the mundane.</p>
+        </div>
+        <div class="features">
+          <div class="feature">
+            <div class="feature__icon">🎨</div>
+            <h3 class="feature__title">Creative Generation</h3>
+            <p class="feature__text">AI-assisted creative content for artists and creators.</p>
+          </div>
+          <div class="feature">
+            <div class="feature__icon">💬</div>
+            <h3 class="feature__title">Language Models</h3>
+            <p class="feature__text">Custom models tailored for communities and projects.</p>
+          </div>
+          <div class="feature">
+            <div class="feature__icon">⚡</div>
+            <h3 class="feature__title">Automation</h3>
+            <p class="feature__text">Smart automated creative workflows.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ IRLRPG ============ -->
+  <div class="page" id="pg-irlrpg">
+    <div class="sub">
+      <div class="sub__back" data-back>← Back</div>
+      <div class="sub__wrap">
+        <div class="section-hero">
+          <div style="display:inline-block;font-family:'Share Tech Mono',monospace;font-size:.65rem;letter-spacing:3px;color:var(--y);border:1px solid var(--y-dim);padding:.35rem 1.2rem;text-transform:uppercase;margin-bottom:1.2rem;">Real Life. Real Game.</div>
+          <h1 class="section-hero__title">irlrpg</h1>
+          <p class="section-hero__desc">Your life is the game. Earn XP, level up and unlock achievements by completing real-world quests.</p>
+        </div>
+        <div class="features">
+          <div class="feature">
+            <div class="feature__icon">📋</div>
+            <h3 class="feature__title">Daily Quests</h3>
+            <p class="feature__text">New quests generated daily based on your personal goals. Fitness, creativity, social — you choose your path.</p>
+          </div>
+          <div class="feature">
+            <div class="feature__icon">📊</div>
+            <h3 class="feature__title">Level System</h3>
+            <p class="feature__text">Progress through a system designed to motivate. Each level unlocks new abilities and rewards.</p>
+          </div>
+          <div class="feature">
+            <div class="feature__icon">🏰</div>
+            <h3 class="feature__title">Guilds & Clans</h3>
+            <p class="feature__text">Join other players, form guilds and compete in global leaderboards.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ ABOUT ============ -->
+  <div class="page" id="pg-about">
+    <div class="sub">
+      <div class="sub__back" data-back>← Back</div>
+      <div class="sub__wrap">
+        <div class="section-hero" style="min-height:60vh;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+          <h1 class="section-hero__title">About</h1>
+          <p class="section-hero__sub" style="margin-top:.8rem;">Coming soon</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ CONTACT ============ -->
+  <div class="page" id="pg-contact">
+    <div class="sub">
+      <div class="sub__back" data-back>← Back</div>
+      <div class="sub__wrap">
+        <div class="section-hero" style="padding-bottom:1rem;">
+          <h1 class="section-hero__title">Contact</h1>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-form">
+            <div><label>Name</label><input type="text" placeholder="Your name"></div>
+            <div><label>Email</label><input type="email" placeholder="you@email.com"></div>
+            <div><label>Subject</label><input type="text" placeholder="What's on your mind?"></div>
+            <div><label>Message</label><textarea placeholder="Write your message..."></textarea></div>
+            <button class="btn btn--outline">Send</button>
+          </div>
+          <div class="contact-info">
+            <div><h4>Email</h4><p><a href="mailto:info@1212am.org">info@1212am.org</a></p></div>
+            <div><h4>Instagram</h4><p><a href="https://www.instagram.com/at.1212am/" target="_blank" rel="noopener">@at.1212am</a></p></div>
+            <div><h4>Location</h4><p>Somewhere between the digital and the real</p></div>
           </div>
         </div>
       </div>
