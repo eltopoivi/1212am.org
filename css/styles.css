@@ -108,6 +108,10 @@ button { font-family:inherit; cursor:pointer; }
   flex-direction:column; align-items:center; justify-content:center;
   overflow:hidden; position:relative;
 }
+.home__center {
+  position:relative; z-index:2; text-align:center; width:100%; padding:0 2rem;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+}
 .home__grid {
   position:absolute; inset:0;
   background-image:
@@ -129,8 +133,6 @@ button { font-family:inherit; cursor:pointer; }
   50%{opacity:.7;transform:translate(-50%,-50%) scale(1.12);}
 }
 
-.home__center { position:relative; z-index:2; text-align:center; width:100%; padding:0 2rem; }
-
 .home__brand {
   font-family:'Orbitron',sans-serif; font-weight:900;
   font-size:clamp(4rem,14vw,12rem); color:var(--y);
@@ -147,9 +149,9 @@ button { font-family:inherit; cursor:pointer; }
 
 .home__sub {
   font-family:'Share Tech Mono',monospace;
-  font-size:clamp(.7rem,1.5vw,.95rem);
-  color:var(--gr); letter-spacing:6px; text-transform:uppercase;
-  margin-top:clamp(.8rem,2vh,1.6rem);
+  font-size:clamp(.9rem,2vw,1.3rem);
+  color:var(--gr-l); letter-spacing:8px; text-transform:uppercase;
+  margin-top:clamp(1rem,3vh,2rem);
   animation:subIn 1.2s var(--ease) .3s both;
 }
 @keyframes subIn { from{opacity:0;transform:translateY(14px);} to{opacity:1;transform:none;} }
