@@ -105,15 +105,16 @@ button { font-family:inherit; cursor:pointer; }
 
 /* ============ HOME ============ */
 .home {
-  flex-direction:column; align-items:center; justify-content:center;
+  flex-direction:column; align-items:center; 
+  justify-content:flex-start; /* Empieza desde arriba */
+  padding-top: 12vh; /* Margen superior para despegar el logo del menú */
   overflow:hidden; position:relative;
   background:var(--bk);
 }
 .home__center {
   position:relative; z-index:2; text-align:center; width:100%; padding:0 2rem;
-  display:flex; flex-direction:column; align-items:center; justify-content:center;
-  /* Cambio aquí: Lo empujamos hacia arriba para que quede la mitad de abajo en negro */
-  transform: translateY(-12vh); 
+  display:flex; flex-direction:column; align-items:center;
+  height: 80vh; /* Altura definida para poder empujar elementos al fondo */
 }
 
 /* Subtle yellow grid lines covering entire background */
@@ -130,8 +131,7 @@ button { font-family:inherit; cursor:pointer; }
 .home__glow {
   position:absolute; width:70vmax; height:70vmax; border-radius:50%;
   background:radial-gradient(circle,rgba(255,214,0,.06) 0%,transparent 60%);
-  top:40%; /* Movido un poco arriba acorde al contenido */
-  left:50%; transform:translate(-50%,-50%);
+  top:30%; left:50%; transform:translate(-50%,-50%);
   pointer-events:none;
 }
 
@@ -146,16 +146,15 @@ button { font-family:inherit; cursor:pointer; }
 @keyframes brandIn { from{opacity:0;transform:translateY(30px);filter:blur(8px);} to{opacity:1;transform:none;filter:none;} }
 
 .home__brand .vd { display:inline-flex; flex-direction:column; align-items:center; line-height:.28; margin:0 .04em; font-size:.88em; }
-/* Cambio aquí: Hice el "am" más grande y ajusté su posición vertical */
-.home__brand .am { font-size:.28em; font-weight:400; letter-spacing:2px; position:relative; top:-.08em; }
+.home__brand .am { font-size:.28em; font-weight:400; letter-spacing:2px; position:relative; top:-.08em; } /* AM más grande */
 .home__brand .tm { font-size:.09em; position:relative; top:-.48em; }
 
-
-/* Wormhole section */
+/* Wormhole section - Empujada hacia abajo del todo */
 .home__wormhole {
-  margin-top:clamp(1.5rem,4vh,3rem); /* Un poco más de margen ya que quitamos Last Survivors */
+  margin-top: auto; /* Esto envía el contenedor automáticamente al fondo del home__center */
+  padding-bottom: 5vh;
   display:flex; flex-direction:column; align-items:center;
-  animation:subIn 1.2s var(--ease) .4s both; /* Animación más rápida */
+  animation:subIn 1.2s var(--ease) .4s both;
 }
 .home__wormhole a {
   display:flex; flex-direction:column; align-items:center;
@@ -163,12 +162,11 @@ button { font-family:inherit; cursor:pointer; }
 }
 .home__wormhole a:hover { transform:scale(1.05); }
 
-/* Cambio aquí: Estilos actualizados para que el texto resalte más como subtítulo */
 .home__wormhole-text {
   font-family:'Share Tech Mono',monospace;
-  font-size:clamp(.8rem,1.5vw,1.1rem);
+  font-size:clamp(.8rem,1.5vw,1rem);
   color:var(--gr-l); letter-spacing:6px; text-transform:uppercase;
-  margin-bottom:1.2rem; /* Espacio entre el texto y el GIF abajo */
+  margin-bottom:1.5rem; /* Espacio entre el texto y el GIF */
   transition:color .3s;
 }
 .home__wormhole a:hover .home__wormhole-text { color:var(--y); }
@@ -180,7 +178,6 @@ button { font-family:inherit; cursor:pointer; }
   transition:filter .4s;
 }
 .home__wormhole a:hover img { filter:brightness(1.1); }
-
 
 /* ============ SUBPAGE ============ */
 .sub { padding:clamp(2rem,4vw,4rem) clamp(1.2rem,3vw,2.5rem); }
