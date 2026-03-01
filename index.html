@@ -6,10 +6,19 @@
   <meta name="description" content="12⋮12am™ — The time is now.">
   <title>12⋮12am™</title>
   <link rel="stylesheet" href="css/styles.css">
+  <style>
+    /* Ajuste para que los nuevos SVGs se adapten al contenedor */
+    .logo-img svg {
+      width: 100%;
+      height: auto;
+      max-width: 200px;
+      display: block;
+      margin: 0 auto;
+    }
+  </style>
 </head>
 <body>
 
-  <!-- NAVIGATION -->
   <nav class="nav">
     <div class="nav__inner">
       <a class="nav__logo" data-home>
@@ -42,7 +51,6 @@
     <a data-page="contact">Contact</a>
   </div>
 
-  <!-- ============ HOME ============ -->
   <div class="page page--flex home active" id="pg-home">
     <div class="home__grid"></div>
     <div class="home__glow"></div>
@@ -54,7 +62,6 @@
     </div>
   </div>
 
-  <!-- ============ STORE ============ -->
   <div class="page" id="pg-store">
     <div class="sub">
       <div class="sub__back" data-back>← Back</div>
@@ -102,50 +109,54 @@
     </div>
   </div>
 
-  <!-- ============ ROOOM ============ -->
   <div class="page" id="pg-rooom">
     <div class="sub">
       <div class="sub__back" data-back>← Back</div>
       <div class="sub__wrap">
         <div class="section-hero">
-          <!--
-            ▸ TO ADD YOUR OWN LOGO:
-            ▸ Place your image file in an "img" folder (e.g. img/logo-rooom.png)
-            ▸ Then change the src below to: src="img/logo-rooom.png"
-          -->
           <div class="logo-img logo-img--rooom">
-            <img src="https://instagram.fvlc7-1.fna.fbcdn.net/v/t51.82787-15/524334283_17924467035098281_868132634344090632_n.jpg?efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=instagram.fvlc7-1.fna.fbcdn.net&_nc_cat=101&_nc_oc=Q6cZ2QE_tY-0ZxIXlNNbD837w0KR97xf9o6gd3NZa_vB8Z7uDdeMkNHf8oDr0hh-hHKGlNmCIRz6CVQbHq7pQWEdJTZN&_nc_ohc=fGp80TbsBjkQ7kNvwErtkeA&_nc_gid=71w_Vva3RN74UONatjZgyQ&edm=AP4sbd4BAAAA&ccb=7-5&oh=00_AfuRfAEfrPY4usLugiNg-jg6CMcY8KH1X8gKzZWgNSf5Mw&oe=69AA59DE&_nc_sid=7a9f4b">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="100" cy="100" r="92" fill="#1818e8"/>
+              <path d="M100 65 C85 65 60 75 58 115 C56 160 85 180 100 180 C115 180 144 160 142 115 C140 75 115 65 100 65Z" fill="#d82020"/>
+              <path d="M90 65 Q100 75 110 65 Q100 60 90 65Z" fill="#1818e8"/>
+              <path d="M100 68 Q97 50 90 42" stroke="#111" stroke-width="6" fill="none" stroke-linecap="round"/>
+              <ellipse cx="115" cy="48" rx="16" ry="10" fill="#00a820" transform="rotate(-20 115 48)"/>
+              <circle cx="89" cy="40" r="3" fill="#FFD600"/>
+              <text x="100" y="128" text-anchor="middle" font-family="'Arial Black', sans-serif" font-weight="900" font-size="34" fill="#FFD600">rooom</text>
+              <text x="156" y="112" font-family="Arial, sans-serif" font-size="10" fill="#FFD600" font-weight="700">TM</text>
+            </svg>
           </div>
           <h1 class="section-hero__title">Always your rooom</h1>
           <p class="section-hero__desc">This is your rooom. If you want to be a roommate or want to hang out in your room, you can make a reservation!</p>
           <div class="btn-row">
             <a href="https://www.instagram.com/rooom_ooo/" target="_blank" rel="noopener" class="btn btn--ig">
-              <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+              <svg viewBox="0 0 24 24" width="18" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
               @rooom_ooo
             </a>
           </div>
         </div>
         <div class="map-embed">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3684.5!2d120.3019323!3d22.6246721!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346e0545843a20a7%3A0x4f4d3ebdbf3ea9c8!2srooom!5e0!3m2!1sen!2stw!4v1700000000000!5m2!1sen!2stw" allowfullscreen="" loading="lazy"></iframe>
-          <a href="https://www.google.com/maps/place/rooom/@22.6246721,120.3019323,17z/data=!3m1!4b1!4m6!3m5!1s0x346e0545843a20a7:0x4f4d3ebdbf3ea9c8!8m2!3d22.6246721!4d120.3019323!16s%2Fg%2F11vprzq6p_?entry=ttu" target="_blank" rel="noopener" class="map-embed__link">📍 OPEN IN GOOGLE MAPS →</a>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509374!2d144.9537353153166!3d-37.81720997975171!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d4c2b349649%3A0xb6899234e561db54!2sMelbourne%20VIC%2C%20Australia!5e0!3m2!1sen!2s!4v1611551136151!5m2!1sen!2s" allowfullscreen="" loading="lazy"></iframe>
+          <a href="https://goo.gl/maps/xyz" target="_blank" rel="noopener" class="map-embed__link">📍 OPEN IN GOOGLE MAPS →</a>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ============ DRAGON12 ============ -->
   <div class="page" id="pg-dragon12">
     <div class="sub">
       <div class="sub__back" data-back>← Back</div>
       <div class="sub__wrap">
         <div class="section-hero">
-          <!--
-            ▸ TO ADD YOUR OWN LOGO:
-            ▸ Place your image file in an "img" folder (e.g. img/logo-dragon12.png)
-            ▸ Then change the src below to: src="img/logo-dragon12.png"
-          -->
           <div class="logo-img logo-img--dragon">
-            <img src="https://instagram.fvlc7-1.fna.fbcdn.net/v/t51.82787-15/572569783_17911652205248024_8967536105559347499_n.jpg?efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby4xMDgwLmMyIn0&_nc_ht=instagram.fvlc7-1.fna.fbcdn.net&_nc_cat=108&_nc_oc=Q6cZ2QHGVdrq4Nq2BWBFhOD73q-0CiK87AyDdgGvRnUt-JRftHaI_zoGAuMpbSuf22wTnifq-lDSloPgI4Uch1Y5u6eE&_nc_ohc=M-0Kqe_qNsUQ7kNvwF9Hf-w&_nc_gid=Hdcmmmtpc8UTaGumUvzVkA&edm=AP4sbd4BAAAA&ccb=7-5&oh=00_AfumZrgfwUPuIZCa8Uq66jEAzNAX4n__C5I9ZZBVz0gFeg&oe=69AA404F&_nc_sid=7a9f4b">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="100" cy="100" r="95" fill="black" stroke="white" stroke-width="4"/>
+              <g fill="white">
+                <path d="M100 20 Q90 20 85 30 L75 35 Q65 30 55 35 Q40 45 45 60 L35 65 Q25 80 30 95 L20 100 Q25 115 35 125 L45 130 Q50 150 70 165 L85 175 Q95 185 100 185 L100 165 Q90 155 85 140 L80 120 Q75 100 85 85 L90 60 Q95 40 100 35 Z" />
+                <path d="M100 20 Q110 20 115 30 L125 35 Q135 30 145 35 Q160 45 155 60 L165 65 Q175 80 170 95 L180 100 Q175 115 165 125 L155 130 Q150 150 130 165 L115 175 Q105 185 100 185 L100 165 Q110 155 115 140 L120 120 Q125 100 115 85 L110 60 Q105 40 100 35 Z" />
+                <path d="M100 50 Q90 80 85 110 Q90 140 100 160 Q110 140 115 110 Q110 80 100 50" fill="black"/>
+              </g>
+            </svg>
           </div>
           <h1 class="section-hero__title">Chasing the Dragon</h1>
           <p class="section-hero__sub">Dragon12 — Est. 12⋮12am™</p>
@@ -157,158 +168,11 @@
             For more information, please add the customer service contact below to request an appointment.
           </p>
           <div class="btn-row">
-            <a href="https://liff.line.me/1645278921-kWRPP32q/?accountId=653tumka&utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnjKKRHPSisKNfHRqg7wVTn6EG5FT8DF_oaWCOZxN0qbbcQsXK47uPzPJ5jUE_aem_JtU39fARA-g_ESTkixYxuA" target="_blank" rel="noopener" class="btn btn--solid">📅 Book Appointment</a>
+            <a href="https://line.me" target="_blank" rel="noopener" class="btn btn--solid">📅 Book Appointment</a>
             <a href="https://www.instagram.com/dra9on12/" target="_blank" rel="noopener" class="btn btn--ig">
-              <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+              <svg viewBox="0 0 24 24" width="18" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
               @dra9on12
             </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ============ LAST SURVIVORS ============ -->
-  <div class="page" id="pg-lastsurvivors">
-    <div class="sub">
-      <div class="sub__back" data-back>← Back</div>
-      <div class="sub__wrap">
-        <div class="section-hero">
-          <div class="section-hero__icon">⚔️</div>
-          <h1 class="section-hero__title">Last Survivors</h1>
-          <p class="section-hero__desc">The ultimate survival game. Do you have what it takes to be the last one standing?</p>
-        </div>
-        <div class="features">
-          <div class="feature">
-            <div class="feature__icon">⚔️</div>
-            <h3 class="feature__title">Combat</h3>
-            <p class="feature__text">Real-time tactical combat system with unique mechanics.</p>
-          </div>
-          <div class="feature">
-            <div class="feature__icon">🗺️</div>
-            <h3 class="feature__title">Exploration</h3>
-            <p class="feature__text">Procedurally generated map that changes with every match.</p>
-          </div>
-          <div class="feature">
-            <div class="feature__icon">🛡️</div>
-            <h3 class="feature__title">Crafting</h3>
-            <p class="feature__text">Build tools, weapons and shelters to survive.</p>
-          </div>
-          <div class="feature">
-            <div class="feature__icon">👥</div>
-            <h3 class="feature__title">Alliances</h3>
-            <p class="feature__text">Form teams or betray. Trust is a scarce resource.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ============ 36912AI ============ -->
-  <div class="page" id="pg-ai36912">
-    <div class="sub">
-      <div class="sub__back" data-back>← Back</div>
-      <div class="sub__wrap">
-        <div class="section-hero">
-          <div class="section-hero__icon">🧠</div>
-          <h1 class="section-hero__title">36912ai</h1>
-          <p class="section-hero__desc">Intelligence that evolves — tools and models designed to boost creativity and automate the mundane.</p>
-        </div>
-        <div class="features">
-          <div class="feature">
-            <div class="feature__icon">🎨</div>
-            <h3 class="feature__title">Creative Generation</h3>
-            <p class="feature__text">AI-assisted creative content for artists and creators.</p>
-          </div>
-          <div class="feature">
-            <div class="feature__icon">💬</div>
-            <h3 class="feature__title">Language Models</h3>
-            <p class="feature__text">Custom models tailored for communities and projects.</p>
-          </div>
-          <div class="feature">
-            <div class="feature__icon">⚡</div>
-            <h3 class="feature__title">Automation</h3>
-            <p class="feature__text">Smart automated creative workflows.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ============ IRLRPG ============ -->
-  <div class="page" id="pg-irlrpg">
-    <div class="sub">
-      <div class="sub__back" data-back>← Back</div>
-      <div class="sub__wrap">
-        <div class="section-hero">
-          <div style="display:inline-block;font-family:'Share Tech Mono',monospace;font-size:.65rem;letter-spacing:3px;color:var(--y);border:1px solid var(--y-dim);padding:.35rem 1.2rem;text-transform:uppercase;margin-bottom:1.2rem;">Real Life. Real Game.</div>
-          <h1 class="section-hero__title">irlrpg</h1>
-          <p class="section-hero__desc">Your life is the game. Earn XP, level up and unlock achievements by completing real-world quests.</p>
-        </div>
-        <div class="features">
-          <div class="feature">
-            <div class="feature__icon">📋</div>
-            <h3 class="feature__title">Daily Quests</h3>
-            <p class="feature__text">New quests generated daily based on your personal goals. Fitness, creativity, social — you choose your path.</p>
-          </div>
-          <div class="feature">
-            <div class="feature__icon">📊</div>
-            <h3 class="feature__title">Level System</h3>
-            <p class="feature__text">Progress through a system designed to motivate. Each level unlocks new abilities and rewards.</p>
-          </div>
-          <div class="feature">
-            <div class="feature__icon">🏰</div>
-            <h3 class="feature__title">Guilds & Clans</h3>
-            <p class="feature__text">Join other players, form guilds and compete in global leaderboards.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ============ ABOUT ============ -->
-  <div class="page" id="pg-about">
-    <div class="sub">
-      <div class="sub__back" data-back>← Back</div>
-      <div class="sub__wrap">
-        <div class="section-hero">
-          <h1 class="section-hero__title">About</h1>
-        </div>
-        <div style="max-width:680px;margin:0 auto;">
-          <p style="color:var(--lt);font-size:.95rem;line-height:1.9;margin-bottom:1.4rem;">
-            <span style="font-family:'Orbitron',sans-serif;font-size:2.2rem;float:left;color:var(--y);line-height:1;margin-right:.5rem;margin-top:.1rem;font-weight:900;">1</span>2⋮12am™ we are time
-          </p>
-          <p style="color:var(--gr-l);font-size:.95rem;line-height:1.9;margin-bottom:1.4rem;">
-            wormhole
-          </p>
-          <p style="color:var(--gr-l);font-size:.95rem;line-height:1.9;">
-            irlrpg.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ============ CONTACT ============ -->
-  <div class="page" id="pg-contact">
-    <div class="sub">
-      <div class="sub__back" data-back>← Back</div>
-      <div class="sub__wrap">
-        <div class="section-hero" style="padding-bottom:1rem;">
-          <h1 class="section-hero__title">Contact</h1>
-        </div>
-        <div class="contact-grid">
-          <div class="contact-form">
-            <div><label>Name</label><input type="text" placeholder="Your name"></div>
-            <div><label>Email</label><input type="email" placeholder="you@email.com"></div>
-            <div><label>Subject</label><input type="text" placeholder="What's on your mind?"></div>
-            <div><label>Message</label><textarea placeholder="Write your message..."></textarea></div>
-            <button class="btn btn--outline">Send</button>
-          </div>
-          <div class="contact-info">
-            <div><h4>Email</h4><p><a href="mailto:hello@1212am.com">hello@1212am.com</a></p></div>
-            <div><h4>Social</h4><p><a href="#">@1212am</a></p></div>
-            <div><h4>Location</h4><p>Somewhere between the digital and the real</p></div>
           </div>
         </div>
       </div>
