@@ -7,15 +7,14 @@
   <title>12⋮12am™</title>
   <link rel="stylesheet" href="css/styles.css">
   <style>
-    /* Ajuste para que tus imágenes JPG se vean como logos circulares */
+    /* Añadimos esto para que tus fotos se vean circulares y no rompan el diseño */
     .logo-img img {
       width: 100%;
       height: auto;
       max-width: 220px;
       display: block;
       margin: 0 auto;
-      border-radius: 50%; /* Esto las hace circulares */
-      border: 2px solid rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
       object-fit: cover;
     }
   </style>
@@ -24,7 +23,7 @@
 
   <nav class="nav">
     <div class="nav__inner">
-      <a class="nav__logo" data-home style="cursor:pointer">
+      <a class="nav__logo" data-home>
         12<span class="vdots">⋮</span>12<span class="am">am</span><span class="tm">™</span>
       </a>
       <ul class="nav__links">
@@ -65,24 +64,73 @@
     </div>
   </div>
 
+  <div class="page" id="pg-store">
+    <div class="sub">
+      <div class="sub__back" data-back>← Back</div>
+      <div class="sub__wrap">
+        <div class="section-hero">
+          <div class="section-hero__icon">🛒</div>
+          <h1 class="section-hero__title">Store</h1>
+          <p class="section-hero__desc">Merch, collectibles & limited editions from the 12⋮12am™ universe.</p>
+        </div>
+        <div class="store-grid">
+          <div class="store-card">
+            <div class="store-card__img"><span>🎽</span></div>
+            <div class="store-card__body">
+              <h3>12⋮12am Tee</h3>
+              <p>Premium black tee with embroidered logo. Limited edition.</p>
+              <span class="store-card__price">€39.00</span>
+            </div>
+          </div>
+          <div class="store-card">
+            <div class="store-card__img"><span>🧢</span></div>
+            <div class="store-card__body">
+              <h3>Midnight Cap</h3>
+              <p>Structured snapback. Yellow on black. One size.</p>
+              <span class="store-card__price">€29.00</span>
+            </div>
+          </div>
+          <div class="store-card">
+            <div class="store-card__img"><span>🎴</span></div>
+            <div class="store-card__body">
+              <h3>Dragon12 Card Set</h3>
+              <p>Collector's card deck. 52 custom illustrated cards.</p>
+              <span class="store-card__price">€24.00</span>
+            </div>
+          </div>
+          <div class="store-card">
+            <div class="store-card__img"><span>📦</span></div>
+            <div class="store-card__body">
+              <h3>Survivor Kit</h3>
+              <p>Mystery box with exclusive merch and digital content.</p>
+              <span class="store-card__price">€59.00</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="page" id="pg-rooom">
     <div class="sub">
       <div class="sub__back" data-back>← Back</div>
       <div class="sub__wrap">
         <div class="section-hero">
           <div class="logo-img logo-img--rooom">
-            <img src="rooom.jpg" alt="Rooom Logo">
+            <img src="rooom.jpg" alt="rooom logo">
           </div>
           <h1 class="section-hero__title">Always your rooom</h1>
           <p class="section-hero__desc">This is your rooom. If you want to be a roommate or want to hang out in your room, you can make a reservation!</p>
           <div class="btn-row">
             <a href="https://www.instagram.com/rooom_ooo/" target="_blank" rel="noopener" class="btn btn--ig">
+              <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
               @rooom_ooo
             </a>
           </div>
         </div>
         <div class="map-embed">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509374!2d144.95373531531663!3d-37.816279742021234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf577d1a32f52592!2sMelbourne%20VIC%2C%20Australia!5e0!3m2!1sen!2sus!4v1614580000000!5m2!1sen!2sus" allowfullscreen="" loading="lazy"></iframe>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3684.5!2d120.3019323!3d22.6246721!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346e0545843a20a7%3A0x4f4d3ebdbf3ea9c8!2srooom!5e0!3m2!1sen!2stw!4v1700000000000!5m2!1sen!2stw" allowfullscreen="" loading="lazy"></iframe>
+          <a href="https://www.google.com/maps/place/rooom/@22.6246721,120.3019323,17z/data=!3m1!4b1!4m6!3m5!1s0x346e0545843a20a7:0x4f4d3ebdbf3ea9c8!8m2!3d22.6246721!4d120.3019323!16s%2Fg%2F11vprzq6p_?entry=ttu" target="_blank" rel="noopener" class="map-embed__link">📍 OPEN IN GOOGLE MAPS →</a>
         </div>
       </div>
     </div>
@@ -94,16 +142,23 @@
       <div class="sub__wrap">
         <div class="section-hero">
           <div class="logo-img logo-img--dragon">
-            <img src="dragon12.jpg" alt="Dragon12 Logo">
+            <img src="dragon12.jpg" alt="Dragon12 logo">
           </div>
           <h1 class="section-hero__title">Chasing the Dragon</h1>
           <p class="section-hero__sub">Dragon12 — Est. 12⋮12am™</p>
         </div>
         <div class="panel" data-bg="龍">
           <h2 class="panel__title"><span>Dragon12</span> Healing — Osteopathy Service</h2>
-          <p class="panel__text">Appointment only.</p>
+          <p class="panel__text">
+            Appointment only.<br><br>
+            For more information, please add the customer service contact below to request an appointment.
+          </p>
           <div class="btn-row">
-            <a href="https://www.instagram.com/dra9on12/" target="_blank" rel="noopener" class="btn btn--ig">@dra9on12</a>
+            <a href="https://line.me" target="_blank" rel="noopener" class="btn btn--solid">📅 Book Appointment</a>
+            <a href="https://www.instagram.com/dra9on12/" target="_blank" rel="noopener" class="btn btn--ig">
+              <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+              @dra9on12
+            </a>
           </div>
         </div>
       </div>
