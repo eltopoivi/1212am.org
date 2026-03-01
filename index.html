@@ -1,0 +1,1459 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>12⋮12am™</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&family=Exo+2:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --yellow: #FFD600;
+      --yellow-dim: #b89e00;
+      --yellow-glow: rgba(255, 214, 0, 0.15);
+      --yellow-glow-strong: rgba(255, 214, 0, 0.35);
+      --black: #0a0a0a;
+      --dark: #111111;
+      --dark-card: #161616;
+      --dark-border: #222222;
+      --gray: #888888;
+      --light: #cccccc;
+      --white: #f0f0f0;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scrollbar-width: thin;
+      scrollbar-color: var(--yellow) var(--black);
+    }
+
+    body {
+      font-family: 'Exo 2', sans-serif;
+      background: var(--black);
+      color: var(--white);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* === GRAIN OVERLAY === */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* === SCROLLBAR === */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--black); }
+    ::-webkit-scrollbar-thumb { background: var(--yellow); border-radius: 3px; }
+
+    /* === NAVIGATION === */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--dark-border);
+      padding: 0 2rem;
+      transition: all 0.3s;
+    }
+
+    nav .nav-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+    }
+
+    .logo {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 900;
+      font-size: 1.5rem;
+      color: var(--yellow);
+      text-decoration: none;
+      letter-spacing: 2px;
+      text-shadow: 0 0 20px var(--yellow-glow-strong);
+      display: flex;
+      align-items: baseline;
+      gap: 2px;
+    }
+
+    .logo .colon {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      line-height: 0.35;
+      font-size: 1.4rem;
+      margin: 0 1px;
+      position: relative;
+      top: -1px;
+    }
+
+    .logo .am {
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 1px;
+      position: relative;
+      top: -2px;
+    }
+
+    .logo .tm {
+      font-size: 0.45rem;
+      position: relative;
+      top: -8px;
+      margin-left: 1px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 0;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Share Tech Mono', monospace;
+      color: var(--gray);
+      text-decoration: none;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 0.6rem 1rem;
+      position: relative;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--yellow);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 1px;
+      background: var(--yellow);
+      transition: all 0.3s;
+      transform: translateX(-50%);
+    }
+
+    .nav-links a:hover::after { width: 60%; }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 5px;
+      background: none;
+      border: none;
+    }
+
+    .hamburger span {
+      width: 24px;
+      height: 2px;
+      background: var(--yellow);
+      transition: all 0.3s;
+    }
+
+    /* === HERO === */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-image:
+        linear-gradient(var(--dark-border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--dark-border) 1px, transparent 1px);
+      background-size: 60px 60px;
+      opacity: 0.3;
+      animation: gridPulse 8s ease-in-out infinite;
+    }
+
+    @keyframes gridPulse {
+      0%, 100% { opacity: 0.15; }
+      50% { opacity: 0.3; }
+    }
+
+    .hero-glow {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--yellow-glow) 0%, transparent 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: glowPulse 6s ease-in-out infinite;
+    }
+
+    @keyframes glowPulse {
+      0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+      50% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+
+    .hero-logo {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 900;
+      font-size: clamp(4rem, 12vw, 10rem);
+      color: var(--yellow);
+      text-shadow: 0 0 60px var(--yellow-glow-strong), 0 0 120px var(--yellow-glow);
+      letter-spacing: 4px;
+      line-height: 1;
+      animation: heroReveal 1.5s ease-out;
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+    }
+
+    .hero-logo .h-colon {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      line-height: 0.3;
+      margin: 0 0.05em;
+      font-size: 0.9em;
+    }
+
+    .hero-logo .h-am {
+      font-size: 0.2em;
+      font-weight: 400;
+      letter-spacing: 2px;
+      position: relative;
+      top: -0.15em;
+    }
+
+    .hero-logo .h-tm {
+      font-size: 0.1em;
+      position: relative;
+      top: -0.5em;
+    }
+
+    @keyframes heroReveal {
+      0% { opacity: 0; transform: translateY(40px); filter: blur(10px); }
+      100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+    }
+
+    .hero-tagline {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: clamp(0.8rem, 2vw, 1.1rem);
+      color: var(--gray);
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      margin-top: 1.5rem;
+      animation: fadeUp 1.5s ease-out 0.5s both;
+    }
+
+    @keyframes fadeUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 3rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      animation: fadeUp 1.5s ease-out 1s both;
+    }
+
+    .hero-scroll span {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      color: var(--gray);
+      text-transform: uppercase;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--yellow), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 1; height: 40px; }
+      50% { opacity: 0.3; height: 25px; }
+    }
+
+    /* === SECTIONS === */
+    section {
+      padding: 8rem 2rem;
+      position: relative;
+    }
+
+    .section-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      margin-bottom: 4rem;
+    }
+
+    .section-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 4px;
+      color: var(--yellow);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 900;
+      letter-spacing: 2px;
+      line-height: 1.2;
+      background: linear-gradient(135deg, var(--white) 0%, var(--gray) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .section-divider {
+      width: 60px;
+      height: 2px;
+      background: var(--yellow);
+      margin-top: 1.5rem;
+      box-shadow: 0 0 10px var(--yellow-glow-strong);
+    }
+
+    /* === STORE SECTION === */
+    #store {
+      background: linear-gradient(180deg, var(--black) 0%, var(--dark) 50%, var(--black) 100%);
+    }
+
+    .store-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .store-card {
+      background: var(--dark-card);
+      border: 1px solid var(--dark-border);
+      border-radius: 2px;
+      overflow: hidden;
+      transition: all 0.4s;
+      position: relative;
+    }
+
+    .store-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: linear-gradient(135deg, var(--yellow-glow) 0%, transparent 50%);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+
+    .store-card:hover::before { opacity: 1; }
+    .store-card:hover { border-color: var(--yellow-dim); transform: translateY(-4px); }
+
+    .store-card-img {
+      height: 200px;
+      background: var(--dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid var(--dark-border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .store-card-img .icon {
+      font-size: 3rem;
+      opacity: 0.6;
+    }
+
+    .store-card-body {
+      padding: 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .store-card-body h3 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.95rem;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+    }
+
+    .store-card-body p {
+      font-size: 0.85rem;
+      color: var(--gray);
+      margin-bottom: 1rem;
+    }
+
+    .store-card-body .price {
+      font-family: 'Orbitron', sans-serif;
+      color: var(--yellow);
+      font-weight: 700;
+    }
+
+    /* === ROOM SECTION === */
+    #room {
+      background: var(--dark);
+      border-top: 1px solid var(--dark-border);
+      border-bottom: 1px solid var(--dark-border);
+    }
+
+    .room-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .room-visual {
+      aspect-ratio: 1;
+      background: var(--dark-card);
+      border: 1px solid var(--dark-border);
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .room-visual::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 120px; height: 120px;
+      border: 2px solid var(--yellow);
+      border-radius: 50%;
+      animation: roomPulse 3s ease-in-out infinite;
+    }
+
+    @keyframes roomPulse {
+      0%, 100% { width: 120px; height: 120px; opacity: 1; }
+      50% { width: 180px; height: 180px; opacity: 0.3; }
+    }
+
+    .room-visual .room-icon {
+      font-size: 4rem;
+      z-index: 1;
+    }
+
+    .room-text h3 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      letter-spacing: 1px;
+    }
+
+    .room-text p {
+      color: var(--gray);
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .room-features {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .room-feature {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 0.85rem;
+      color: var(--light);
+    }
+
+    .room-feature .dot {
+      width: 6px; height: 6px;
+      background: var(--yellow);
+      flex-shrink: 0;
+    }
+
+    /* === DRAGON12 === */
+    #dragon12 {
+      background: var(--black);
+      position: relative;
+    }
+
+    .dragon-banner {
+      background: linear-gradient(135deg, var(--dark-card) 0%, var(--dark) 100%);
+      border: 1px solid var(--dark-border);
+      border-radius: 2px;
+      padding: 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .dragon-banner::before {
+      content: '龍';
+      position: absolute;
+      right: -20px;
+      top: -40px;
+      font-size: 15rem;
+      opacity: 0.03;
+      color: var(--yellow);
+      line-height: 1;
+    }
+
+    .dragon-banner h3 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2rem;
+      letter-spacing: 3px;
+      color: var(--yellow);
+      margin-bottom: 1rem;
+    }
+
+    .dragon-banner p {
+      font-size: 1rem;
+      color: var(--gray);
+      max-width: 600px;
+      margin-bottom: 2rem;
+    }
+
+    .dragon-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .dragon-stat {
+      text-align: center;
+      padding: 1.5rem;
+      border: 1px solid var(--dark-border);
+      background: rgba(0,0,0,0.3);
+    }
+
+    .dragon-stat .num {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2rem;
+      color: var(--yellow);
+      font-weight: 900;
+    }
+
+    .dragon-stat .label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--gray);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-top: 0.3rem;
+    }
+
+    /* === LAST SURVIVORS === */
+    #lastsurvivors {
+      background: var(--dark);
+      border-top: 1px solid var(--dark-border);
+    }
+
+    .survivors-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--dark-border);
+      border: 1px solid var(--dark-border);
+    }
+
+    .survivor-cell {
+      background: var(--dark-card);
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      transition: all 0.4s;
+      position: relative;
+    }
+
+    .survivor-cell:hover {
+      background: var(--dark);
+      box-shadow: inset 0 0 30px var(--yellow-glow);
+    }
+
+    .survivor-cell .s-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .survivor-cell h4 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+    }
+
+    .survivor-cell p {
+      font-size: 0.75rem;
+      color: var(--gray);
+      line-height: 1.5;
+    }
+
+    /* === 36912AI === */
+    #ai36912 {
+      background: var(--black);
+      position: relative;
+    }
+
+    .ai-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+    }
+
+    .ai-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .ai-circle {
+      width: 300px;
+      height: 300px;
+      border: 1px solid var(--yellow-dim);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      animation: aiRotate 20s linear infinite;
+    }
+
+    @keyframes aiRotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .ai-circle::before {
+      content: '';
+      position: absolute;
+      width: 8px; height: 8px;
+      background: var(--yellow);
+      border-radius: 50%;
+      top: -4px;
+      box-shadow: 0 0 15px var(--yellow);
+    }
+
+    .ai-inner {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2rem;
+      color: var(--yellow);
+      font-weight: 900;
+      animation: aiRotate 20s linear infinite reverse;
+    }
+
+    .ai-text h3 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      letter-spacing: 1px;
+    }
+
+    .ai-text p {
+      color: var(--gray);
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .ai-features {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .ai-feature {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      padding: 1rem;
+      background: var(--dark-card);
+      border-left: 2px solid var(--yellow);
+    }
+
+    .ai-feature .af-num {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.7rem;
+      color: var(--yellow);
+      flex-shrink: 0;
+    }
+
+    .ai-feature .af-text {
+      font-size: 0.85rem;
+      color: var(--light);
+    }
+
+    /* === IRL RPG === */
+    #irlrpg {
+      background: var(--dark);
+      border-top: 1px solid var(--dark-border);
+    }
+
+    .rpg-hero {
+      text-align: center;
+      padding: 4rem 0;
+    }
+
+    .rpg-hero .rpg-badge {
+      display: inline-block;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 3px;
+      color: var(--yellow);
+      border: 1px solid var(--yellow-dim);
+      padding: 0.4rem 1.5rem;
+      margin-bottom: 2rem;
+      text-transform: uppercase;
+    }
+
+    .rpg-hero h3 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.5rem;
+      letter-spacing: 3px;
+      margin-bottom: 1rem;
+    }
+
+    .rpg-hero p {
+      color: var(--gray);
+      max-width: 700px;
+      margin: 0 auto 3rem;
+      font-size: 1rem;
+    }
+
+    .rpg-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .rpg-card {
+      background: var(--dark-card);
+      border: 1px solid var(--dark-border);
+      padding: 2rem;
+      text-align: left;
+      transition: all 0.4s;
+      position: relative;
+    }
+
+    .rpg-card:hover {
+      border-color: var(--yellow-dim);
+      transform: translateY(-3px);
+    }
+
+    .rpg-card .rpg-card-num {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 3rem;
+      color: var(--yellow);
+      opacity: 0.15;
+      font-weight: 900;
+      position: absolute;
+      top: 1rem;
+      right: 1.5rem;
+    }
+
+    .rpg-card h4 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      margin-bottom: 0.8rem;
+    }
+
+    .rpg-card p {
+      font-size: 0.85rem;
+      color: var(--gray);
+      line-height: 1.7;
+    }
+
+    /* === ABOUT === */
+    #about {
+      background: var(--black);
+    }
+
+    .about-content {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 4rem;
+    }
+
+    .about-text p {
+      color: var(--gray);
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+    }
+
+    .about-text p:first-of-type::first-letter {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 3rem;
+      float: left;
+      color: var(--yellow);
+      line-height: 1;
+      margin-right: 0.5rem;
+      margin-top: 0.1rem;
+    }
+
+    .about-sidebar {
+      border-left: 1px solid var(--dark-border);
+      padding-left: 2rem;
+    }
+
+    .about-sidebar h4 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      color: var(--yellow);
+      margin-bottom: 1.5rem;
+    }
+
+    .about-sidebar ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .about-sidebar li {
+      font-size: 0.85rem;
+      color: var(--gray);
+      padding-left: 1rem;
+      border-left: 2px solid var(--dark-border);
+      transition: all 0.3s;
+    }
+
+    .about-sidebar li:hover {
+      color: var(--white);
+      border-color: var(--yellow);
+    }
+
+    /* === CONTACT === */
+    #contact {
+      background: var(--dark);
+      border-top: 1px solid var(--dark-border);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .form-group label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      color: var(--gray);
+      text-transform: uppercase;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      background: var(--dark-card);
+      border: 1px solid var(--dark-border);
+      color: var(--white);
+      font-family: 'Exo 2', sans-serif;
+      font-size: 0.9rem;
+      padding: 0.9rem 1rem;
+      outline: none;
+      transition: border-color 0.3s;
+      border-radius: 0;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--yellow);
+    }
+
+    .form-group textarea { resize: vertical; min-height: 120px; }
+
+    .submit-btn {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      background: transparent;
+      border: 1px solid var(--yellow);
+      color: var(--yellow);
+      padding: 1rem 2rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      align-self: flex-start;
+    }
+
+    .submit-btn:hover {
+      background: var(--yellow);
+      color: var(--black);
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    .contact-block h4 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      color: var(--yellow);
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-block p {
+      font-size: 0.9rem;
+      color: var(--gray);
+    }
+
+    .contact-block a {
+      color: var(--light);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .contact-block a:hover { color: var(--yellow); }
+
+    /* === FOOTER === */
+    footer {
+      padding: 3rem 2rem;
+      border-top: 1px solid var(--dark-border);
+      background: var(--black);
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-inner .footer-logo {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 900;
+      color: var(--yellow);
+      font-size: 1rem;
+      letter-spacing: 2px;
+    }
+
+    .footer-inner .footer-copy {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--gray);
+      letter-spacing: 1px;
+    }
+
+    /* === CTA BUTTON (reusable) === */
+    .cta-btn {
+      display: inline-block;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid var(--yellow);
+      color: var(--yellow);
+      padding: 0.8rem 2rem;
+      transition: all 0.3s;
+    }
+
+    .cta-btn:hover {
+      background: var(--yellow);
+      color: var(--black);
+    }
+
+    /* === MOBILE MENU === */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 70px;
+      left: 0; right: 0; bottom: 0;
+      background: rgba(10,10,10,0.97);
+      backdrop-filter: blur(20px);
+      z-index: 999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+
+    .mobile-menu.open { display: flex; }
+
+    .mobile-menu a {
+      font-family: 'Share Tech Mono', monospace;
+      color: var(--gray);
+      text-decoration: none;
+      font-size: 1rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      padding: 0.8rem;
+      transition: color 0.3s;
+    }
+
+    .mobile-menu a:hover { color: var(--yellow); }
+
+    /* === ANIMATION ON SCROLL === */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease-out;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* === RESPONSIVE === */
+    @media (max-width: 1024px) {
+      .room-content,
+      .ai-content,
+      .about-content,
+      .contact-grid { grid-template-columns: 1fr; }
+
+      .dragon-stats { grid-template-columns: repeat(3, 1fr); }
+      .survivors-grid { grid-template-columns: repeat(2, 1fr); }
+      .rpg-cards { grid-template-columns: repeat(2, 1fr); }
+
+      .about-sidebar {
+        border-left: none;
+        border-top: 1px solid var(--dark-border);
+        padding-left: 0;
+        padding-top: 2rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+
+      section { padding: 5rem 1.5rem; }
+
+      .dragon-banner { padding: 2rem; }
+      .dragon-stats { grid-template-columns: 1fr; gap: 1rem; }
+
+      .survivors-grid { grid-template-columns: 1fr; }
+      .rpg-cards { grid-template-columns: 1fr; }
+
+      .footer-inner { flex-direction: column; gap: 1rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#hero" class="logo">12<span class="colon">⋮</span>12<span class="am">am</span><span class="tm">™</span></a>
+      <ul class="nav-links">
+        <li><a href="#store">Store</a></li>
+        <li><a href="#room">Room</a></li>
+        <li><a href="#dragon12">Dragon12</a></li>
+        <li><a href="#lastsurvivors">Last Survivors</a></li>
+        <li><a href="#ai36912">36912ai</a></li>
+        <li><a href="#irlrpg">irlrpg</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#store" onclick="toggleMenu()">Store</a>
+    <a href="#room" onclick="toggleMenu()">Room</a>
+    <a href="#dragon12" onclick="toggleMenu()">Dragon12</a>
+    <a href="#lastsurvivors" onclick="toggleMenu()">Last Survivors</a>
+    <a href="#ai36912" onclick="toggleMenu()">36912ai</a>
+    <a href="#irlrpg" onclick="toggleMenu()">irlrpg</a>
+    <a href="#about" onclick="toggleMenu()">About</a>
+    <a href="#contact" onclick="toggleMenu()">Contact</a>
+  </div>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-content">
+      <div class="hero-logo">
+        12<span class="h-colon">⋮</span>12<span class="h-am">am</span><span class="h-tm">™</span>
+      </div>
+      <p class="hero-tagline">The time is now</p>
+    </div>
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- STORE -->
+  <section id="store">
+    <div class="section-container reveal">
+      <div class="section-header">
+        <div class="section-label">// 001</div>
+        <h2 class="section-title">Store</h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="store-grid">
+        <div class="store-card">
+          <div class="store-card-img"><span class="icon">🎽</span></div>
+          <div class="store-card-body">
+            <h3>12⋮12am Tee</h3>
+            <p>Premium black tee with embroidered logo. Limited edition.</p>
+            <span class="price">€39.00</span>
+          </div>
+        </div>
+        <div class="store-card">
+          <div class="store-card-img"><span class="icon">🧢</span></div>
+          <div class="store-card-body">
+            <h3>Midnight Cap</h3>
+            <p>Structured snapback. Yellow on black. One size.</p>
+            <span class="price">€29.00</span>
+          </div>
+        </div>
+        <div class="store-card">
+          <div class="store-card-img"><span class="icon">🎴</span></div>
+          <div class="store-card-body">
+            <h3>Dragon12 Card Set</h3>
+            <p>Collector's card deck. 52 custom illustrated cards.</p>
+            <span class="price">€24.00</span>
+          </div>
+        </div>
+        <div class="store-card">
+          <div class="store-card-img"><span class="icon">📦</span></div>
+          <div class="store-card-body">
+            <h3>Survivor Kit</h3>
+            <p>Mystery box with exclusive merch and digital content.</p>
+            <span class="price">€59.00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROOM -->
+  <section id="room">
+    <div class="section-container reveal">
+      <div class="section-header">
+        <div class="section-label">// 002</div>
+        <h2 class="section-title">Room</h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="room-content">
+        <div class="room-visual">
+          <span class="room-icon">🚪</span>
+        </div>
+        <div class="room-text">
+          <h3>Enter the Room</h3>
+          <p>Un espacio exclusivo donde las ideas cobran vida. The Room es el punto de encuentro de la comunidad 12⋮12am — un hub digital donde convergen creatividad, tecnología y cultura.</p>
+          <div class="room-features">
+            <div class="room-feature"><span class="dot"></span> Contenido exclusivo para miembros</div>
+            <div class="room-feature"><span class="dot"></span> Eventos en vivo y workshops</div>
+            <div class="room-feature"><span class="dot"></span> Acceso anticipado a lanzamientos</div>
+            <div class="room-feature"><span class="dot"></span> Comunidad privada</div>
+          </div>
+          <br>
+          <a href="#" class="cta-btn">Acceder</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DRAGON12 -->
+  <section id="dragon12">
+    <div class="section-container reveal">
+      <div class="section-header">
+        <div class="section-label">// 003</div>
+        <h2 class="section-title">Dragon12</h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="dragon-banner">
+        <h3>DRAGON12</h3>
+        <p>El dragón despierta. Dragon12 es nuestro proyecto insignia — una colección digital de arte generativo que fusiona mitología ancestral con inteligencia artificial de vanguardia.</p>
+        <a href="#" class="cta-btn">Explorar</a>
+        <div class="dragon-stats">
+          <div class="dragon-stat">
+            <div class="num">12K</div>
+            <div class="label">Piezas únicas</div>
+          </div>
+          <div class="dragon-stat">
+            <div class="num">144</div>
+            <div class="label">Atributos raros</div>
+          </div>
+          <div class="dragon-stat">
+            <div class="num">∞</div>
+            <div class="label">Posibilidades</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LAST SURVIVORS -->
+  <section id="lastsurvivors">
+    <div class="section-container reveal">
+      <div class="section-header">
+        <div class="section-label">// 004</div>
+        <h2 class="section-title">Last Survivors</h2>
+        <div class="section-divider"></div>
+      </div>
+      <p style="color: var(--gray); margin-bottom: 2.5rem; max-width: 600px;">El juego de supervivencia definitivo. ¿Tienes lo que se necesita para ser el último en pie?</p>
+      <div class="survivors-grid">
+        <div class="survivor-cell">
+          <div class="s-icon">⚔️</div>
+          <h4>Combate</h4>
+          <p>Sistema de combate táctico en tiempo real con mecánicas únicas.</p>
+        </div>
+        <div class="survivor-cell">
+          <div class="s-icon">🗺️</div>
+          <h4>Exploración</h4>
+          <p>Mapa procedural generado que cambia con cada partida.</p>
+        </div>
+        <div class="survivor-cell">
+          <div class="s-icon">🛡️</div>
+          <h4>Crafteo</h4>
+          <p>Crea herramientas, armas y refugios para sobrevivir.</p>
+        </div>
+        <div class="survivor-cell">
+          <div class="s-icon">👥</div>
+          <h4>Alianzas</h4>
+          <p>Forma equipos o traiciona. La confianza es un recurso escaso.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 36912AI -->
+  <section id="ai36912">
+    <div class="section-container reveal">
+      <div class="section-header">
+        <div class="section-label">// 005</div>
+        <h2 class="section-title">36912ai</h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="ai-content">
+        <div class="ai-visual">
+          <div class="ai-circle">
+            <span class="ai-inner">36912</span>
+          </div>
+        </div>
+        <div class="ai-text">
+          <h3>Inteligencia que evoluciona</h3>
+          <p>36912ai es nuestra división de inteligencia artificial — herramientas y modelos diseñados para potenciar la creatividad y automatizar lo mundano.</p>
+          <div class="ai-features">
+            <div class="ai-feature">
+              <span class="af-num">01</span>
+              <span class="af-text">Generación de contenido creativo asistido por IA</span>
+            </div>
+            <div class="ai-feature">
+              <span class="af-num">02</span>
+              <span class="af-text">Modelos de lenguaje personalizados para comunidades</span>
+            </div>
+            <div class="ai-feature">
+              <span class="af-num">03</span>
+              <span class="af-text">Automatización inteligente de workflows creativos</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IRL RPG -->
+  <section id="irlrpg">
+    <div class="section-container reveal">
+      <div class="section-header">
+        <div class="section-label">// 006</div>
+        <h2 class="section-title">irlrpg</h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="rpg-hero">
+        <div class="rpg-badge">Real Life. Real Game.</div>
+        <h3>Tu vida es el juego</h3>
+        <p>irlrpg transforma tu día a día en una aventura RPG. Gana experiencia, sube de nivel y desbloquea logros completando misiones en el mundo real.</p>
+      </div>
+      <div class="rpg-cards">
+        <div class="rpg-card">
+          <div class="rpg-card-num">01</div>
+          <h4>Misiones diarias</h4>
+          <p>Cada día se generan nuevas misiones basadas en tus objetivos personales. Fitness, creatividad, social — tú decides tu camino.</p>
+        </div>
+        <div class="rpg-card">
+          <div class="rpg-card-num">02</div>
+          <h4>Sistema de niveles</h4>
+          <p>Progresa a través de un sistema de niveles diseñado para motivarte. Cada nivel desbloquea nuevas habilidades y recompensas.</p>
+        </div>
+        <div class="rpg-card">
+          <div class="rpg-card-num">03</div>
+          <h4>Gremios & Clanes</h4>
+          <p>Únete a otros jugadores, forma gremios y compite en tablas de clasificación globales. Juntos llegamos más lejos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-container reveal">
+      <div class="section-header">
+        <div class="section-label">// 007</div>
+        <h2 class="section-title">About</h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="about-content">
+        <div class="about-text">
+          <p>12⋮12am™ nace de una obsesión: crear experiencias que desdibujen la línea entre lo digital y lo real. Somos una organización creativa que opera en la intersección de la tecnología, el arte y la cultura de juego.</p>
+          <p>Desde colecciones de arte generativo hasta juegos de supervivencia en el mundo real, cada proyecto que lanzamos está diseñado para provocar, inspirar y conectar. No seguimos tendencias — las creamos.</p>
+          <p>Nuestro nombre viene de ese momento liminal: las 12:12 de la madrugada. Cuando el mundo duerme, nosotros construimos.</p>
+        </div>
+        <div class="about-sidebar">
+          <h4>Proyectos</h4>
+          <ul>
+            <li>Store — Merch & collectibles</li>
+            <li>Room — Community hub</li>
+            <li>Dragon12 — Generative art</li>
+            <li>Last Survivors — Survival game</li>
+            <li>36912ai — AI tools</li>
+            <li>irlrpg — Real life RPG</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-container reveal">
+      <div class="section-header">
+        <div class="section-label">// 008</div>
+        <h2 class="section-title">Contact</h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-form">
+          <div class="form-group">
+            <label>Nombre</label>
+            <input type="text" placeholder="Tu nombre">
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" placeholder="tu@email.com">
+          </div>
+          <div class="form-group">
+            <label>Asunto</label>
+            <input type="text" placeholder="¿De qué quieres hablar?">
+          </div>
+          <div class="form-group">
+            <label>Mensaje</label>
+            <textarea placeholder="Escribe tu mensaje..."></textarea>
+          </div>
+          <button class="submit-btn">Enviar</button>
+        </div>
+        <div class="contact-info">
+          <div class="contact-block">
+            <h4>Email</h4>
+            <p><a href="mailto:hello@1212am.com">hello@1212am.com</a></p>
+          </div>
+          <div class="contact-block">
+            <h4>Social</h4>
+            <p><a href="#">@1212am</a></p>
+          </div>
+          <div class="contact-block">
+            <h4>Ubicación</h4>
+            <p>En algún lugar entre lo digital y lo real</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-logo">12⋮12am™</span>
+      <span class="footer-copy">© 2026 12⋮12am™ — All rights reserved</span>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    function toggleMenu() {
+      document.getElementById('mobileMenu').classList.toggle('open');
+    }
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    reveals.forEach(el => observer.observe(el));
+
+    // Active nav link
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const top = section.offsetTop - 100;
+        if (pageYOffset >= top) current = section.getAttribute('id');
+      });
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + current) link.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
