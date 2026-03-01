@@ -9,7 +9,8 @@
   --y-dim: #b89e00;
   --y-glow: rgba(255,214,0,.12);
   --y-glow-s: rgba(255,214,0,.3);
-  --bk: #0a0a0a;
+  /* CAMBIO: Fondo negro puro para fundir el GIF */
+  --bk: #000000; 
   --dk: #101010;
   --dk2: #161616;
   --db: #1e1e1e;
@@ -39,7 +40,7 @@ button { font-family:inherit; cursor:pointer; }
 .nav {
   position:fixed; top:0; left:0; right:0; z-index:1000;
   height:var(--nav-h);
-  background:rgba(10,10,10,.88);
+  background:rgba(0,0,0,.88);
   backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px);
   border-bottom:1px solid var(--db);
 }
@@ -48,6 +49,8 @@ button { font-family:inherit; cursor:pointer; }
   display:flex; align-items:center; justify-content:space-between;
   padding:0 clamp(1rem,3vw,2.5rem);
 }
+
+/* Base de los Logos (Pequeño de arriba) */
 .nav__logo {
   font-family:'Orbitron',sans-serif; font-weight:900; font-size:1.25rem;
   color:var(--y); letter-spacing:2px; cursor:pointer;
@@ -55,9 +58,23 @@ button { font-family:inherit; cursor:pointer; }
   display:flex; align-items:baseline; gap:1px; transition:opacity .3s;
 }
 .nav__logo:hover { opacity:.85; }
-.nav__logo .vdots { display:inline-flex; flex-direction:column; align-items:center; line-height:.32; font-size:1.15rem; margin:0 1px; position:relative; top:-1px; }
-.nav__logo .am { font-size:.58rem; font-weight:400; letter-spacing:1px; position:relative; top:-2px; }
-.nav__logo .tm { font-size:.36rem; position:relative; top:-7px; margin-left:1px; }
+
+/* =========================================================
+   SISTEMA DE PROPORCIONES PERFECTAS (AMBOS LOGOS COMPARTEN ESTO)
+   ========================================================= */
+.nav__logo .vdots, .home__brand .vd {
+  display:inline-flex; flex-direction:column; align-items:center;
+  line-height:.32; font-size:.92em; margin:0 .04em; position:relative; top:-.05em;
+}
+.nav__logo .am, .home__brand .am {
+  font-size:.54em; /* AM ligeramente más grande (antes era ~0.46em) */
+  font-weight:400; letter-spacing:1px; position:relative; top:-.08em;
+}
+.nav__logo .tm, .home__brand .tm {
+  font-size:.28em; position:relative; top:-1.2em; margin-left:.05em;
+}
+/* ========================================================= */
+
 
 .nav__links { display:flex; align-items:center; gap:0; list-style:none; }
 .nav__links a {
@@ -82,7 +99,7 @@ button { font-family:inherit; cursor:pointer; }
 
 .nav__mobile {
   display:none; position:fixed; top:var(--nav-h); left:0; right:0; bottom:0;
-  background:rgba(8,8,8,.98); backdrop-filter:blur(24px); z-index:999;
+  background:rgba(0,0,0,.98); backdrop-filter:blur(24px); z-index:999;
   flex-direction:column; align-items:center; justify-content:center; gap:1.8rem;
 }
 .nav__mobile.open { display:flex; }
@@ -106,18 +123,18 @@ button { font-family:inherit; cursor:pointer; }
 /* ============ HOME ============ */
 .home {
   flex-direction:column; align-items:center; 
-  justify-content:flex-start; /* Empieza desde arriba */
-  padding-top: 12vh; /* Margen superior para despegar el logo del menú */
+  justify-content:flex-start;
+  padding-top: 12vh;
   overflow:hidden; position:relative;
   background:var(--bk);
 }
 .home__center {
   position:relative; z-index:2; text-align:center; width:100%; padding:0 2rem;
   display:flex; flex-direction:column; align-items:center;
-  height: 80vh; /* Altura definida para poder empujar elementos al fondo */
+  height: 80vh;
 }
 
-/* Subtle yellow grid lines covering entire background */
+/* Cuadrícula amarilla de fondo */
 .home__grid {
   position:absolute; inset:0;
   background-image:
@@ -125,9 +142,11 @@ button { font-family:inherit; cursor:pointer; }
     linear-gradient(90deg,rgba(255,214,0,.04) 1px,transparent 1px);
   background-size:50px 50px;
   opacity:1;
+  /* CAMBIO: Máscara para difuminar la cuadrícula hacia abajo, logrando unión perfecta con el GIF */
+  mask-image: linear-gradient(to bottom, black 30%, transparent 80%);
+  -webkit-mask-image: linear-gradient(to bottom, black 30%, transparent 80%);
 }
 
-/* Yellow center glow - very subtle */
 .home__glow {
   position:absolute; width:70vmax; height:70vmax; border-radius:50%;
   background:radial-gradient(circle,rgba(255,214,0,.06) 0%,transparent 60%);
@@ -135,6 +154,7 @@ button { font-family:inherit; cursor:pointer; }
   pointer-events:none;
 }
 
+/* Base del Logo Principal (Grande del centro) */
 .home__brand {
   font-family:'Orbitron',sans-serif; font-weight:900;
   font-size:clamp(4rem,14vw,12rem); color:var(--y);
@@ -145,13 +165,10 @@ button { font-family:inherit; cursor:pointer; }
 }
 @keyframes brandIn { from{opacity:0;transform:translateY(30px);filter:blur(8px);} to{opacity:1;transform:none;filter:none;} }
 
-.home__brand .vd { display:inline-flex; flex-direction:column; align-items:center; line-height:.28; margin:0 .04em; font-size:.88em; }
-.home__brand .am { font-size:.28em; font-weight:400; letter-spacing:2px; position:relative; top:-.08em; } /* AM más grande */
-.home__brand .tm { font-size:.09em; position:relative; top:-.48em; }
 
-/* Wormhole section - Empujada hacia abajo del todo */
+/* Wormhole section */
 .home__wormhole {
-  margin-top: auto; /* Esto envía el contenedor automáticamente al fondo del home__center */
+  margin-top: auto;
   padding-bottom: 5vh;
   display:flex; flex-direction:column; align-items:center;
   animation:subIn 1.2s var(--ease) .4s both;
@@ -166,15 +183,17 @@ button { font-family:inherit; cursor:pointer; }
   font-family:'Share Tech Mono',monospace;
   font-size:clamp(.8rem,1.5vw,1rem);
   color:var(--gr-l); letter-spacing:6px; text-transform:uppercase;
-  margin-bottom:1.5rem; /* Espacio entre el texto y el GIF */
+  margin-bottom:1.5rem;
   transition:color .3s;
 }
 .home__wormhole a:hover .home__wormhole-text { color:var(--y); }
 
+/* CAMBIO: GIF mucho más grande */
 .home__wormhole img {
-  width:clamp(100px,18vw,200px); height:auto;
+  width:clamp(160px, 28vw, 360px); 
+  height:auto;
   display:block;
-  filter:brightness(0.9);
+  filter:brightness(0.95);
   transition:filter .4s;
 }
 .home__wormhole a:hover img { filter:brightness(1.1); }
