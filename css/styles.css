@@ -1,307 +1,353 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="12⋮12am™ — The time is now.">
-  <title>12⋮12am™</title>
-  <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
+/* ============================================
+   12⋮12am™ — Design System
+   ============================================ */
 
-  <!-- NAVIGATION -->
-  <nav class="nav">
-    <div class="nav__inner">
-      <a class="nav__logo" data-home>
-        12<span class="vdots">⋮</span>12<span class="am">am</span><span class="tm">™</span>
-      </a>
-      <ul class="nav__links">
-        <li><a data-page="store">Store</a></li>
-        <li><a data-page="rooom">Rooom</a></li>
-        <li><a data-page="dragon12">Dragon12</a></li>
-        <li><a data-page="lastsurvivors">Last Survivors</a></li>
-        <li><a data-page="ai36912">36912ai</a></li>
-        <li><a data-page="irlrpg">irlrpg</a></li>
-        <li><a data-page="about">About</a></li>
-        <li><a data-page="contact">Contact</a></li>
-      </ul>
-      <button class="nav__hamburger" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </nav>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Share+Tech+Mono&family=Exo+2:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
 
-  <div class="nav__mobile" id="mobileMenu">
-    <a data-page="store">Store</a>
-    <a data-page="rooom">Rooom</a>
-    <a data-page="dragon12">Dragon12</a>
-    <a data-page="lastsurvivors">Last Survivors</a>
-    <a data-page="ai36912">36912ai</a>
-    <a data-page="irlrpg">irlrpg</a>
-    <a data-page="about">About</a>
-    <a data-page="contact">Contact</a>
-  </div>
+:root {
+  --y: #FFD600;
+  --y-dim: #b89e00;
+  --y-glow: rgba(255,214,0,.12);
+  --y-glow-s: rgba(255,214,0,.3);
+  --bk: #0a0a0a;
+  --dk: #101010;
+  --dk2: #161616;
+  --db: #1e1e1e;
+  --gr: #666;
+  --gr-l: #999;
+  --lt: #bbb;
+  --wh: #eee;
+  --nav-h: 60px;
+  --ease: cubic-bezier(.4,0,.2,1);
+}
 
-  <!-- ============ HOME ============ -->
-  <div class="page page--flex home active" id="pg-home">
-    <div class="home__grid"></div>
-    <div class="home__glow"></div>
-    <div class="home__center">
-      <div class="home__brand">
-        12<span class="vd">⋮</span>12<span class="am">am</span><span class="tm">™</span>
-      </div>
-      <p class="home__sub">Last Survivors</p>
-      <div class="home__wormhole">
-        <a href="https://discord.gg/G39VtBCw" target="_blank" rel="noopener">
-          <img src="img/wormhole.gif" alt="Wormhole">
-          <span class="home__wormhole-text">Join the Wormhole</span>
-        </a>
-      </div>
-    </div>
-  </div>
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { height:100%; overflow:hidden; scrollbar-width:thin; scrollbar-color:var(--y) var(--bk); }
+body {
+  height:100%; overflow:hidden;
+  font-family:'Exo 2',sans-serif; background:var(--bk); color:var(--wh);
+  -webkit-font-smoothing:antialiased;
+}
+::-webkit-scrollbar { width:4px; }
+::-webkit-scrollbar-track { background:var(--bk); }
+::-webkit-scrollbar-thumb { background:var(--y); border-radius:2px; }
+a { color:inherit; text-decoration:none; }
+img { display:block; max-width:100%; }
+button { font-family:inherit; cursor:pointer; }
 
-  <!-- ============ STORE ============ -->
-  <div class="page" id="pg-store">
-    <div class="sub">
-      <div class="sub__back" data-back>← Back</div>
-      <div class="sub__wrap">
-        <div class="section-hero">
-          <div class="section-hero__icon">🛒</div>
-          <h1 class="section-hero__title">Store</h1>
-          <p class="section-hero__desc">Merch, collectibles & limited editions from the 12⋮12am™ universe.</p>
-        </div>
-        <div class="store-grid">
-          <div class="store-card">
-            <div class="store-card__img"><span>🎽</span></div>
-            <div class="store-card__body">
-              <h3>12⋮12am Tee</h3>
-              <p>Premium black tee with embroidered logo. Limited edition.</p>
-              <span class="store-card__price">€39.00</span>
-            </div>
-          </div>
-          <div class="store-card">
-            <div class="store-card__img"><span>🧢</span></div>
-            <div class="store-card__body">
-              <h3>Midnight Cap</h3>
-              <p>Structured snapback. Yellow on black. One size.</p>
-              <span class="store-card__price">€29.00</span>
-            </div>
-          </div>
-          <div class="store-card">
-            <div class="store-card__img"><span>🎴</span></div>
-            <div class="store-card__body">
-              <h3>Dragon12 Card Set</h3>
-              <p>Collector's card deck. 52 custom illustrated cards.</p>
-              <span class="store-card__price">€24.00</span>
-            </div>
-          </div>
-          <div class="store-card">
-            <div class="store-card__img"><span>📦</span></div>
-            <div class="store-card__body">
-              <h3>Survivor Kit</h3>
-              <p>Mystery box with exclusive merch and digital content.</p>
-              <span class="store-card__price">€59.00</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+/* ============ NAV ============ */
+.nav {
+  position:fixed; top:0; left:0; right:0; z-index:1000;
+  height:var(--nav-h);
+  background:rgba(10,10,10,.88);
+  backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--db);
+}
+.nav__inner {
+  max-width:1440px; margin:0 auto; height:100%;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 clamp(1rem,3vw,2.5rem);
+}
+.nav__logo {
+  font-family:'Orbitron',sans-serif; font-weight:900; font-size:1.25rem;
+  color:var(--y); letter-spacing:2px; cursor:pointer;
+  text-shadow:0 0 18px var(--y-glow-s);
+  display:flex; align-items:baseline; gap:1px; transition:opacity .3s;
+}
+.nav__logo:hover { opacity:.85; }
+.nav__logo .vdots { display:inline-flex; flex-direction:column; align-items:center; line-height:.32; font-size:1.15rem; margin:0 1px; position:relative; top:-1px; }
+.nav__logo .am { font-size:.58rem; font-weight:400; letter-spacing:1px; position:relative; top:-2px; }
+.nav__logo .tm { font-size:.36rem; position:relative; top:-7px; margin-left:1px; }
 
-  <!-- ============ ROOOM ============ -->
-  <div class="page" id="pg-rooom">
-    <div class="sub">
-      <div class="sub__back" data-back>← Back</div>
-      <div class="sub__wrap">
-        <div class="section-hero">
-          <!--
-            ▸ TO ADD YOUR OWN LOGO:
-            ▸ Place your image file in an "img" folder (e.g. img/logo-rooom.png)
-            ▸ Then change the src below to: src="img/logo-rooom.png"
-          -->
-          <div class="logo-img logo-img--rooom">
-            <img src="img/logo-rooom.png" alt="rooom logo">
-          </div>
-          <h1 class="section-hero__title">Always your rooom</h1>
-          <p class="section-hero__desc">This is your rooom. If you want to be a roommate or want to hang out in your room, you can make a reservation!</p>
-          <div class="btn-row">
-            <a href="https://www.instagram.com/rooom_ooo/" target="_blank" rel="noopener" class="btn btn--ig">
-              <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-              @rooom_ooo
-            </a>
-          </div>
-        </div>
-        <div class="map-embed">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3684.5!2d120.3019323!3d22.6246721!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346e0545843a20a7%3A0x4f4d3ebdbf3ea9c8!2srooom!5e0!3m2!1sen!2stw!4v1700000000000!5m2!1sen!2stw" allowfullscreen="" loading="lazy"></iframe>
-          <a href="https://www.google.com/maps/place/rooom/@22.6246721,120.3019323,17z/data=!3m1!4b1!4m6!3m5!1s0x346e0545843a20a7:0x4f4d3ebdbf3ea9c8!8m2!3d22.6246721!4d120.3019323!16s%2Fg%2F11vprzq6p_?entry=ttu" target="_blank" rel="noopener" class="map-embed__link">📍 OPEN IN GOOGLE MAPS →</a>
-        </div>
-      </div>
-    </div>
-  </div>
+.nav__links { display:flex; align-items:center; gap:0; list-style:none; }
+.nav__links a {
+  font-family:'Orbitron',sans-serif; font-weight:700;
+  font-size:.72rem; text-transform:uppercase; letter-spacing:1.5px;
+  color:var(--gr); padding:.45rem .85rem;
+  position:relative; transition:color .3s var(--ease); cursor:pointer;
+}
+.nav__links a::after {
+  content:''; position:absolute; bottom:0; left:50%;
+  width:0; height:1.5px; background:var(--y);
+  transform:translateX(-50%); transition:width .3s var(--ease);
+}
+.nav__links a:hover, .nav__links a.active { color:var(--y); }
+.nav__links a:hover::after, .nav__links a.active::after { width:55%; }
 
-  <!-- ============ DRAGON12 ============ -->
-  <div class="page" id="pg-dragon12">
-    <div class="sub">
-      <div class="sub__back" data-back>← Back</div>
-      <div class="sub__wrap">
-        <div class="section-hero">
-          <!--
-            ▸ TO ADD YOUR OWN LOGO:
-            ▸ Place your image file in an "img" folder (e.g. img/logo-dragon12.png)
-            ▸ Then change the src below to: src="img/logo-dragon12.png"
-          -->
-          <div class="logo-img logo-img--dragon">
-            <img src="img/logo-dragon12.png" alt="Dragon12 logo">
-          </div>
-          <h1 class="section-hero__title">Chasing the Dragon</h1>
-          <p class="section-hero__sub">Dragon12 — Est. 12⋮12am™</p>
-        </div>
-        <div class="panel" data-bg="龍">
-          <h2 class="panel__title"><span>Dragon12</span> Healing — Osteopathy Service</h2>
-          <p class="panel__text">
-            Appointment only.<br><br>
-            For more information, please add the customer service contact below to request an appointment.
-          </p>
-          <div class="btn-row">
-            <a href="https://liff.line.me/1645278921-kWRPP32q/?accountId=653tumka&utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnjKKRHPSisKNfHRqg7wVTn6EG5FT8DF_oaWCOZxN0qbbcQsXK47uPzPJ5jUE_aem_JtU39fARA-g_ESTkixYxuA" target="_blank" rel="noopener" class="btn btn--solid">📅 Book Appointment</a>
-            <a href="https://www.instagram.com/dra9on12/" target="_blank" rel="noopener" class="btn btn--ig">
-              <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-              @dra9on12
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+.nav__hamburger {
+  display:none; flex-direction:column; gap:5px;
+  background:none; border:none; padding:6px;
+}
+.nav__hamburger span { width:22px; height:1.5px; background:var(--y); transition:all .3s; }
 
-  <!-- ============ LAST SURVIVORS ============ -->
-  <div class="page" id="pg-lastsurvivors">
-    <div class="sub">
-      <div class="sub__back" data-back>← Back</div>
-      <div class="sub__wrap">
-        <div class="section-hero">
-          <div class="section-hero__icon">⚔️</div>
-          <h1 class="section-hero__title">Last Survivors</h1>
-          <p class="section-hero__desc">The ultimate survival game. Do you have what it takes to be the last one standing?</p>
-        </div>
-        <div class="features">
-          <div class="feature">
-            <div class="feature__icon">⚔️</div>
-            <h3 class="feature__title">Combat</h3>
-            <p class="feature__text">Real-time tactical combat system with unique mechanics.</p>
-          </div>
-          <div class="feature">
-            <div class="feature__icon">🗺️</div>
-            <h3 class="feature__title">Exploration</h3>
-            <p class="feature__text">Procedurally generated map that changes with every match.</p>
-          </div>
-          <div class="feature">
-            <div class="feature__icon">🛡️</div>
-            <h3 class="feature__title">Crafting</h3>
-            <p class="feature__text">Build tools, weapons and shelters to survive.</p>
-          </div>
-          <div class="feature">
-            <div class="feature__icon">👥</div>
-            <h3 class="feature__title">Alliances</h3>
-            <p class="feature__text">Form teams or betray. Trust is a scarce resource.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+.nav__mobile {
+  display:none; position:fixed; top:var(--nav-h); left:0; right:0; bottom:0;
+  background:rgba(8,8,8,.98); backdrop-filter:blur(24px); z-index:999;
+  flex-direction:column; align-items:center; justify-content:center; gap:1.8rem;
+}
+.nav__mobile.open { display:flex; }
+.nav__mobile a {
+  font-family:'Orbitron',sans-serif; font-weight:700;
+  font-size:.95rem; letter-spacing:4px; text-transform:uppercase;
+  color:var(--gr); padding:.6rem; transition:color .3s; cursor:pointer;
+}
+.nav__mobile a:hover { color:var(--y); }
 
-  <!-- ============ 36912AI ============ -->
-  <div class="page" id="pg-ai36912">
-    <div class="sub">
-      <div class="sub__back" data-back>← Back</div>
-      <div class="sub__wrap">
-        <div class="section-hero">
-          <div class="section-hero__icon">🧠</div>
-          <h1 class="section-hero__title">36912ai</h1>
-          <p class="section-hero__desc">Intelligence that evolves — tools and models designed to boost creativity and automate the mundane.</p>
-        </div>
-        <div class="features">
-          <div class="feature">
-            <div class="feature__icon">🎨</div>
-            <h3 class="feature__title">Creative Generation</h3>
-            <p class="feature__text">AI-assisted creative content for artists and creators.</p>
-          </div>
-          <div class="feature">
-            <div class="feature__icon">💬</div>
-            <h3 class="feature__title">Language Models</h3>
-            <p class="feature__text">Custom models tailored for communities and projects.</p>
-          </div>
-          <div class="feature">
-            <div class="feature__icon">⚡</div>
-            <h3 class="feature__title">Automation</h3>
-            <p class="feature__text">Smart automated creative workflows.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+/* ============ PAGES ============ */
+.page {
+  display:none; position:fixed;
+  top:var(--nav-h); left:0; right:0; bottom:0;
+  overflow-y:auto; overflow-x:hidden; background:var(--bk);
+}
+.page.active { display:block; animation:pageEnter .45s var(--ease); }
+.page--flex.active { display:flex; }
+@keyframes pageEnter { from{opacity:0;transform:translateY(8px);} to{opacity:1;transform:none;} }
 
-  <!-- ============ IRLRPG ============ -->
-  <div class="page" id="pg-irlrpg">
-    <div class="sub">
-      <div class="sub__back" data-back>← Back</div>
-      <div class="sub__wrap">
-        <div class="section-hero">
-          <div style="display:inline-block;font-family:'Share Tech Mono',monospace;font-size:.65rem;letter-spacing:3px;color:var(--y);border:1px solid var(--y-dim);padding:.35rem 1.2rem;text-transform:uppercase;margin-bottom:1.2rem;">Real Life. Real Game.</div>
-          <h1 class="section-hero__title">irlrpg</h1>
-          <p class="section-hero__desc">Your life is the game. Earn XP, level up and unlock achievements by completing real-world quests.</p>
-        </div>
-        <div class="features">
-          <div class="feature">
-            <div class="feature__icon">📋</div>
-            <h3 class="feature__title">Daily Quests</h3>
-            <p class="feature__text">New quests generated daily based on your personal goals. Fitness, creativity, social — you choose your path.</p>
-          </div>
-          <div class="feature">
-            <div class="feature__icon">📊</div>
-            <h3 class="feature__title">Level System</h3>
-            <p class="feature__text">Progress through a system designed to motivate. Each level unlocks new abilities and rewards.</p>
-          </div>
-          <div class="feature">
-            <div class="feature__icon">🏰</div>
-            <h3 class="feature__title">Guilds & Clans</h3>
-            <p class="feature__text">Join other players, form guilds and compete in global leaderboards.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+/* ============ HOME ============ */
+.home {
+  flex-direction:column; align-items:center; justify-content:center;
+  overflow:hidden; position:relative;
+  background:var(--bk);
+}
+.home__center {
+  position:relative; z-index:2; text-align:center; width:100%; padding:0 2rem;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+}
 
-  <!-- ============ ABOUT ============ -->
-  <div class="page" id="pg-about">
-    <div class="sub">
-      <div class="sub__back" data-back>← Back</div>
-      <div class="sub__wrap">
-        <div class="section-hero" style="min-height:60vh;display:flex;flex-direction:column;align-items:center;justify-content:center;">
-          <h1 class="section-hero__title">About</h1>
-          <p class="section-hero__sub" style="margin-top:.8rem;">Coming soon</p>
-        </div>
-      </div>
-    </div>
-  </div>
+/* Subtle yellow grid lines covering entire background */
+.home__grid {
+  position:absolute; inset:0;
+  background-image:
+    linear-gradient(rgba(255,214,0,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,214,0,.04) 1px,transparent 1px);
+  background-size:50px 50px;
+  opacity:1;
+}
 
-  <!-- ============ CONTACT ============ -->
-  <div class="page" id="pg-contact">
-    <div class="sub">
-      <div class="sub__back" data-back>← Back</div>
-      <div class="sub__wrap">
-        <div class="section-hero" style="padding-bottom:1rem;">
-          <h1 class="section-hero__title">Contact</h1>
-        </div>
-        <div class="contact-grid">
-          <div class="contact-form">
-            <div><label>Name</label><input type="text" placeholder="Your name"></div>
-            <div><label>Email</label><input type="email" placeholder="you@email.com"></div>
-            <div><label>Subject</label><input type="text" placeholder="What's on your mind?"></div>
-            <div><label>Message</label><textarea placeholder="Write your message..."></textarea></div>
-            <button class="btn btn--outline">Send</button>
-          </div>
-          <div class="contact-info">
-            <div><h4>Email</h4><p><a href="/cdn-cgi/l/email-protection#21484f474e6110131013404c0f4e5346"><span class="__cf_email__" data-cfemail="cea7a0a8a18efffcfffcafa3e0a1bca9">[email&#160;protected]</span></a></p></div>
-            <div><h4>Instagram</h4><p><a href="https://www.instagram.com/at.1212am/" target="_blank" rel="noopener">@at.1212am</a></p></div>
-            <div><h4>Location</h4><p>Somewhere between the digital and the real</p>
+/* Yellow center glow - very subtle */
+.home__glow {
+  position:absolute; width:70vmax; height:70vmax; border-radius:50%;
+  background:radial-gradient(circle,rgba(255,214,0,.06) 0%,transparent 60%);
+  top:50%; left:50%; transform:translate(-50%,-50%);
+  pointer-events:none;
+}
+
+.home__brand {
+  font-family:'Orbitron',sans-serif; font-weight:900;
+  font-size:clamp(4rem,14vw,12rem); color:var(--y);
+  text-shadow:0 0 50px var(--y-glow-s),0 0 100px var(--y-glow);
+  letter-spacing:.04em; line-height:1;
+  display:flex; align-items:baseline; justify-content:center;
+  animation:brandIn 1.2s var(--ease);
+}
+@keyframes brandIn { from{opacity:0;transform:translateY(30px);filter:blur(8px);} to{opacity:1;transform:none;filter:none;} }
+
+.home__brand .vd { display:inline-flex; flex-direction:column; align-items:center; line-height:.28; margin:0 .04em; font-size:.88em; }
+.home__brand .am { font-size:.18em; font-weight:400; letter-spacing:2px; position:relative; top:-.14em; }
+.home__brand .tm { font-size:.09em; position:relative; top:-.48em; }
+
+.home__sub {
+  font-family:'Share Tech Mono',monospace;
+  font-size:clamp(.9rem,2vw,1.3rem);
+  color:var(--gr-l); letter-spacing:8px; text-transform:uppercase;
+  margin-top:clamp(.8rem,2vh,1.4rem);
+  animation:subIn 1.2s var(--ease) .3s both;
+}
+@keyframes subIn { from{opacity:0;transform:translateY(14px);} to{opacity:1;transform:none;} }
+
+/* Wormhole section */
+.home__wormhole {
+  margin-top:clamp(1.5rem,3vh,2.5rem);
+  display:flex; flex-direction:column; align-items:center;
+  animation:subIn 1.2s var(--ease) .6s both;
+}
+.home__wormhole a {
+  display:flex; flex-direction:column; align-items:center;
+  text-decoration:none; transition:transform .4s var(--ease);
+}
+.home__wormhole a:hover { transform:scale(1.05); }
+.home__wormhole img {
+  width:clamp(100px,18vw,200px); height:auto;
+  display:block;
+  filter:brightness(0.9);
+  transition:filter .4s;
+}
+.home__wormhole a:hover img { filter:brightness(1.1); }
+.home__wormhole-text {
+  font-family:'Share Tech Mono',monospace;
+  font-size:clamp(.55rem,1vw,.72rem);
+  color:var(--gr); letter-spacing:5px; text-transform:uppercase;
+  margin-top:.6rem;
+  transition:color .3s;
+}
+.home__wormhole a:hover .home__wormhole-text { color:var(--y); }
+
+/* ============ SUBPAGE ============ */
+.sub { padding:clamp(2rem,4vw,4rem) clamp(1.2rem,3vw,2.5rem); }
+.sub__back {
+  display:inline-flex; align-items:center; gap:.4rem;
+  font-family:'Share Tech Mono',monospace; font-size:.72rem;
+  letter-spacing:2px; color:var(--gr); cursor:pointer;
+  transition:color .3s; margin-bottom:2rem;
+}
+.sub__back:hover { color:var(--y); }
+.sub__wrap { max-width:960px; margin:0 auto; }
+
+/* ============ BUTTONS ============ */
+.btn {
+  display:inline-flex; align-items:center; gap:.5rem;
+  font-family:'Orbitron',sans-serif; font-weight:700;
+  font-size:.68rem; letter-spacing:2.5px; text-transform:uppercase;
+  padding:.75rem 1.8rem; border:none; cursor:pointer;
+  transition:all .3s var(--ease); text-decoration:none;
+}
+.btn--outline { background:transparent; border:1px solid var(--y); color:var(--y); }
+.btn--outline:hover { background:var(--y); color:var(--bk); }
+.btn--solid { background:var(--y); color:var(--bk); }
+.btn--solid:hover { background:var(--wh); transform:translateY(-2px); box-shadow:0 6px 24px var(--y-glow-s); }
+.btn--ig {
+  font-family:'Exo 2',sans-serif; font-size:.78rem; font-weight:600;
+  letter-spacing:0; text-transform:none; color:#fff;
+  padding:.6rem 1.4rem; border-radius:8px;
+  background:linear-gradient(135deg,#405DE6,#833AB4,#C13584,#E1306C,#FD1D1D,#F77737,#FCAF45);
+  background-size:300% 300%; animation:igShift 6s ease infinite;
+}
+@keyframes igShift { 0%{background-position:0% 50%;} 50%{background-position:100% 50%;} 100%{background-position:0% 50%;} }
+.btn--ig:hover { transform:translateY(-2px); box-shadow:0 6px 22px rgba(225,48,108,.35); }
+.btn--ig svg { width:17px; height:17px; fill:#fff; flex-shrink:0; }
+
+/* ============ SECTION COMPONENTS ============ */
+.section-hero { text-align:center; padding:1rem 0 2.5rem; }
+.section-hero__icon { font-size:2.8rem; margin-bottom:1.2rem; opacity:.55; }
+.section-hero__title {
+  font-family:'Orbitron',sans-serif; font-weight:900;
+  font-size:clamp(1.6rem,4vw,2.6rem); color:var(--y);
+  letter-spacing:3px; margin-bottom:.8rem;
+}
+.section-hero__desc {
+  font-size:.95rem; color:var(--lt); max-width:560px;
+  margin:0 auto; line-height:1.8;
+}
+.section-hero__sub {
+  font-family:'Share Tech Mono',monospace; font-size:.7rem;
+  letter-spacing:3px; color:var(--gr); margin-top:.3rem;
+}
+.btn-row { display:flex; flex-wrap:wrap; gap:1rem; justify-content:center; margin-top:2rem; }
+
+/* Logo image containers */
+.logo-img {
+  width:200px; height:200px; margin:0 auto 1.5rem;
+  border-radius:50%; overflow:hidden;
+  display:flex; align-items:center; justify-content:center;
+}
+.logo-img img {
+  width:100%; height:100%; object-fit:cover;
+}
+.logo-img--rooom {
+  box-shadow:0 0 40px rgba(50,50,255,.15);
+  animation:floatLogo 4s ease-in-out infinite;
+}
+@keyframes floatLogo { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-8px);} }
+
+.logo-img--dragon {
+  animation:dragonPulse 4s ease-in-out infinite;
+}
+@keyframes dragonPulse {
+  0%,100%{transform:scale(1);filter:drop-shadow(0 0 15px rgba(255,214,0,.1));}
+  50%{transform:scale(1.03);filter:drop-shadow(0 0 35px rgba(255,214,0,.25));}
+}
+
+/* Features grid */
+.features {
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:1.2rem; margin-top:2rem;
+}
+.feature {
+  background:var(--dk2); border:1px solid var(--db);
+  padding:1.8rem; transition:all .35s var(--ease);
+}
+.feature:hover { border-color:var(--y-dim); transform:translateY(-3px); }
+.feature__icon { font-size:1.8rem; margin-bottom:.8rem; }
+.feature__title { font-family:'Orbitron',sans-serif; font-size:.72rem; font-weight:700; letter-spacing:1px; margin-bottom:.4rem; }
+.feature__text { font-size:.78rem; color:var(--gr-l); line-height:1.65; }
+
+/* Panel card */
+.panel {
+  background:var(--dk2); border:1px solid var(--db);
+  max-width:640px; margin:0 auto; padding:2.5rem;
+  text-align:center; position:relative; overflow:hidden;
+}
+.panel::before {
+  content:attr(data-bg); position:absolute; right:-8px; top:-16px;
+  font-size:8rem; opacity:.02; color:var(--y); pointer-events:none;
+}
+.panel__title { font-family:'Orbitron',sans-serif; font-size:1.05rem; font-weight:700; letter-spacing:2px; margin-bottom:1.2rem; }
+.panel__title span { color:var(--y); }
+.panel__text { color:var(--gr-l); font-size:.88rem; line-height:1.8; margin-bottom:1.5rem; }
+
+/* Map */
+.map-embed {
+  width:100%; max-width:800px; margin:0 auto;
+  border:1px solid var(--db); border-radius:3px; overflow:hidden;
+}
+.map-embed iframe { width:100%; height:300px; border:none; filter:grayscale(.45) invert(.92) contrast(1.08); }
+.map-embed__link {
+  display:block; text-align:center; padding:.75rem;
+  background:var(--dk2); border-top:1px solid var(--db);
+  font-family:'Share Tech Mono',monospace; font-size:.7rem;
+  color:var(--y); letter-spacing:2px; transition:background .3s;
+}
+.map-embed__link:hover { background:var(--dk); }
+
+/* Store */
+.store-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1.5rem; margin-top:2rem; }
+.store-card {
+  background:var(--dk2); border:1px solid var(--db);
+  overflow:hidden; transition:all .4s var(--ease); position:relative;
+}
+.store-card::after {
+  content:''; position:absolute; inset:0;
+  background:linear-gradient(135deg,var(--y-glow) 0%,transparent 50%);
+  opacity:0; transition:opacity .4s;
+}
+.store-card:hover::after { opacity:1; }
+.store-card:hover { border-color:var(--y-dim); transform:translateY(-4px); }
+.store-card__img {
+  height:180px; background:var(--dk);
+  display:flex; align-items:center; justify-content:center;
+  border-bottom:1px solid var(--db);
+}
+.store-card__img span { font-size:2.8rem; opacity:.5; }
+.store-card__body { padding:1.3rem; position:relative; z-index:1; }
+.store-card__body h3 { font-family:'Orbitron',sans-serif; font-size:.82rem; letter-spacing:1px; margin-bottom:.4rem; }
+.store-card__body p { font-size:.78rem; color:var(--gr-l); margin-bottom:.8rem; }
+.store-card__price { font-family:'Orbitron',sans-serif; color:var(--y); font-weight:700; font-size:.9rem; }
+
+/* Contact */
+.contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:3rem; margin-top:1.5rem; }
+.contact-form { display:flex; flex-direction:column; gap:1.2rem; }
+.contact-form label { font-family:'Share Tech Mono',monospace; font-size:.62rem; letter-spacing:2px; color:var(--gr); text-transform:uppercase; }
+.contact-form input, .contact-form textarea {
+  background:var(--dk2); border:1px solid var(--db);
+  color:var(--wh); font-family:'Exo 2',sans-serif; font-size:.85rem;
+  padding:.75rem .9rem; outline:none; transition:border-color .3s;
+  width:100%; margin-top:.25rem;
+}
+.contact-form input:focus, .contact-form textarea:focus { border-color:var(--y); }
+.contact-form textarea { resize:vertical; min-height:100px; }
+.contact-info { display:flex; flex-direction:column; justify-content:center; gap:1.5rem; }
+.contact-info h4 { font-family:'Orbitron',sans-serif; font-size:.68rem; letter-spacing:2px; color:var(--y); margin-bottom:.25rem; }
+.contact-info p { font-size:.85rem; color:var(--gr-l); }
+.contact-info a { color:var(--lt); transition:color .3s; }
+.contact-info a:hover { color:var(--y); }
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:900px) {
+  .nav__links { display:none; }
+  .nav__hamburger { display:flex; }
+  .contact-grid { grid-template-columns:1fr; }
+}
+@media (max-width:600px) {
+  .map-embed iframe { height:220px; }
+  .store-grid { grid-template-columns:1fr; }
+}
