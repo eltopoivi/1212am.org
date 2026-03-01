@@ -1,66 +1,41 @@
 /* ============================================
-   12⋮12am™ — SPA Router & Navigation
+   12⋮12am™ — SPA Router
    ============================================ */
 
 const App = (() => {
-  let currentPage = 'home';
-
-  // Navigate to a page
   function navigate(page) {
     if (!document.getElementById('pg-' + page)) return;
 
-    // Remove active from all pages
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-
-    // Activate target
     const target = document.getElementById('pg-' + page);
     target.classList.add('active');
-
-    // Update nav highlights
-    document.querySelectorAll('.nav__links a').forEach(a => {
-      a.classList.remove('active');
-      const dest = a.dataset.page;
-      if (dest === page) a.classList.add('active');
-    });
-
-    // Scroll page content to top
     target.scrollTop = 0;
 
-    // Update hash
+    document.querySelectorAll('.nav__links a').forEach(a => {
+      a.classList.toggle('active', a.dataset.page === page);
+    });
+
     if (page === 'home') {
       history.pushState(null, '', window.location.pathname);
     } else {
       history.pushState(null, '', '#' + page);
     }
-
-    currentPage = page;
   }
 
-  // Toggle mobile menu
   function toggleMobile() {
     document.getElementById('mobileMenu').classList.toggle('open');
   }
 
-  function closeMobile() {
-    document.getElementById('mobileMenu').classList.remove('open');
-  }
-
-  // Initialize
   function init() {
-    // Desktop nav clicks
-    document.querySelectorAll('.nav__links a').forEach(a => {
-      a.addEventListener('click', () => navigate(a.dataset.page));
-    });
-
-    // Mobile nav clicks
-    document.querySelectorAll('.nav__mobile a').forEach(a => {
+    // Nav links
+    document.querySelectorAll('[data-page]').forEach(a => {
       a.addEventListener('click', () => {
         navigate(a.dataset.page);
-        closeMobile();
+        document.getElementById('mobileMenu').classList.remove('open');
       });
     });
 
-    // Logo click
+    // Logo / home
     document.querySelectorAll('[data-home]').forEach(el => {
       el.addEventListener('click', () => navigate('home'));
     });
@@ -73,17 +48,14 @@ const App = (() => {
     // Hamburger
     document.querySelector('.nav__hamburger')?.addEventListener('click', toggleMobile);
 
-    // Browser back/forward
+    // Browser history
     window.addEventListener('popstate', () => {
-      const hash = location.hash.replace('#', '') || 'home';
-      navigate(hash);
+      navigate(location.hash.replace('#', '') || 'home');
     });
 
     // Initial route
     const hash = location.hash.replace('#', '');
-    if (hash && hash !== '') {
-      navigate(hash);
-    }
+    if (hash) navigate(hash);
   }
 
   return { init, navigate };
