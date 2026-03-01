@@ -122,7 +122,7 @@ button { font-family:inherit; cursor:pointer; }
 /* ============ HOME ============ */
 .home {
   flex-direction:column; align-items:center; 
-  justify-content:center; /* Centramos el contenido dentro del flex */
+  justify-content:center; 
   overflow:hidden; position:relative;
   background:var(--bk);
 }
@@ -131,14 +131,14 @@ button { font-family:inherit; cursor:pointer; }
   position:relative; z-index:10; text-align:center; width:100%; padding:0 2rem;
   display:flex; flex-direction:column; align-items:center; justify-content:center;
   height: 100vh;
-  pointer-events: none; /* Evita bloquear clics del GIF al fondo */
+  pointer-events: none; 
 }
 
 /* Grupo del logo y texto centrados juntos matemáticamente */
 .home__brand-group {
   display: flex; flex-direction: column; align-items: center;
-  pointer-events: auto; /* Reactivamos el clic para el texto */
-  transform: translateY(-8vh); /* Lo subimos un poquito para balancear visualmente el peso del agujero negro */
+  pointer-events: auto; 
+  transform: translateY(-8vh); 
 }
 
 /* Base del Logo Principal (Grande del centro) */
@@ -152,56 +152,49 @@ button { font-family:inherit; cursor:pointer; }
 }
 @keyframes brandIn { from{opacity:0;transform:translateY(30px);filter:blur(8px);} to{opacity:1;transform:none;filter:none;} }
 
-/* Texto de Join the Wormhole (Diseño mucho más limpio y épico) */
+/* Texto de Join the Wormhole */
 .home__join-text {
   font-family:'Orbitron',sans-serif; font-weight: 500;
   font-size:clamp(.85rem, 1.5vw, 1.1rem);
   color: var(--lt);
   letter-spacing: 5px; 
   text-transform:uppercase;
-  margin-top: 1.5rem; /* El espacio justo debajo del logo */
+  margin-top: 1.5rem; 
   text-shadow: 0 0 10px rgba(255,255,255,0.1);
   transition: all .4s var(--ease);
   text-decoration: none;
 }
 .home__join-text:hover { 
   color: var(--y);
-  letter-spacing: 10px; /* Expansión dramática al pasar el ratón */
+  letter-spacing: 10px; 
   text-shadow: 0 0 20px var(--y-glow-s);
 }
 
-/* Contenedor del GIF GIGANTE (Independiente del logo) */
+/* Contenedor del GIF GIGANTE */
 .home__wormhole-bg {
   position: absolute;
-  bottom: -6vh; /* Empujado ligeramente hacia abajo para fundirse aún más */
+  bottom: -6vh; 
   left: 50%;
   transform: translateX(-50%);
-  z-index: 2; /* Debajo del logo pero encima de la cuadrícula */
+  z-index: 2; 
   pointer-events: auto;
 }
 
 .home__wormhole-bg img {
-  width: clamp(320px, 60vw, 850px); /* GIGANTE */
+  width: clamp(320px, 60vw, 850px); 
   height: auto;
   display: block;
-  filter: brightness(0.85); /* Lo oscurece un poco para que no robe todo el contraste del amarillo */
+  filter: brightness(0.85); 
   transition: filter .4s;
 }
 .home__wormhole-bg a:hover img { filter: brightness(1.1); }
 
-/* Cuadrícula amarilla de fondo */
+/* CUADRÍCULA ELIMINADA (Fondo 100% negro liso) */
 .home__grid {
-  position:absolute; inset:0;
-  background-image:
-    linear-gradient(rgba(255,214,0,.04) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,214,0,.04) 1px,transparent 1px);
-  background-size:50px 50px;
-  opacity:1;
-  /* Máscara para difuminar la cuadrícula hacia abajo, logrando unión perfecta con el agujero negro */
-  mask-image: linear-gradient(to bottom, black 30%, transparent 80%);
-  -webkit-mask-image: linear-gradient(to bottom, black 30%, transparent 80%);
+  display: none;
 }
 
+/* Resplandor amarillo sutil en el centro */
 .home__glow {
   position:absolute; width:70vmax; height:70vmax; border-radius:50%;
   background:radial-gradient(circle,rgba(255,214,0,.06) 0%,transparent 60%);
