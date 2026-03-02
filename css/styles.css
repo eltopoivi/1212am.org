@@ -132,14 +132,65 @@ button { font-family:inherit; cursor:pointer; }
   pointer-events: none; 
 }
 
-/* ============ COLLAGE Y LOGO ============ */
-.home__logo-wrapper {
-  position: relative;
-  display: inline-block;
-  pointer-events: auto;
-  z-index: 10;
+/* ============ COLLAGE TELEPORT ANIMATION ============ */
+
+/* Base del contenedor (estático para que las imágenes vuelen libres por la pantalla) */
+.home__brand-group {
+  position: static; 
+  display: flex; flex-direction: column; align-items: center;
+  pointer-events: auto; 
 }
 
+.collage-img {
+  position: absolute;
+  width: clamp(70px, 12vw, 130px);
+  pointer-events: none;
+  z-index: 1; /* Al fondo, por detrás del logo gigante */
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.08));
+  opacity: 0.85; /* Ligera transparencia para fundirse */
+}
+
+/* Asignamos la animación a cada PNG (Duran 9 segundos = 3 saltos de 3 segundos) 
+   Usamos 'step-end' para hacer "teletransporte" instantáneo, sin movimientos suaves */
+.img-369 { animation: tp-369 9s step-end infinite; }
+.img-bee { animation: tp-bee 9s step-end infinite; }
+.img-star { animation: tp-star 9s step-end infinite; }
+.img-1212 { animation: tp-1212 9s step-end infinite; }
+.img-wormhole { width: clamp(85px, 15vw, 150px); animation: tp-wormhole 9s step-end infinite; }
+
+/* Coordenadas extremas para darles MUCHO espacio respecto al logo central */
+@keyframes tp-369 {
+  0%   { top: 15%; left: 8%;  transform: rotate(-22deg); }
+  33.33%{ top: 75%; left: 75%; transform: rotate(15deg) scale(1.1); }
+  66.66%{ top: 50%; left: 12%; transform: rotate(-40deg) scale(0.9); }
+  100% { top: 15%; left: 8%;  transform: rotate(-22deg); }
+}
+@keyframes tp-bee {
+  0%   { top: 20%; left: 80%; transform: rotate(25deg); }
+  33.33%{ top: 85%; left: 15%; transform: rotate(-15deg) scale(0.9); }
+  66.66%{ top: 60%; left: 82%; transform: rotate(45deg) scale(1.1); }
+  100% { top: 20%; left: 80%; transform: rotate(25deg); }
+}
+@keyframes tp-star {
+  0%   { top: 70%; left: 15%; transform: rotate(-10deg) scale(0.9); }
+  33.33%{ top: 12%; left: 65%; transform: rotate(35deg) scale(1.1); }
+  66.66%{ top: 85%; left: 55%; transform: rotate(-25deg); }
+  100% { top: 70%; left: 15%; transform: rotate(-10deg) scale(0.9); }
+}
+@keyframes tp-1212 {
+  0%   { top: 80%; left: 75%; transform: rotate(15deg); }
+  33.33%{ top: 30%; left: 10%; transform: rotate(-30deg) scale(1.05); }
+  66.66%{ top: 40%; left: 75%; transform: rotate(10deg) scale(0.95); }
+  100% { top: 80%; left: 75%; transform: rotate(15deg); }
+}
+@keyframes tp-wormhole {
+  0%   { top: 10%; left: 20%; transform: rotate(5deg) scale(1.1); }
+  33.33%{ top: 50%; left: 65%; transform: rotate(-20deg) scale(0.9); }
+  66.66%{ top: 80%; left: 35%; transform: rotate(15deg); }
+  100% { top: 10%; left: 20%; transform: rotate(5deg) scale(1.1); }
+}
+
+/* ============ LOGO PRINCIPAL GRAFITI ============ */
 .home__brand {
   font-family: 'Sedgwick Ave', cursive; 
   font-weight: normal; 
@@ -151,7 +202,7 @@ button { font-family:inherit; cursor:pointer; }
   display: flex; align-items: baseline; justify-content: center;
   animation: brandIn 1.2s var(--ease);
   position: relative;
-  z-index: 5;
+  z-index: 5; /* Asegura que el logo gigante tape a los JPGs si chocan */
 }
 @keyframes brandIn { from{opacity:0;transform:translateY(30px);filter:blur(8px);} to{opacity:1;transform:none;filter:none;} }
 
@@ -174,53 +225,7 @@ button { font-family:inherit; cursor:pointer; }
   -webkit-text-stroke: 0; 
 }
 
-/* Estilos de las imágenes del estampado */
-.collage-img {
-  position: absolute;
-  width: clamp(65px, 10vw, 130px); /* Tamaño que se adapta sin ser gigante */
-  pointer-events: none;
-  z-index: 1; /* Por debajo del texto pero encima del fondo negro */
-  opacity: 0;
-  animation: popCollage 0.6s var(--ease) forwards;
-  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.08));
-}
-
-/* Animación de entrada con pop */
-@keyframes popCollage {
-  0% { opacity: 0; transform: scale(0.5) var(--rot); }
-  100% { opacity: 0.9; transform: scale(1) var(--rot); }
-}
-
-/* Posiciones y ángulos únicos (estampado caótico y armónico) */
-.img-369 { 
-  top: -45%; left: -10%; 
-  --rot: rotate(-22deg); 
-  animation-delay: 0.1s; 
-}
-.img-bee { 
-  top: -30%; right: -15%; 
-  --rot: rotate(18deg); 
-  animation-delay: 0.3s; 
-}
-.img-star { 
-  bottom: -35%; left: -5%; 
-  --rot: rotate(-15deg); 
-  animation-delay: 0.2s; 
-}
-.img-1212 { 
-  bottom: -45%; right: 0%; 
-  --rot: rotate(25deg); 
-  animation-delay: 0.4s; 
-}
-.img-wormhole { 
-  top: -85%; left: 40%; 
-  width: clamp(75px, 12vw, 150px); /* Ligeramente más grande */
-  --rot: rotate(8deg); 
-  animation-delay: 0.5s; 
-}
-
-
-/* ============ WORMHOLE ============ */
+/* ============ WORMHOLE PAGE ============ */
 .home__join-group {
   display: flex; flex-direction: column; align-items: center;
   margin-top: 1rem; gap: 0.2rem; pointer-events: auto;
@@ -266,6 +271,8 @@ button { font-family:inherit; cursor:pointer; }
   filter: brightness(1.1); 
   transform: scale(1.02); 
 }
+
+.home__grid { display: none; }
 
 .home__glow {
   position:absolute; width:70vmax; height:70vmax; border-radius:50%;
@@ -490,11 +497,12 @@ button { font-family:inherit; cursor:pointer; }
     font-size: clamp(3.5rem, 15vw, 5rem);
   }
 
-  /* Ajuste para que las imágenes collage en móvil no queden tan separadas */
+  /* Ajuste para que el collage en móvil no queden tan oculto */
   .collage-img {
     width: clamp(55px, 15vw, 100px);
   }
 
+  /* El video arriba y el logo redondo abajo en móviles */
   .split-header {
     flex-direction: column-reverse;
     gap: 1.5rem;
