@@ -9,7 +9,6 @@
   --y-dim: #b89e00;
   --y-glow: rgba(255,214,0,.12);
   --y-glow-s: rgba(255,214,0,.3);
-  /* Negro puro */
   --bk: #000000; 
   --dk: #101010;
   --dk2: #161616;
@@ -24,7 +23,7 @@
 
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 
-/* Configuración móvil 100dvh para evitar que las barras del navegador tapen contenido */
+/* 100dvh para evitar recortes de barras de navegación en móvil */
 html { height:100%; height:100dvh; overflow:hidden; scrollbar-width:thin; scrollbar-color:var(--y) var(--bk); }
 body {
   height:100%; height:100dvh; overflow:hidden;
@@ -116,7 +115,7 @@ button { font-family:inherit; cursor:pointer; }
 .page--flex.active { display:flex; }
 @keyframes pageEnter { from{opacity:0;transform:translateY(8px);} to{opacity:1;transform:none;} }
 
-/* ============ HOME ============ */
+/* ============ WORMHOLE & HOME COMUNES ============ */
 .home {
   flex-direction:column; align-items:center; 
   justify-content:center; 
@@ -139,7 +138,6 @@ button { font-family:inherit; cursor:pointer; }
   pointer-events: auto; 
 }
 
-/* Logo Principal (Grafiti gigante GORDO en el centro) */
 .home__brand {
   font-family: 'Sedgwick Ave', cursive; 
   font-weight: normal; 
@@ -177,7 +175,6 @@ button { font-family:inherit; cursor:pointer; }
   margin-top: 1rem; gap: 0.2rem;
 }
 
-/* Texto de Join the Wormhole (Grafiti, minúsculas, blanco y fino) */
 .home__join-text {
   font-family: 'Sedgwick Ave', cursive; 
   font-weight: normal; 
@@ -188,7 +185,6 @@ button { font-family:inherit; cursor:pointer; }
   text-shadow: 0 0 10px rgba(255,255,255,0.2); 
 }
 
-/* Flecha animada apuntando al GIF */
 .home__join-arrow {
   color: rgba(255,255,255,0.6);
   font-size: 1.2rem;
@@ -199,7 +195,6 @@ button { font-family:inherit; cursor:pointer; }
   50% { transform: translateY(6px); color: #ffffff; } 
 }
 
-/* GIF GIGANTE del fondo */
 .home__wormhole-bg {
   position: absolute;
   bottom: 8vh; 
@@ -221,8 +216,6 @@ button { font-family:inherit; cursor:pointer; }
   transform: scale(1.02); 
 }
 
-.home__grid { display: none; }
-
 .home__glow {
   position:absolute; width:70vmax; height:70vmax; border-radius:50%;
   background:radial-gradient(circle,rgba(255,214,0,.06) 0%,transparent 60%);
@@ -241,6 +234,49 @@ button { font-family:inherit; cursor:pointer; }
 }
 .sub__back:hover { color:var(--y); }
 .sub__wrap { max-width:960px; margin:0 auto; }
+
+/* ============ NUEVO: SPLIT HEADER (VIDEO IZQ / LOGO DER) ============ */
+.split-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+.split-header__media {
+  flex: 1;
+  max-width: 450px;
+  border: 1px solid var(--db);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.split-header__media img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: brightness(0.9);
+}
+.split-header__logo {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.split-header__logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Cajas contenedoras */
+.location-box {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
 
 /* ============ BUTTONS ============ */
 .btn {
@@ -281,17 +317,8 @@ button { font-family:inherit; cursor:pointer; }
   font-family:'Share Tech Mono',monospace; font-size:.7rem;
   letter-spacing:3px; color:var(--gr); margin-top:.3rem;
 }
-.btn-row { display:flex; flex-wrap:wrap; gap:1rem; justify-content:center; margin-top:2rem; }
+.btn-row { display:flex; flex-wrap:wrap; gap:1rem; justify-content:center; }
 
-/* Logo image containers */
-.logo-img {
-  width:200px; height:200px; margin:0 auto 1.5rem;
-  border-radius:50%; overflow:hidden;
-  display:flex; align-items:center; justify-content:center;
-}
-.logo-img img {
-  width:100%; height:100%; object-fit:cover;
-}
 .logo-img--rooom {
   box-shadow:0 0 40px rgba(50,50,255,.15);
   animation:floatLogo 4s ease-in-out infinite;
@@ -333,16 +360,6 @@ button { font-family:inherit; cursor:pointer; }
 .panel__title { font-family:'Orbitron',sans-serif; font-size:1.05rem; font-weight:700; letter-spacing:2px; margin-bottom:1.2rem; }
 .panel__title span { color:var(--y); }
 .panel__text { color:var(--gr-l); font-size:.88rem; line-height:1.8; margin-bottom:1.5rem; }
-
-/* WebP / Video Embed para Rooom */
-.media-embed {
-  width:100%; max-width:800px; margin:0 auto 2rem;
-  border:1px solid var(--db); border-radius:3px; overflow:hidden;
-}
-.media-embed img {
-  width:100%; height:auto; display:block;
-  filter:brightness(0.9);
-}
 
 /* Map */
 .map-embed {
@@ -400,13 +417,12 @@ button { font-family:inherit; cursor:pointer; }
 .contact-info a { color:var(--lt); transition:color .3s; }
 .contact-info a:hover { color:var(--y); }
 
-/* ============ RESPONSIVE (MAGIA DEL MÓVIL) ============ */
+/* ============ RESPONSIVE ============ */
 @media (max-width:900px) {
   .nav__links { display:none; }
   .nav__hamburger { display:flex; }
   .contact-grid { grid-template-columns:1fr; }
   
-  /* Ajustes móviles para el logo y el GIF */
   .home__center {
     padding-top: 15vh; 
   }
@@ -421,5 +437,14 @@ button { font-family:inherit; cursor:pointer; }
   
   .home__brand {
     font-size: clamp(3.5rem, 15vw, 5rem);
+  }
+
+  /* Para que en móvil el video y el logo de rooom queden bien apilados */
+  .split-header {
+    flex-direction: column-reverse; /* El video arriba y el logo debajo */
+    gap: 1.5rem;
+  }
+  .split-header__logo {
+    width: 140px; height: 140px;
   }
 }
