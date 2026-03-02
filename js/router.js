@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
       target.classList.add("active");
     }
 
-    // 4. Marcar como activo el enlace pulsado (tanto en móvil como en PC)
+    // 4. Marcar como activo el enlace pulsado
     const activeLinks = document.querySelectorAll(`[data-page="${pageId}"]`);
     activeLinks.forEach(link => link.classList.add("active"));
 
