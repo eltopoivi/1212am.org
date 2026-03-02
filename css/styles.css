@@ -132,65 +132,90 @@ button { font-family:inherit; cursor:pointer; }
   pointer-events: none; 
 }
 
-/* ============ COLLAGE TELEPORT ANIMATION ============ */
 
-/* Base del contenedor (estático para que las imágenes vuelen libres por la pantalla) */
+/* ============ COLLAGE TELEPORT & GLITCH ANIMATION ============ */
+
+/* Animación Glitch RGB súper realista: dura 2.4s en total, y hace un flash instantáneo al principio */
+@keyframes glitch-fx {
+  0% { 
+    filter: drop-shadow(-6px 0 0 #ff00ea) drop-shadow(6px 0 0 #00f0ff) brightness(1.5); 
+    opacity: 1; 
+  }
+  2% { 
+    filter: drop-shadow(6px 0 0 #ff00ea) drop-shadow(-6px 0 0 #00f0ff) brightness(2); 
+    opacity: 0.6; 
+  }
+  4% { 
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.08)); 
+    opacity: 0.85; 
+  }
+  100% { 
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.08)); 
+    opacity: 0.85; 
+  }
+}
+
+.collage-img {
+  position: absolute;
+  /* Tamaño adaptable pero controlado */
+  width: clamp(70px, 12vw, 130px);
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.85;
+}
+
+/* Sincronización: 
+   El salto (tp) dura 7.2s totales dividido en 3 saltos de 2.4s. 
+   El glitch dura exactamente 2.4s, por lo que ocurre justo en el frame exacto donde se teletransportan. */
+.img-369 { animation: tp-369 7.2s step-end infinite, glitch-fx 2.4s infinite; }
+.img-bee { animation: tp-bee 7.2s step-end infinite, glitch-fx 2.4s infinite; }
+.img-star { animation: tp-star 7.2s step-end infinite, glitch-fx 2.4s infinite; }
+.img-1212 { animation: tp-1212 7.2s step-end infinite, glitch-fx 2.4s infinite; }
+.img-wormhole { 
+  width: clamp(85px, 15vw, 150px); 
+  animation: tp-wormhole 7.2s step-end infinite, glitch-fx 2.4s infinite; 
+}
+
+/* Coordenadas calculadas y Translate(-50%,-50%) para evitar que salgan de la pantalla.
+   Mantienen completamente vacío el centro (la caja de 35% a 65%) */
+@keyframes tp-369 {
+  0%   { top: 20%; left: 20%; transform: translate(-50%, -50%) rotate(-22deg); }
+  33.33%{ top: 80%; left: 80%; transform: translate(-50%, -50%) rotate(15deg) scale(1.1); }
+  66.66%{ top: 50%; left: 15%; transform: translate(-50%, -50%) rotate(-40deg) scale(0.9); }
+  100% { top: 20%; left: 20%; transform: translate(-50%, -50%) rotate(-22deg); }
+}
+@keyframes tp-bee {
+  0%   { top: 20%; left: 80%; transform: translate(-50%, -50%) rotate(25deg); }
+  33.33%{ top: 80%; left: 20%; transform: translate(-50%, -50%) rotate(-15deg) scale(0.9); }
+  66.66%{ top: 50%; left: 85%; transform: translate(-50%, -50%) rotate(45deg) scale(1.1); }
+  100% { top: 20%; left: 80%; transform: translate(-50%, -50%) rotate(25deg); }
+}
+@keyframes tp-star {
+  0%   { top: 80%; left: 15%; transform: translate(-50%, -50%) rotate(-10deg) scale(0.9); }
+  33.33%{ top: 15%; left: 65%; transform: translate(-50%, -50%) rotate(35deg) scale(1.1); }
+  66.66%{ top: 85%; left: 85%; transform: translate(-50%, -50%) rotate(-25deg); }
+  100% { top: 80%; left: 15%; transform: translate(-50%, -50%) rotate(-10deg) scale(0.9); }
+}
+@keyframes tp-1212 {
+  0%   { top: 75%; left: 85%; transform: translate(-50%, -50%) rotate(15deg); }
+  33.33%{ top: 25%; left: 15%; transform: translate(-50%, -50%) rotate(-30deg) scale(1.05); }
+  66.66%{ top: 85%; left: 35%; transform: translate(-50%, -50%) rotate(10deg) scale(0.95); }
+  100% { top: 75%; left: 85%; transform: translate(-50%, -50%) rotate(15deg); }
+}
+@keyframes tp-wormhole {
+  0%   { top: 15%; left: 35%; transform: translate(-50%, -50%) rotate(5deg) scale(1.1); }
+  33.33%{ top: 50%; left: 80%; transform: translate(-50%, -50%) rotate(-20deg) scale(0.9); }
+  66.66%{ top: 75%; left: 25%; transform: translate(-50%, -50%) rotate(15deg); }
+  100% { top: 15%; left: 35%; transform: translate(-50%, -50%) rotate(5deg) scale(1.1); }
+}
+
+/* ============ LOGO PRINCIPAL GRAFITI ============ */
 .home__brand-group {
   position: static; 
   display: flex; flex-direction: column; align-items: center;
   pointer-events: auto; 
 }
 
-.collage-img {
-  position: absolute;
-  width: clamp(70px, 12vw, 130px);
-  pointer-events: none;
-  z-index: 1; /* Al fondo, por detrás del logo gigante */
-  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.08));
-  opacity: 0.85; /* Ligera transparencia para fundirse */
-}
-
-/* Asignamos la animación a cada PNG (Duran 9 segundos = 3 saltos de 3 segundos) 
-   Usamos 'step-end' para hacer "teletransporte" instantáneo, sin movimientos suaves */
-.img-369 { animation: tp-369 9s step-end infinite; }
-.img-bee { animation: tp-bee 9s step-end infinite; }
-.img-star { animation: tp-star 9s step-end infinite; }
-.img-1212 { animation: tp-1212 9s step-end infinite; }
-.img-wormhole { width: clamp(85px, 15vw, 150px); animation: tp-wormhole 9s step-end infinite; }
-
-/* Coordenadas extremas para darles MUCHO espacio respecto al logo central */
-@keyframes tp-369 {
-  0%   { top: 15%; left: 8%;  transform: rotate(-22deg); }
-  33.33%{ top: 75%; left: 75%; transform: rotate(15deg) scale(1.1); }
-  66.66%{ top: 50%; left: 12%; transform: rotate(-40deg) scale(0.9); }
-  100% { top: 15%; left: 8%;  transform: rotate(-22deg); }
-}
-@keyframes tp-bee {
-  0%   { top: 20%; left: 80%; transform: rotate(25deg); }
-  33.33%{ top: 85%; left: 15%; transform: rotate(-15deg) scale(0.9); }
-  66.66%{ top: 60%; left: 82%; transform: rotate(45deg) scale(1.1); }
-  100% { top: 20%; left: 80%; transform: rotate(25deg); }
-}
-@keyframes tp-star {
-  0%   { top: 70%; left: 15%; transform: rotate(-10deg) scale(0.9); }
-  33.33%{ top: 12%; left: 65%; transform: rotate(35deg) scale(1.1); }
-  66.66%{ top: 85%; left: 55%; transform: rotate(-25deg); }
-  100% { top: 70%; left: 15%; transform: rotate(-10deg) scale(0.9); }
-}
-@keyframes tp-1212 {
-  0%   { top: 80%; left: 75%; transform: rotate(15deg); }
-  33.33%{ top: 30%; left: 10%; transform: rotate(-30deg) scale(1.05); }
-  66.66%{ top: 40%; left: 75%; transform: rotate(10deg) scale(0.95); }
-  100% { top: 80%; left: 75%; transform: rotate(15deg); }
-}
-@keyframes tp-wormhole {
-  0%   { top: 10%; left: 20%; transform: rotate(5deg) scale(1.1); }
-  33.33%{ top: 50%; left: 65%; transform: rotate(-20deg) scale(0.9); }
-  66.66%{ top: 80%; left: 35%; transform: rotate(15deg); }
-  100% { top: 10%; left: 20%; transform: rotate(5deg) scale(1.1); }
-}
-
-/* ============ LOGO PRINCIPAL GRAFITI ============ */
 .home__brand {
   font-family: 'Sedgwick Ave', cursive; 
   font-weight: normal; 
@@ -202,7 +227,7 @@ button { font-family:inherit; cursor:pointer; }
   display: flex; align-items: baseline; justify-content: center;
   animation: brandIn 1.2s var(--ease);
   position: relative;
-  z-index: 5; /* Asegura que el logo gigante tape a los JPGs si chocan */
+  z-index: 5; 
 }
 @keyframes brandIn { from{opacity:0;transform:translateY(30px);filter:blur(8px);} to{opacity:1;transform:none;filter:none;} }
 
@@ -288,7 +313,7 @@ button { font-family:inherit; cursor:pointer; }
   display:inline-flex; align-items:center; gap:.4rem;
   font-family:'Share Tech Mono',monospace; font-size:.72rem;
   letter-spacing:2px; color:var(--gr); cursor:pointer;
-  transition:color .3s; margin-bottom:2rem;
+  transition:color .3s margin-bottom:2rem;
 }
 .sub__back:hover { color:var(--y); }
 .sub__wrap { max-width:960px; margin:0 auto; }
@@ -497,12 +522,11 @@ button { font-family:inherit; cursor:pointer; }
     font-size: clamp(3.5rem, 15vw, 5rem);
   }
 
-  /* Ajuste para que el collage en móvil no queden tan oculto */
+  /* Ajuste para que el collage en móvil se vea pero siga guardando distancias */
   .collage-img {
-    width: clamp(55px, 15vw, 100px);
+    width: clamp(50px, 15vw, 90px);
   }
 
-  /* El video arriba y el logo redondo abajo en móviles */
   .split-header {
     flex-direction: column-reverse;
     gap: 1.5rem;
