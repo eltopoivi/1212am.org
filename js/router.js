@@ -1,64 +1,59 @@
-/* ============================================
-   12⋮12am™ — SPA Router
-   ============================================ */
+document.addEventListener("DOMContentLoaded", () => {
+  // Obtenemos todos los elementos interactivos
+  const pages = document.querySelectorAll(".page");
+  const navLinks = document.querySelectorAll("[data-page]");
+  const homeLinks = document.querySelectorAll("[data-home], [data-back]");
+  const mobileMenu = document.getElementById("mobileMenu");
+  const hamburger = document.querySelector(".nav__hamburger");
 
-const App = (() => {
-  function navigate(page) {
-    if (!document.getElementById('pg-' + page)) return;
+  // Función principal para cambiar de página
+  function navigate(pageId) {
+    // 1. Ocultar todas las páginas
+    pages.forEach(page => page.classList.remove("active"));
+    
+    // 2. Quitar el color "activo" de todos los enlaces del menú
+    navLinks.forEach(link => link.classList.remove("active"));
 
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    const target = document.getElementById('pg-' + page);
-    target.classList.add('active');
-    target.scrollTop = 0;
+    // 3. Mostrar la página objetivo
+    const target = document.getElementById("pg-" + pageId);
+    if (target) {
+      target.classList.add("active");
+    }
 
-    document.querySelectorAll('.nav__links a').forEach(a => {
-      a.classList.toggle('active', a.dataset.page === page);
-    });
+    // 4. Marcar como activo el enlace pulsado (tanto en móvil como en PC)
+    const activeLinks = document.querySelectorAll(`[data-page="${pageId}"]`);
+    activeLinks.forEach(link => link.classList.add("active"));
 
-    if (page === 'home') {
-      history.pushState(null, '', window.location.pathname);
-    } else {
-      history.pushState(null, '', '#' + page);
+    // 5. Volver siempre arriba al cargar la página
+    window.scrollTo(0, 0);
+
+    // 6. Si estábamos en el menú del móvil, lo cerramos
+    if (mobileMenu && mobileMenu.classList.contains("open")) {
+      mobileMenu.classList.remove("open");
     }
   }
 
-  function toggleMobile() {
-    document.getElementById('mobileMenu').classList.toggle('open');
+  // Asignar evento click a todos los enlaces del menú
+  navLinks.forEach(link => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      const pageId = link.getAttribute("data-page");
+      navigate(pageId);
+    });
+  });
+
+  // Asignar evento click al logo de "12:12am" y a los botones "← Back"
+  homeLinks.forEach(link => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      navigate("home");
+    });
+  });
+
+  // Funcionalidad de abrir/cerrar el menú en móviles (Hamburguesa)
+  if (hamburger) {
+    hamburger.addEventListener("click", () => {
+      mobileMenu.classList.toggle("open");
+    });
   }
-
-  function init() {
-    // Nav links
-    document.querySelectorAll('[data-page]').forEach(a => {
-      a.addEventListener('click', () => {
-        navigate(a.dataset.page);
-        document.getElementById('mobileMenu').classList.remove('open');
-      });
-    });
-
-    // Logo / home
-    document.querySelectorAll('[data-home]').forEach(el => {
-      el.addEventListener('click', () => navigate('home'));
-    });
-
-    // Back buttons
-    document.querySelectorAll('[data-back]').forEach(el => {
-      el.addEventListener('click', () => navigate('home'));
-    });
-
-    // Hamburger
-    document.querySelector('.nav__hamburger')?.addEventListener('click', toggleMobile);
-
-    // Browser history
-    window.addEventListener('popstate', () => {
-      navigate(location.hash.replace('#', '') || 'home');
-    });
-
-    // Initial route
-    const hash = location.hash.replace('#', '');
-    if (hash) navigate(hash);
-  }
-
-  return { init, navigate };
-})();
-
-document.addEventListener('DOMContentLoaded', App.init);
+});
