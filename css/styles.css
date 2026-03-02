@@ -134,8 +134,6 @@ button { font-family:inherit; cursor:pointer; }
 
 
 /* ============ COLLAGE TELEPORT & GLITCH ANIMATION ============ */
-
-/* Animación Glitch RGB súper realista: dura 2.4s en total, y hace un flash instantáneo al principio */
 @keyframes glitch-fx {
   0% { 
     filter: drop-shadow(-6px 0 0 #ff00ea) drop-shadow(6px 0 0 #00f0ff) brightness(1.5); 
@@ -157,27 +155,18 @@ button { font-family:inherit; cursor:pointer; }
 
 .collage-img {
   position: absolute;
-  /* Tamaño adaptable pero controlado */
   width: clamp(70px, 12vw, 130px);
   pointer-events: none;
   z-index: 1;
   opacity: 0.85;
 }
 
-/* Sincronización: 
-   El salto (tp) dura 7.2s totales dividido en 3 saltos de 2.4s. 
-   El glitch dura exactamente 2.4s, por lo que ocurre justo en el frame exacto donde se teletransportan. */
 .img-369 { animation: tp-369 7.2s step-end infinite, glitch-fx 2.4s infinite; }
 .img-bee { animation: tp-bee 7.2s step-end infinite, glitch-fx 2.4s infinite; }
 .img-star { animation: tp-star 7.2s step-end infinite, glitch-fx 2.4s infinite; }
 .img-1212 { animation: tp-1212 7.2s step-end infinite, glitch-fx 2.4s infinite; }
-.img-wormhole { 
-  width: clamp(85px, 15vw, 150px); 
-  animation: tp-wormhole 7.2s step-end infinite, glitch-fx 2.4s infinite; 
-}
+.img-wormhole { width: clamp(85px, 15vw, 150px); animation: tp-wormhole 7.2s step-end infinite, glitch-fx 2.4s infinite; }
 
-/* Coordenadas calculadas y Translate(-50%,-50%) para evitar que salgan de la pantalla.
-   Mantienen completamente vacío el centro (la caja de 35% a 65%) */
 @keyframes tp-369 {
   0%   { top: 20%; left: 20%; transform: translate(-50%, -50%) rotate(-22deg); }
   33.33%{ top: 80%; left: 80%; transform: translate(-50%, -50%) rotate(15deg) scale(1.1); }
@@ -522,7 +511,6 @@ button { font-family:inherit; cursor:pointer; }
     font-size: clamp(3.5rem, 15vw, 5rem);
   }
 
-  /* Ajuste para que el collage en móvil se vea pero siga guardando distancias */
   .collage-img {
     width: clamp(50px, 15vw, 90px);
   }
