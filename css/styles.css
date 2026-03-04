@@ -57,6 +57,7 @@ button { font-family:inherit; cursor:pointer; }
   display:flex; align-items:baseline; gap:1px; transition:opacity .3s;
 }
 .nav__logo:hover { opacity:.85; }
+
 .nav__logo .vdots, .home__brand .vd { display:inline-flex; flex-direction:column; align-items:center; line-height:.32; font-size:.92em; margin:0 .04em; position:relative; top:-.05em; }
 .nav__logo .am, .home__brand .am { font-size:.54em; font-weight:400; letter-spacing:1px; position:relative; top:-.08em; }
 .nav__logo .tm, .home__brand .tm { font-size:.28em; position:relative; top:-1.2em; margin-left:.05em; }
@@ -102,7 +103,7 @@ button { font-family:inherit; cursor:pointer; }
 .page--flex.active { display:flex; }
 @keyframes pageEnter { from{opacity:0;transform:translateY(8px);} to{opacity:1;transform:none;} }
 
-/* ============ HOME & WORMHOLE COMUNES ============ */
+/* ============ HOME & WORMHOLE ============ */
 .home { flex-direction:column; align-items:center; justify-content:center; overflow:hidden; position:relative; background:var(--bk); }
 .home__center { position:relative; z-index:10; text-align:center; width:100%; padding:0 2rem; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; padding-top: 6vh; height: 100vh; height: 100dvh; pointer-events: none; }
 
@@ -160,15 +161,10 @@ button { font-family:inherit; cursor:pointer; }
   animation: brandIn 1.2s var(--ease); position: relative; z-index: 5; 
 }
 @keyframes brandIn { from{opacity:0;transform:translateY(30px);filter:blur(8px);} to{opacity:1;transform:none;filter:none;} }
-.home__brand .vd { font-family:'Orbitron',sans-serif; -webkit-text-stroke: 0; }
-.home__brand .tm { font-family:'Orbitron',sans-serif; -webkit-text-stroke: 0; }
+.home__brand .vd, .home__brand .tm { font-family:'Orbitron',sans-serif; -webkit-text-stroke: 0; }
 
-/* ============ WORMHOLE PAGE ============ */
 .home__join-group { display: flex; flex-direction: column; align-items: center; margin-top: 1rem; gap: 0.2rem; pointer-events: auto; }
-.home__join-text {
-  font-family: 'Sedgwick Ave', cursive; font-weight: normal; font-size: clamp(1.2rem, 2vw, 1.8rem); 
-  color: #ffffff; letter-spacing: 1px; text-transform: lowercase; text-shadow: 0 0 10px rgba(255,255,255,0.2); 
-}
+.home__join-text { font-family: 'Sedgwick Ave', cursive; font-weight: normal; font-size: clamp(1.2rem, 2vw, 1.8rem); color: #ffffff; letter-spacing: 1px; text-transform: lowercase; text-shadow: 0 0 10px rgba(255,255,255,0.2); }
 .home__join-arrow { color: rgba(255,255,255,0.6); font-size: 1.2rem; animation: floatArrow 2s ease-in-out infinite; }
 @keyframes floatArrow { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); color: #ffffff; } }
 
@@ -186,7 +182,7 @@ button { font-family:inherit; cursor:pointer; }
 .sub { padding:clamp(2rem,4vw,4rem) clamp(1.2rem,3vw,2.5rem); }
 .sub__back {
   display:inline-flex; align-items:center; gap:.4rem; font-family:'Exo 2',sans-serif; font-size:.85rem; font-weight: 500;
-  color:var(--gr); cursor:pointer; transition:color .3s; margin-bottom:2rem;
+  color:var(--gr); cursor:pointer; transition:color .3s; margin-bottom:2rem; text-transform: uppercase; letter-spacing: 1px;
 }
 .sub__back:hover { color:var(--wh); }
 .sub__wrap { max-width:1100px; margin:0 auto; }
@@ -201,10 +197,9 @@ button { font-family:inherit; cursor:pointer; }
 
 
 /* ====================================================
-   E-COMMERCE DESIGN (NUEVO ESTILO LIMPIO Y PROFESIONAL)
+   E-COMMERCE DESIGN (CLEAN WITH EMOJIS)
    ==================================================== */
 
-/* --- Tienda (Grid) --- */
 .store-main-title {
   font-family: 'Exo 2', sans-serif; font-weight: 600; font-size: 1.8rem;
   margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid var(--db);
@@ -216,57 +211,48 @@ button { font-family:inherit; cursor:pointer; }
 
 .shop-card {
   cursor: pointer; transition: transform .3s ease;
+  background: var(--bk); /* Fondo negro */
 }
 .shop-card:hover { transform: translateY(-4px); }
 
-.shop-card__image-container {
-  background-color: #f4f4f4; /* Fondo claro para dar limpieza */
+/* Caja de emoji en la tienda */
+.shop-card__emoji-box {
+  background-color: var(--dk2); /* Caja gris muy oscuro/elegante */
+  border: 1px solid var(--db);
   aspect-ratio: 4/5; display: flex; align-items: center; justify-content: center;
   overflow: hidden; border-radius: 4px; margin-bottom: 1rem;
+  font-size: 5rem; /* Tamaño del emoji */
+  transition: border-color .3s;
 }
-.shop-card__image-container img { width: 100%; height: 100%; object-fit: cover; }
-
-.shop-card__swatches { display: flex; gap: 6px; margin-bottom: 0.8rem; }
-.shop-swatch {
-  width: 14px; height: 14px; border-radius: 2px;
-  border: 1px solid rgba(255,255,255,0.2);
-}
+.shop-card:hover .shop-card__emoji-box { border-color: var(--gr); }
 
 .shop-card__info { display: flex; flex-direction: column; gap: 0.3rem; }
-.shop-card__title { font-family: 'Exo 2', sans-serif; font-weight: 500; font-size: 1rem; color: var(--wh); }
-.shop-card__price { font-size: 0.95rem; color: var(--lt); }
+.shop-card__title { font-family: 'Exo 2', sans-serif; font-weight: 500; font-size: 1.05rem; color: var(--wh); }
+.shop-card__price { font-size: 0.95rem; color: var(--gr-l); }
 
 
 /* --- Página de Producto Individual --- */
 .prod-layout {
-  display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: start;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start;
 }
-.prod-gallery {
-  background-color: #f4f4f4; border-radius: 4px; overflow: hidden;
+
+/* Galería Emoji Gigante */
+.prod-emoji-gallery {
+  background-color: var(--dk2); border-radius: 4px; overflow: hidden;
+  border: 1px solid var(--db); display: flex; align-items: center; justify-content: center;
+  aspect-ratio: 4/5; font-size: 12rem; /* Emoji inmenso */
 }
-.prod-gallery img { width: 100%; height: auto; display: block; mix-blend-mode: multiply; }
 
 .prod-details { display: flex; flex-direction: column; gap: 1rem; padding-top: 1rem;}
 .prod-title { font-family: 'Exo 2', sans-serif; font-weight: 700; font-size: 2.2rem; line-height: 1.1; }
 .prod-subtitle { font-size: 1rem; color: var(--lt); }
 .prod-features { font-size: 0.85rem; color: var(--gr-l); margin-bottom: 0.5rem; }
-.prod-price { font-size: 1.5rem; font-weight: 600; }
+.prod-price { font-size: 1.5rem; font-weight: 600; color: var(--wh); }
 .prod-reviews { font-size: 0.9rem; margin-bottom: 1rem; color: var(--wh); }
-
-.prod-thumbs { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
-.prod-thumbs img { width: 60px; height: 60px; object-fit: cover; cursor: pointer; opacity: 0.5; transition: opacity .3s; }
-.prod-thumbs img.active, .prod-thumbs img:hover { opacity: 1; border: 1px solid var(--wh); }
-
-.prod-gender { display: flex; border: 1px solid var(--db); width: fit-content; margin-bottom: 1rem; border-radius: 2px; overflow: hidden;}
-.prod-gender button { 
-  background: transparent; color: var(--gr-l); border: none; padding: 0.8rem 2rem; font-family: 'Exo 2', sans-serif; font-weight: 500; transition: all .3s;
-}
-.prod-gender button.active { background: var(--wh); color: var(--bk); }
 
 .prod-size-box { margin-bottom: 2rem; }
 .size-header { display: flex; justify-content: flex-end; margin-bottom: 0.5rem; font-size: 0.8rem; text-decoration: underline; color: var(--lt); cursor: pointer; }
 
-/* Selectores y Botones E-commerce Limpios */
 .clean-select {
   width: 100%; appearance: none; background: transparent; border: 1px solid var(--db); color: var(--wh);
   font-family: 'Exo 2', sans-serif; font-size: 1rem; padding: 1rem; border-radius: 2px; cursor: pointer;
@@ -277,18 +263,12 @@ button { font-family:inherit; cursor:pointer; }
 .btn-solid-buy {
   background: var(--wh); color: var(--bk); border: none; width: 100%;
   padding: 1.2rem; font-family: 'Exo 2', sans-serif; font-size: 1rem; font-weight: 700; text-transform: uppercase;
-  cursor: pointer; border-radius: 2px; transition: transform .3s, opacity .3s; margin-bottom: 0.8rem;
+  cursor: pointer; border-radius: 2px; transition: transform .3s, opacity .3s;
 }
 .btn-solid-buy:hover { opacity: 0.9; transform: translateY(-2px); }
 
-.btn-apple-pay, .btn-g-pay {
-  background: #ffffff; color: #000; border: none; width: 100%;
-  padding: 1rem; cursor: pointer; border-radius: 2px; margin-bottom: 0.8rem; transition: opacity .3s;
-  display: flex; align-items: center; justify-content: center;
-}
-.btn-apple-pay:hover, .btn-g-pay:hover { opacity: 0.85; }
 
-/* --- Carrito de Compra Limpio --- */
+/* --- Carrito de Compra --- */
 .cart-wrapper { max-width: 900px; margin: 0 auto; width: 100%; }
 
 .cart-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 2rem; border-bottom: 1px solid var(--db); padding-bottom: 1rem;}
@@ -301,15 +281,32 @@ button { font-family:inherit; cursor:pointer; }
 
 .cart-item { display: grid; grid-template-columns: 3fr 1fr 1fr; align-items: center; padding: 2rem 0; border-bottom: 1px solid var(--db); gap: 2rem; }
 .cart-item-product { display: flex; gap: 1.5rem; align-items: center; }
-.cart-img-box { width: 100px; background: #f4f4f4; border-radius: 4px; overflow: hidden; flex-shrink: 0; }
-.cart-img-box img { width: 100%; height: auto; display: block; mix-blend-mode: multiply;}
+
+/* Mini caja de emoji en carrito */
+.cart-emoji-box { 
+  width: 100px; height: 120px; background: var(--dk2); border-radius: 4px; border: 1px solid var(--db);
+  display: flex; align-items: center; justify-content: center; font-size: 3rem; flex-shrink: 0;
+}
+
 .cart-item-info { display: flex; flex-direction: column; gap: 0.4rem; }
-.cart-item-name { font-weight: 600; font-size: 1.05rem; line-height: 1.3; }
+.cart-item-name { font-weight: 600; font-size: 1.05rem; line-height: 1.3; color: var(--wh); text-decoration: none;}
 .cart-item-name:hover { text-decoration: underline; }
 .cart-item-variant { font-size: 0.85rem; color: var(--gr-l); }
 .cart-item-price { font-size: 0.95rem; }
 
-.compact-select { padding: 0.6rem; width: 80px; margin: 0 auto 0.5rem; background-position: right 0.5rem top 50%; }
+/* Selector de cantidad con +/- */
+.qty-control {
+  display: flex; align-items: center; border: 1px solid var(--db); border-radius: 2px; width: fit-content; margin: 0 auto 0.5rem;
+}
+.qty-btn {
+  background: transparent; border: none; color: var(--wh); font-size: 1.2rem; padding: 0.4rem 1rem; cursor: pointer; transition: background .3s;
+}
+.qty-btn:hover { background: var(--dk2); }
+.qty-control input {
+  background: transparent; border: none; border-left: 1px solid var(--db); border-right: 1px solid var(--db);
+  color: var(--wh); text-align: center; width: 40px; font-family: 'Exo 2', sans-serif; font-size: 1rem; pointer-events: none;
+}
+
 .cart-remove { font-size: 0.75rem; text-decoration: underline; color: var(--lt); }
 .cart-remove:hover { color: red; }
 
