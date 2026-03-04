@@ -20,8 +20,8 @@ document.addEventListener("DOMContentLoaded", () => {
       target.classList.add("active");
     }
 
-    // 4. Marcar como activo el enlace pulsado
-    const activeLinks = document.querySelectorAll(`[data-page="${pageId}"]`);
+    // 4. Marcar como activo el enlace pulsado (solo si existe en el nav principal)
+    const activeLinks = document.querySelectorAll(`.nav__links [data-page="${pageId}"], .nav__mobile [data-page="${pageId}"]`);
     activeLinks.forEach(link => link.classList.add("active"));
 
     // 5. Volver siempre arriba al cargar la página
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Asignar evento click a todos los enlaces del menú
+  // Asignar evento click a todos los enlaces data-page (menu, productos, checkout)
   navLinks.forEach(link => {
     link.addEventListener("click", (e) => {
       e.preventDefault();
@@ -42,11 +42,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Asignar evento click al logo de "12:12am" y a los botones "← Back"
+  // Asignar evento click al logo de "12:12am" y botones de "Volver"
   homeLinks.forEach(link => {
     link.addEventListener("click", (e) => {
       e.preventDefault();
-      navigate("home");
+      const pageId = link.getAttribute("data-page") || "home";
+      navigate(pageId);
     });
   });
 
