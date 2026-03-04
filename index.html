@@ -14,6 +14,7 @@
       <a class="nav__logo" data-home>
         12<span class="vdots">⋮</span>12<span class="am">am</span><span class="tm">™</span>
       </a>
+      
       <ul class="nav__links">
         <li><a data-page="wormhole">Wormhole</a></li>
         <li><a data-page="rooom">Rooom</a></li>
@@ -22,11 +23,16 @@
         <li><a data-page="lastsurvivors">Last Survivors</a></li>
         <li><a data-page="ai36912">36912ai</a></li>
         <li><a data-page="contact">Contact</a></li>
-        <li><a data-page="cart" style="font-size: 1.2rem;">🛒</a></li>
       </ul>
-      <button class="nav__hamburger" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
+
+      <div class="nav__actions">
+        <button class="nav__cart-icon" id="open-cart-btn">
+          🛒 <span class="cart-badge" id="cart-badge">0</span>
+        </button>
+        <button class="nav__hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </nav>
 
@@ -35,7 +41,6 @@
     <a data-page="rooom">Rooom</a>
     <a data-page="dragon12">Dragon12</a>
     <a data-page="store">Store</a>
-    <a data-page="cart">Cart</a>
     <a data-page="lastsurvivors">Last Survivors</a>
     <a data-page="ai36912">36912ai</a>
     <a data-page="contact">Contact</a>
@@ -163,8 +168,7 @@
         </div>
 
         <div class="shop-grid">
-          
-          <div class="shop-card" data-page="product" data-gender="men,women" data-type="apparel" data-category="t-shirts">
+          <div class="shop-card" onclick="openProduct('12⋮12am Classic Tee', '39.00', '🎽')" data-gender="men,women" data-type="apparel" data-category="t-shirts">
             <div class="shop-card__emoji-box"><span>🎽</span></div>
             <div class="shop-card__info">
               <h3 class="shop-card__title">12⋮12am Classic Tee</h3>
@@ -172,7 +176,7 @@
             </div>
           </div>
           
-          <div class="shop-card" data-page="product" data-gender="men" data-type="apparel" data-category="pants">
+          <div class="shop-card" onclick="openProduct('Meteor Sports Shorts', '55.00', '👖')" data-gender="men,women" data-type="apparel" data-category="pants">
             <div class="shop-card__emoji-box"><span>👖</span></div>
             <div class="shop-card__info">
               <h3 class="shop-card__title">Meteor Sports Shorts</h3>
@@ -180,7 +184,7 @@
             </div>
           </div>
 
-          <div class="shop-card" data-page="product" data-gender="men,women" data-type="apparel" data-category="jackets">
+          <div class="shop-card" onclick="openProduct('ICHINI Denim Jacket', '95.00', '🧥')" data-gender="men,women" data-type="apparel" data-category="jackets">
             <div class="shop-card__emoji-box"><span>🧥</span></div>
             <div class="shop-card__info">
               <h3 class="shop-card__title">ICHINI Denim Jacket</h3>
@@ -188,7 +192,7 @@
             </div>
           </div>
 
-          <div class="shop-card" data-page="product" data-gender="men,women" data-type="accessories" data-category="all">
+          <div class="shop-card" onclick="openProduct('Midnight Cap', '29.00', '🧢')" data-gender="men,women" data-type="accessories" data-category="all">
             <div class="shop-card__emoji-box"><span>🧢</span></div>
             <div class="shop-card__info">
               <h3 class="shop-card__title">Midnight Cap</h3>
@@ -196,7 +200,7 @@
             </div>
           </div>
 
-          <div class="shop-card" data-page="product" data-gender="men,women" data-type="accessories" data-category="all">
+          <div class="shop-card" onclick="openProduct('Crew Socks Pack', '18.00', '🧦')" data-gender="men,women" data-type="accessories" data-category="all">
             <div class="shop-card__emoji-box"><span>🧦</span></div>
             <div class="shop-card__info">
               <h3 class="shop-card__title">Crew Socks Pack</h3>
@@ -204,14 +208,13 @@
             </div>
           </div>
 
-          <div class="shop-card" data-page="product" data-gender="men,women" data-type="accessories" data-category="all">
+          <div class="shop-card" onclick="openProduct('Survivor Mystery Kit', '59.00', '📦')" data-gender="men,women" data-type="accessories" data-category="all">
             <div class="shop-card__emoji-box"><span>📦</span></div>
             <div class="shop-card__info">
               <h3 class="shop-card__title">Survivor Mystery Kit</h3>
               <p class="shop-card__price">$59.00 USD</p>
             </div>
           </div>
-
         </div>
       </div>
     </div>
@@ -221,18 +224,14 @@
     <div class="sub">
       <div class="sub__back" data-page="store">← Back to Store</div>
       <div class="sub__wrap">
-        
         <div class="prod-layout">
-          <div class="prod-emoji-gallery">
-            <span id="product-page-emoji">🎽</span>
-          </div>
-          
+          <div class="prod-emoji-gallery"><span id="product-page-emoji">🎽</span></div>
           <div class="prod-details">
             <h1 class="prod-title" id="product-page-title">12⋮12am Classic Tee</h1>
             <p class="prod-subtitle">Premium streetwear piece.</p>
-            <p class="prod-features">100% Organic Cotton | Oversized Fit</p>
+            <p class="prod-features">Limited Edition | High Quality</p>
             <div class="prod-price" id="product-page-price">$39.00 USD</div>
-            <div class="prod-reviews">★★★★★ <span style="text-decoration:underline; font-size:0.8rem; margin-left:10px; cursor:pointer;">12 Reviews</span></div>
+            <div class="prod-reviews">★★★★★ <span style="text-decoration:underline; font-size:0.8rem; margin-left:10px; cursor:pointer;">Reviews</span></div>
 
             <div class="prod-size-box">
               <div class="size-header"><span>Size Guide</span></div>
@@ -248,47 +247,14 @@
             <p style="font-size: 0.8rem; color: var(--gr-l); text-align: center; margin-top: 0.5rem;">Taxes and shipping calculated at checkout.</p>
           </div>
         </div>
-
       </div>
     </div>
   </div>
 
-  <div class="page" id="pg-cart">
-    <div class="sub">
-      <div class="cart-wrapper">
-        
-        <div class="cart-header">
-          <h1 class="cart-title">Your cart</h1>
-          <a class="cart-continue" data-page="store">Continue shopping</a>
-        </div>
-
-        <div class="cart-table">
-          <div class="cart-labels">
-            <span>ITEM</span>
-            <span class="text-center">QUANTITY</span>
-            <span class="text-right">TOTAL</span>
-          </div>
-
-          <div id="cart-items-container">
-            </div>
-        </div>
-
-        <div class="cart-footer">
-          <div class="cart-subtotal">
-            <span>Estimated total</span>
-            <span class="cart-subtotal-price" id="cart-subtotal-price">$0.00 USD</span>
-          </div>
-          <p class="cart-taxes">Taxes, discounts and <span style="text-decoration:underline; cursor:pointer;">shipping</span> calculated at checkout.</p>
-          <button class="btn-solid-buy full-w" data-page="checkout">Check out</button>
-        </div>
-
-      </div>
-    </div>
-  </div>
 
   <div class="page" id="pg-checkout">
     <div class="sub">
-      <div class="sub__back" data-page="cart">← Back to Cart</div>
+      <div class="sub__back" data-page="store">← Back to Store</div>
       <div class="checkout-layout">
         
         <div class="checkout-form-col">
@@ -355,28 +321,6 @@
           <h1 class="section-hero__title">Last Survivors</h1>
           <p class="section-hero__desc">The ultimate survival game. Do you have what it takes to be the last one standing?</p>
         </div>
-        <div class="features">
-          <div class="feature">
-            <div class="feature__icon">⚔️</div>
-            <h3 class="feature__title">Combat</h3>
-            <p class="feature__text">Real-time tactical combat system with unique mechanics.</p>
-          </div>
-          <div class="feature">
-            <div class="feature__icon">🗺️</div>
-            <h3 class="feature__title">Exploration</h3>
-            <p class="feature__text">Procedurally generated map that changes with every match.</p>
-          </div>
-          <div class="feature">
-            <div class="feature__icon">🛡️</div>
-            <h3 class="feature__title">Crafting</h3>
-            <p class="feature__text">Build tools, weapons and shelters to survive.</p>
-          </div>
-          <div class="feature">
-            <div class="feature__icon">👥</div>
-            <h3 class="feature__title">Alliances</h3>
-            <p class="feature__text">Form teams or betray. Trust is a scarce resource.</p>
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -408,12 +352,32 @@
             <button class="btn btn--outline">Send</button>
           </div>
           <div class="contact-info">
-            <div><h4>Email</h4><p><a href="/cdn-cgi/l/email-protection#21484f474e6110131013404c0f4e5346"><span class="__cf_email__" data-cfemail="cea7a0a8a18efffcfffcafa3e0a1bca9">[email protected]</span></a></p></div>
+            <div><h4>Email</h4><p>contact@1212am.org</p></div>
             <div><h4>Instagram</h4><p><a href="https://www.instagram.com/at.1212am/" target="_blank" rel="noopener">@at.1212am</a></p></div>
-            <div><h4>Location</h4><p>Somewhere between the digital and the real</p></div>
           </div>
         </div>
       </div>
+    </div>
+  </div>
+
+
+  <div class="cart-overlay" id="cart-overlay"></div>
+  <div class="cart-drawer" id="cart-drawer">
+    <div class="cart-drawer__header">
+      <h2>Your cart</h2>
+      <button class="cart-drawer__close" id="close-cart-btn">✕</button>
+    </div>
+    
+    <div class="cart-drawer__items" id="drawer-items-container">
+      </div>
+
+    <div class="cart-drawer__footer">
+      <div class="cart-drawer__subtotal">
+        <span>Estimated total</span>
+        <span id="drawer-subtotal">$0.00 USD</span>
+      </div>
+      <p style="font-size: 0.8rem; color: var(--gr-l); margin-bottom: 1rem;">Taxes and shipping calculated at checkout.</p>
+      <button class="btn-solid-buy" style="width: 100%; margin:0;" id="drawer-checkout-btn">Checkout</button>
     </div>
   </div>
 
