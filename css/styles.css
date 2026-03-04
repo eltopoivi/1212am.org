@@ -188,7 +188,7 @@ button { font-family:inherit; cursor:pointer; }
 .sub__back:hover { color:var(--wh); }
 .sub__wrap { max-width:1100px; margin:0 auto; }
 
-/* ============ SPLIT HEADER (ROOOM / DRAGON) ============ */
+/* ============ SPLIT HEADER ============ */
 .split-header { display: flex; align-items: center; justify-content: center; gap: 3rem; margin-bottom: 2rem; width: 100%; }
 .split-header__media { flex: 1; max-width: 450px; border: 1px solid var(--db); border-radius: 4px; overflow: hidden; }
 .split-header__media img { width: 100%; height: auto; display: block; filter: brightness(0.9); }
@@ -206,7 +206,7 @@ button { font-family:inherit; cursor:pointer; }
   margin-bottom: 1.5rem; color: var(--wh);
 }
 
-/* Filters UI */
+/* --- FILTERS --- */
 .store-filters {
   display: flex; flex-direction: column; gap: 1rem; margin-bottom: 3rem;
   border-bottom: 1px solid var(--db); padding-bottom: 1.5rem;
@@ -219,7 +219,7 @@ button { font-family:inherit; cursor:pointer; }
 }
 .filter-btn.active, .filter-btn:hover { color: var(--wh); font-weight: bold; }
 
-/* Store Grid & Cards */
+/* --- STORE GRID --- */
 .shop-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
 
 .shop-card { cursor: pointer; transition: transform .3s ease; background: var(--bk); }
@@ -236,8 +236,10 @@ button { font-family:inherit; cursor:pointer; }
 .shop-card__title { font-family: 'Exo 2', sans-serif; font-weight: 500; font-size: 1.05rem; color: var(--wh); }
 .shop-card__price { font-size: 0.95rem; color: var(--gr-l); }
 
+/* Utility class via JS to hide elements */
+.hidden { display: none !important; }
 
-/* --- Product Detail Page --- */
+/* --- PRODUCT DETAIL PAGE --- */
 .prod-layout { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: start; }
 .prod-emoji-gallery {
   background-color: var(--dk2); border-radius: 4px; overflow: hidden; border: 1px solid var(--db);
@@ -254,7 +256,7 @@ button { font-family:inherit; cursor:pointer; }
 .size-header { display: flex; justify-content: flex-end; margin-bottom: 0.5rem; font-size: 0.8rem; text-decoration: underline; color: var(--lt); }
 
 
-/* --- Input, Select & Button System --- */
+/* --- INPUTS & BUTTONS --- */
 .clean-input {
   width: 100%; background: transparent; border: 1px solid var(--db); color: var(--wh);
   padding: 1rem; border-radius: 4px; outline: none; margin-bottom: 1rem;
@@ -277,7 +279,7 @@ button { font-family:inherit; cursor:pointer; }
 .btn-solid-buy:hover { opacity: 0.9; transform: translateY(-2px); }
 
 
-/* --- Cart Page --- */
+/* --- CART PAGE --- */
 .cart-wrapper { max-width: 900px; margin: 0 auto; width: 100%; }
 .cart-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 2rem; border-bottom: 1px solid var(--db); padding-bottom: 1rem;}
 .cart-title { font-family: 'Exo 2', sans-serif; font-size: 2.2rem; font-weight: 600; }
@@ -310,7 +312,7 @@ button { font-family:inherit; cursor:pointer; }
 .cart-taxes { font-size: 0.85rem; color: var(--gr-l); text-align: right; line-height: 1.4; margin-bottom: 0.5rem; }
 .full-w { width: 100%; }
 
-/* --- Checkout Layout --- */
+/* --- CHECKOUT LAYOUT --- */
 .checkout-layout { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; max-width: 1100px; margin: 0 auto; align-items: start; }
 .checkout-heading { font-family: 'Exo 2', sans-serif; font-size: 1.3rem; margin-bottom: 1.2rem; font-weight: 600; }
 .form-row { display: flex; gap: 1rem; }
@@ -330,7 +332,6 @@ button { font-family:inherit; cursor:pointer; }
 .btn--solid { background:var(--y); color:var(--bk); }
 .btn--solid:hover { background:var(--wh); transform:translateY(-2px); box-shadow:0 6px 24px var(--y-glow-s); }
 
-/* CAMBIO: Boton Instagram arreglado (Logo Iconico degradado) */
 .btn--ig {
   background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
   color: #fff; border-radius: 8px; padding: .7rem 1.6rem;
@@ -344,7 +345,6 @@ button { font-family:inherit; cursor:pointer; }
 .section-hero__icon { font-size:2.8rem; margin-bottom:1.2rem; opacity:.55; }
 .section-hero__title { font-family:'Orbitron',sans-serif; font-weight:900; font-size:clamp(1.6rem,4vw,2.6rem); color:var(--y); letter-spacing:3px; margin-bottom:.8rem; }
 .section-hero__desc { font-size:.95rem; color:var(--lt); max-width:560px; margin:0 auto; line-height:1.8; }
-.section-hero__sub { font-family:'Share Tech Mono',monospace; font-size:.7rem; letter-spacing:3px; color:var(--gr); margin-top:.3rem; }
 .btn-row { display:flex; flex-wrap:wrap; gap:1rem; justify-content:center; }
 
 .logo-img--rooom { box-shadow:0 0 40px rgba(50,50,255,.15); animation:floatLogo 4s ease-in-out infinite; }
@@ -387,7 +387,6 @@ button { font-family:inherit; cursor:pointer; }
   .home__center { padding-top: 15vh; }
   .home__wormhole-bg { bottom: 15vh; }
 
-  /* Adaptaciones E-commerce para tablet/móvil */
   .prod-layout { grid-template-columns: 1fr; gap: 2rem; }
   .checkout-layout { grid-template-columns: 1fr; gap: 3rem; }
   .cart-header { flex-direction: column; gap: 1rem; }
