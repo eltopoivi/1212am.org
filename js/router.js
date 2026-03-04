@@ -1,12 +1,20 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // === NAVEGACIÓN Y MENÚ ===
+  
+  // === NAVEGACIÓN URL Y MENÚ ===
   const pages = document.querySelectorAll(".page");
   const navLinks = document.querySelectorAll("[data-page]");
   const homeLinks = document.querySelectorAll("[data-home], [data-back]");
   const mobileMenu = document.getElementById("mobileMenu");
   const hamburger = document.querySelector(".nav__hamburger");
 
-  function navigate(pageId) {
+  function navigate(pageId, updateUrl = true) {
+    // Evitar que el carrito abra una pagina entera (ahora es el Drawer lateral)
+    if(pageId === 'cart') {
+      openCartDrawer();
+      if(mobileMenu) mobileMenu.classList.remove("open");
+      return; 
+    }
+
     pages.forEach(page => page.classList.remove("active"));
     navLinks.forEach(link => link.classList.remove("active"));
 
@@ -21,13 +29,18 @@ document.addEventListener("DOMContentLoaded", () => {
     if (mobileMenu && mobileMenu.classList.contains("open")) {
       mobileMenu.classList.remove("open");
     }
+
+    if (updateUrl) {
+      const newUrl = pageId === "home" ? "/" : "/" + pageId;
+      history.pushState({ page: pageId }, "", newUrl);
+    }
   }
 
   navLinks.forEach(link => {
     link.addEventListener("click", (e) => {
       e.preventDefault();
       const pageId = link.getAttribute("data-page");
-      navigate(pageId);
+      navigate(pageId); 
     });
   });
 
@@ -45,10 +58,38 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  window.addEventListener("popstate", (e) => {
+    if (e.state && e.state.page) {
+      navigate(e.state.page, false);
+    } else {
+      navigate("home", false);
+    }
+  });
+
+  const path = window.location.pathname.replace("/", "");
+  const initialPage = path ? path : "home";
+  
+  if (document.getElementById("pg-" + initialPage)) {
+    navigate(initialPage, false);
+    history.replaceState({ page: initialPage }, "", window.location.pathname);
+  } else {
+    navigate("home", false);
+    history.replaceState({ page: "home" }, "", "/");
+  }
+
+
+  // === FUNCIONES PARA LLAMAR A LA PÁGINA DE PRODUCTO ===
+  window.openProduct = function(title, price, emoji) {
+    document.getElementById("product-page-title").innerText = title;
+    document.getElementById("product-page-price").innerText = `$${price} USD`;
+    document.getElementById("product-page-emoji").innerText = emoji;
+    navigate('product');
+  };
+
 
   // === LÓGICA DE FILTROS EN LA TIENDA ===
   let filterState = {
-    gender: 'women', // Estado por defecto
+    gender: 'women', 
     type: 'apparel',
     category: 'all'
   };
@@ -62,20 +103,17 @@ document.addEventListener("DOMContentLoaded", () => {
       const type = btn.getAttribute('data-filter');
       const val = btn.getAttribute('data-val');
       
-      // Actualizar estado
       filterState[type] = val;
 
-      // Actualizar UI de los botones (poner active al pulsado y quitar a hermanos)
       const siblings = btn.parentElement.querySelectorAll('.filter-btn');
       siblings.forEach(s => s.classList.remove('active'));
       btn.classList.add('active');
 
-      // Si cambia a "Accessories", esconder subcategorías (T-shirts, pants...)
       if (type === 'type') {
-        filterState.category = 'all'; // Reseteamos subcategoria
+        filterState.category = 'all'; 
         const catBtns = rowCategory.querySelectorAll('.filter-btn');
         catBtns.forEach(s => s.classList.remove('active'));
-        catBtns[0].classList.add('active'); // Ponemos "All" como activo
+        if(catBtns.length > 0) catBtns[0].classList.add('active');
         
         if (val === 'accessories') {
           rowCategory.classList.add('hidden');
@@ -84,13 +122,15 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
 
-      // Aplicar filtros a las tarjetas
       shopCards.forEach(card => {
-        const cGender = card.getAttribute('data-gender').split(',');
+        const cGender = card.getAttribute('data-gender');
         const cType = card.getAttribute('data-type');
         const cCategory = card.getAttribute('data-category');
 
-        let matchGender = cGender.includes(filterState.gender) || cGender.includes('all');
+        if(!cGender || !cType || !cCategory) return;
+
+        const genderArr = cGender.split(',');
+        let matchGender = genderArr.includes(filterState.gender) || genderArr.includes('all');
         let matchType = (cType === filterState.type);
         let matchCat = (filterState.category === 'all') || (cCategory === filterState.category);
 
@@ -103,32 +143,55 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Forzar un click inicial para configurar el estado por defecto
   const defaultFilter = document.querySelector('[data-filter="gender"][data-val="women"]');
   if (defaultFilter) defaultFilter.click();
 
 
-  // === LÓGICA DEL CARRITO (AÑADIR, QUITAR, SUMAR) ===
+  // === LÓGICA DEL CARRITO LATERAL (DRAWER) E-COMMERCE ===
   let cart = []; 
   
-  const cartContainer = document.getElementById('cart-items-container');
-  const cartSubtotal = document.getElementById('cart-subtotal-price');
+  const drawerOverlay = document.getElementById('cart-overlay');
+  const drawer = document.getElementById('cart-drawer');
+  const openCartBtn = document.getElementById('open-cart-btn');
+  const closeCartBtn = document.getElementById('close-cart-btn');
+  
+  const drawerItemsContainer = document.getElementById('drawer-items-container');
+  const drawerSubtotal = document.getElementById('drawer-subtotal');
+  const cartBadge = document.getElementById('cart-badge');
+  const drawerCheckoutBtn = document.getElementById('drawer-checkout-btn');
+
+  // Checkout page elements
   const checkoutSummary = document.getElementById('checkout-summary-items');
   const checkoutTotalPrice = document.getElementById('checkout-total-price');
   const checkoutFinalTotal = document.getElementById('checkout-final-total');
 
-  // Función para re-dibujar el carrito y calcular totales
+  function openCartDrawer() {
+    drawerOverlay.classList.add('open');
+    drawer.classList.add('open');
+  }
+
+  function closeCartDrawer() {
+    drawerOverlay.classList.remove('open');
+    drawer.classList.remove('open');
+  }
+
+  if(openCartBtn) openCartBtn.addEventListener('click', openCartDrawer);
+  if(closeCartBtn) closeCartBtn.addEventListener('click', closeCartDrawer);
+  if(drawerOverlay) drawerOverlay.addEventListener('click', closeCartDrawer);
+
   window.renderCart = function() {
-    if (!cartContainer) return;
+    if (!drawerItemsContainer) return;
     
-    cartContainer.innerHTML = '';
+    drawerItemsContainer.innerHTML = '';
     if(checkoutSummary) checkoutSummary.innerHTML = '';
     
     let total = 0;
+    let totalItems = 0;
 
     if (cart.length === 0) {
-      cartContainer.innerHTML = '<p style="text-align:center; padding: 3rem 0; color: var(--gr-l);">Your cart is currently empty.</p>';
-      cartSubtotal.innerText = '$0.00 USD';
+      drawerItemsContainer.innerHTML = '<p style="text-align:center; margin-top: 3rem; color: var(--gr-l);">Your cart is empty.</p>';
+      drawerSubtotal.innerText = '$0.00 USD';
+      cartBadge.innerText = '0';
       if(checkoutTotalPrice) checkoutTotalPrice.innerText = '$0.00 USD';
       if(checkoutFinalTotal) checkoutFinalTotal.innerText = '$0.00 USD';
       return;
@@ -137,29 +200,31 @@ document.addEventListener("DOMContentLoaded", () => {
     cart.forEach((item, index) => {
       const itemTotal = item.price * item.qty;
       total += itemTotal;
+      totalItems += item.qty;
 
-      cartContainer.innerHTML += `
-        <div class="cart-item">
-          <div class="cart-item-product">
-            <div class="cart-emoji-box"><span>${item.emoji}</span></div>
-            <div class="cart-item-info">
-              <span class="cart-item-name">${item.name}</span>
-              <p class="cart-item-variant">Size: ${item.size}</p>
-              <p class="cart-item-price">$${item.price.toFixed(2)} USD</p>
+      // HTML del item dentro del cajón lateral
+      drawerItemsContainer.innerHTML += `
+        <div class="drawer-item">
+          <div class="drawer-emoji"><span>${item.emoji}</span></div>
+          <div class="drawer-info">
+            <div>
+              <p class="drawer-title">${item.name}</p>
+              <p class="drawer-variant">Size: ${item.size}</p>
             </div>
-          </div>
-          <div class="cart-item-qty text-center">
-            <div class="qty-control">
-              <button class="qty-btn" onclick="updateItemQty(${index}, -1)">-</button>
-              <input type="text" value="${item.qty}" readonly>
-              <button class="qty-btn" onclick="updateItemQty(${index}, 1)">+</button>
+            <div class="drawer-actions">
+              <div class="qty-control-mini">
+                <button onclick="updateItemQty(${index}, -1)">-</button>
+                <input type="text" value="${item.qty}" readonly>
+                <button onclick="updateItemQty(${index}, 1)">+</button>
+              </div>
+              <button class="drawer-remove" onclick="removeItem(${index})">Remove</button>
             </div>
-            <button class="cart-remove" onclick="removeItem(${index})">Remove</button>
+            <div class="drawer-price">$${itemTotal.toFixed(2)}</div>
           </div>
-          <div class="cart-item-total text-right">$${itemTotal.toFixed(2)} USD</div>
         </div>
       `;
 
+      // HTML del item en la página de Checkout
       if(checkoutSummary) {
         checkoutSummary.innerHTML += `
           <div class="checkout-sum-item">
@@ -168,53 +233,64 @@ document.addEventListener("DOMContentLoaded", () => {
               <div class="checkout-sum-qty">${item.qty}</div>
             </div>
             <div class="checkout-sum-info">
-              <span style="font-weight:bold;">${item.name}</span>
+              <span style="font-weight:bold; font-size:0.9rem;">${item.name}</span>
               <span style="font-size:0.8rem; color:var(--gr-l)">Size: ${item.size}</span>
             </div>
-            <div style="font-weight: 600;">$${itemTotal.toFixed(2)}</div>
+            <div style="font-weight: 600; font-size:0.95rem;">$${itemTotal.toFixed(2)}</div>
           </div>
         `;
       }
     });
 
-    cartSubtotal.innerText = `$${total.toFixed(2)} USD`;
+    cartBadge.innerText = totalItems;
+    drawerSubtotal.innerText = `$${total.toFixed(2)} USD`;
     if(checkoutTotalPrice) checkoutTotalPrice.innerText = `$${total.toFixed(2)} USD`;
     if(checkoutFinalTotal) checkoutFinalTotal.innerText = `$${total.toFixed(2)} USD`;
   }
 
-  // Modificar cantidad en el carrito (Global para el botón onClick del HTML)
   window.updateItemQty = function(index, change) {
     cart[index].qty += change;
     if (cart[index].qty < 1) cart[index].qty = 1; 
     window.renderCart();
   };
 
-  // Eliminar producto del carrito
   window.removeItem = function(index) {
     cart.splice(index, 1);
     window.renderCart();
   };
 
-  // Botón "Add to Cart" en la página de producto
   const addToCartBtn = document.getElementById('add-to-cart-btn');
   if (addToCartBtn) {
     addToCartBtn.addEventListener('click', () => {
       const sizeSelect = document.getElementById('prod-size');
       const selectedSize = sizeSelect && sizeSelect.value !== "Choose your size" ? sizeSelect.value : "M";
 
-      // Lógica simple para añadir un producto base (Para escalarlo después puedes leer el title/price dinámico)
+      // Leemos los datos de la UI actual de la página de producto
+      const pTitle = document.getElementById("product-page-title").innerText;
+      const pPriceStr = document.getElementById("product-page-price").innerText; // "$39.00 USD"
+      const pEmoji = document.getElementById("product-page-emoji").innerText;
+      const pPriceNum = parseFloat(pPriceStr.replace(/[^0-9.]/g, '')); // Extraemos solo el número
+
       cart.push({
-        name: "12⋮12am Product",
-        price: 39.00,
+        name: pTitle,
+        price: pPriceNum,
         size: selectedSize,
         qty: 1,
-        emoji: "🎽"
+        emoji: pEmoji
       });
 
       window.renderCart();
+      openCartDrawer(); // Abrimos la animación del carrito automáticamente
     });
   }
 
-  // Inicializar carrito
+  // Si damos click a Checkout en el carrito lateral
+  if(drawerCheckoutBtn) {
+    drawerCheckoutBtn.addEventListener('click', () => {
+      closeCartDrawer();
+      navigate('checkout');
+    });
+  }
+
   window.renderCart();
 });
