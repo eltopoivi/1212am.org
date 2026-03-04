@@ -44,19 +44,16 @@
   <div class="page page--flex home active" id="pg-home">
     <div class="home__glow"></div>
     <div class="home__center" style="padding-top: 0; justify-content: center;">
-      
       <img src="369.png" alt="369" class="collage-img img-369">
       <img src="bee.png" alt="Bee" class="collage-img img-bee">
       <img src="star.png" alt="Star" class="collage-img img-star">
       <img src="1212.png" alt="1212" class="collage-img img-1212">
       <img src="wormhole.png" alt="Wormhole" class="collage-img img-wormhole">
-
       <div class="home__brand-group">
         <div class="home__brand">
           12<span class="vd">⋮</span>12<span class="am">am</span><span class="tm">™</span>
         </div>
       </div>
-
     </div>
   </div>
 
@@ -149,65 +146,72 @@
         <h1 class="store-main-title">Collection 12⋮12am</h1>
         
         <div class="store-filters">
-          <div class="filter-row">
-            <button class="filter-btn">Men</button>
-            <button class="filter-btn active">Women</button>
+          <div class="filter-row" id="filter-gender">
+            <button class="filter-btn" data-filter="gender" data-val="men">Men</button>
+            <button class="filter-btn active" data-filter="gender" data-val="women">Women</button>
           </div>
-          <div class="filter-row">
-            <button class="filter-btn active">Apparel</button>
-            <button class="filter-btn">Accessories</button>
+          <div class="filter-row" id="filter-type">
+            <button class="filter-btn active" data-filter="type" data-val="apparel">Apparel</button>
+            <button class="filter-btn" data-filter="type" data-val="accessories">Accessories</button>
           </div>
-          <div class="filter-row sub-filter-row">
-            <button class="filter-btn active">All</button>
-            <button class="filter-btn">T-Shirts</button>
-            <button class="filter-btn">Pants & Shorts</button>
-            <button class="filter-btn">Jackets & Tops</button>
+          <div class="filter-row sub-filter-row" id="filter-category">
+            <button class="filter-btn active" data-filter="category" data-val="all">All</button>
+            <button class="filter-btn" data-filter="category" data-val="t-shirts">T-Shirts</button>
+            <button class="filter-btn" data-filter="category" data-val="pants">Pants & Shorts</button>
+            <button class="filter-btn" data-filter="category" data-val="jackets">Jackets & Tops</button>
           </div>
         </div>
 
         <div class="shop-grid">
-          <div class="shop-card" data-page="product">
+          
+          <div class="shop-card" data-page="product" data-gender="men,women" data-type="apparel" data-category="t-shirts">
             <div class="shop-card__emoji-box"><span>🎽</span></div>
             <div class="shop-card__info">
               <h3 class="shop-card__title">12⋮12am Classic Tee</h3>
               <p class="shop-card__price">$39.00 USD</p>
             </div>
           </div>
-          <div class="shop-card" data-page="product">
+          
+          <div class="shop-card" data-page="product" data-gender="men" data-type="apparel" data-category="pants">
             <div class="shop-card__emoji-box"><span>👖</span></div>
             <div class="shop-card__info">
               <h3 class="shop-card__title">Meteor Sports Shorts</h3>
               <p class="shop-card__price">$55.00 USD</p>
             </div>
           </div>
-          <div class="shop-card" data-page="product">
+
+          <div class="shop-card" data-page="product" data-gender="men,women" data-type="apparel" data-category="jackets">
             <div class="shop-card__emoji-box"><span>🧥</span></div>
             <div class="shop-card__info">
               <h3 class="shop-card__title">ICHINI Denim Jacket</h3>
               <p class="shop-card__price">$95.00 USD</p>
             </div>
           </div>
-          <div class="shop-card" data-page="product">
+
+          <div class="shop-card" data-page="product" data-gender="men,women" data-type="accessories" data-category="all">
             <div class="shop-card__emoji-box"><span>🧢</span></div>
             <div class="shop-card__info">
               <h3 class="shop-card__title">Midnight Cap</h3>
               <p class="shop-card__price">$29.00 USD</p>
             </div>
           </div>
-          <div class="shop-card" data-page="product">
+
+          <div class="shop-card" data-page="product" data-gender="men,women" data-type="accessories" data-category="all">
             <div class="shop-card__emoji-box"><span>🧦</span></div>
             <div class="shop-card__info">
               <h3 class="shop-card__title">Crew Socks Pack</h3>
               <p class="shop-card__price">$18.00 USD</p>
             </div>
           </div>
-          <div class="shop-card" data-page="product">
+
+          <div class="shop-card" data-page="product" data-gender="men,women" data-type="accessories" data-category="all">
             <div class="shop-card__emoji-box"><span>📦</span></div>
             <div class="shop-card__info">
               <h3 class="shop-card__title">Survivor Mystery Kit</h3>
               <p class="shop-card__price">$59.00 USD</p>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -220,14 +224,14 @@
         
         <div class="prod-layout">
           <div class="prod-emoji-gallery">
-            <span>🎽</span>
+            <span id="product-page-emoji">🎽</span>
           </div>
           
           <div class="prod-details">
-            <h1 class="prod-title">12⋮12am Classic Tee</h1>
-            <p class="prod-subtitle">Premium black tee with embroidered logo</p>
+            <h1 class="prod-title" id="product-page-title">12⋮12am Classic Tee</h1>
+            <p class="prod-subtitle">Premium streetwear piece.</p>
             <p class="prod-features">100% Organic Cotton | Oversized Fit</p>
-            <div class="prod-price">$39.00 USD</div>
+            <div class="prod-price" id="product-page-price">$39.00 USD</div>
             <div class="prod-reviews">★★★★★ <span style="text-decoration:underline; font-size:0.8rem; margin-left:10px; cursor:pointer;">12 Reviews</span></div>
 
             <div class="prod-size-box">
@@ -240,7 +244,7 @@
               </select>
             </div>
 
-            <button class="btn-solid-buy" id="add-to-cart-btn" data-page="cart">Add to cart</button>
+            <button class="btn-solid-buy" id="add-to-cart-btn">Add to cart</button>
             <p style="font-size: 0.8rem; color: var(--gr-l); text-align: center; margin-top: 0.5rem;">Taxes and shipping calculated at checkout.</p>
           </div>
         </div>
@@ -305,13 +309,14 @@
           
           <h2 class="checkout-heading" style="margin-top: 2.5rem;">Payment</h2>
           <p style="font-size: 0.8rem; color: var(--gr-l); margin-bottom: 1rem;">All transactions are secure and encrypted.</p>
+          
           <div class="payment-box">
             <input type="text" class="clean-input" placeholder="Card number">
+            <input type="text" class="clean-input" placeholder="Name on card">
             <div class="form-row">
-              <input type="text" class="clean-input" placeholder="Expiration date (MM/YY)">
-              <input type="text" class="clean-input" placeholder="Security code">
+              <input type="text" class="clean-input" placeholder="Expiration date (MM/YY)" style="margin-bottom:0;">
+              <input type="text" class="clean-input" placeholder="Security code" style="margin-bottom:0;">
             </div>
-            <input type="text" class="clean-input" placeholder="Name on card" style="margin-bottom:0;">
           </div>
           
           <button class="btn-solid-buy" style="margin-top: 2rem;">Pay now</button>
