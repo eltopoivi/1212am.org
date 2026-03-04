@@ -148,68 +148,66 @@
       <div class="sub__wrap">
         <h1 class="store-main-title">Collection 12⋮12am</h1>
         
+        <div class="store-filters">
+          <div class="filter-row">
+            <button class="filter-btn">Men</button>
+            <button class="filter-btn active">Women</button>
+          </div>
+          <div class="filter-row">
+            <button class="filter-btn active">Apparel</button>
+            <button class="filter-btn">Accessories</button>
+          </div>
+          <div class="filter-row sub-filter-row">
+            <button class="filter-btn active">All</button>
+            <button class="filter-btn">T-Shirts</button>
+            <button class="filter-btn">Pants & Shorts</button>
+            <button class="filter-btn">Jackets & Tops</button>
+          </div>
+        </div>
+
         <div class="shop-grid">
-          
           <div class="shop-card" data-page="product">
-            <div class="shop-card__emoji-box">
-              <span>🎽</span>
-            </div>
+            <div class="shop-card__emoji-box"><span>🎽</span></div>
             <div class="shop-card__info">
               <h3 class="shop-card__title">12⋮12am Classic Tee</h3>
               <p class="shop-card__price">$39.00 USD</p>
             </div>
           </div>
-          
           <div class="shop-card" data-page="product">
-            <div class="shop-card__emoji-box">
-              <span>👖</span>
-            </div>
+            <div class="shop-card__emoji-box"><span>👖</span></div>
             <div class="shop-card__info">
               <h3 class="shop-card__title">Meteor Sports Shorts</h3>
               <p class="shop-card__price">$55.00 USD</p>
             </div>
           </div>
-
           <div class="shop-card" data-page="product">
-            <div class="shop-card__emoji-box">
-              <span>🧥</span>
-            </div>
+            <div class="shop-card__emoji-box"><span>🧥</span></div>
             <div class="shop-card__info">
               <h3 class="shop-card__title">ICHINI Denim Jacket</h3>
               <p class="shop-card__price">$95.00 USD</p>
             </div>
           </div>
-
           <div class="shop-card" data-page="product">
-            <div class="shop-card__emoji-box">
-              <span>🧢</span>
-            </div>
+            <div class="shop-card__emoji-box"><span>🧢</span></div>
             <div class="shop-card__info">
               <h3 class="shop-card__title">Midnight Cap</h3>
               <p class="shop-card__price">$29.00 USD</p>
             </div>
           </div>
-
           <div class="shop-card" data-page="product">
-            <div class="shop-card__emoji-box">
-              <span>🧦</span>
-            </div>
+            <div class="shop-card__emoji-box"><span>🧦</span></div>
             <div class="shop-card__info">
               <h3 class="shop-card__title">Crew Socks Pack</h3>
               <p class="shop-card__price">$18.00 USD</p>
             </div>
           </div>
-
           <div class="shop-card" data-page="product">
-            <div class="shop-card__emoji-box">
-              <span>📦</span>
-            </div>
+            <div class="shop-card__emoji-box"><span>📦</span></div>
             <div class="shop-card__info">
               <h3 class="shop-card__title">Survivor Mystery Kit</h3>
               <p class="shop-card__price">$59.00 USD</p>
             </div>
           </div>
-
         </div>
       </div>
     </div>
@@ -234,16 +232,15 @@
 
             <div class="prod-size-box">
               <div class="size-header"><span>Size Guide</span></div>
-              <select class="clean-select">
-                <option>Choose your size</option>
-                <option>S</option>
-                <option>M</option>
-                <option>L</option>
-                <option>XL</option>
+              <select class="clean-select" id="prod-size">
+                <option value="S">S</option>
+                <option value="M" selected>M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
               </select>
             </div>
 
-            <button class="btn-solid-buy" data-page="cart">Add to cart</button>
+            <button class="btn-solid-buy" id="add-to-cart-btn" data-page="cart">Add to cart</button>
             <p style="font-size: 0.8rem; color: var(--gr-l); text-align: center; margin-top: 0.5rem;">Taxes and shipping calculated at checkout.</p>
           </div>
         </div>
@@ -268,40 +265,76 @@
             <span class="text-right">TOTAL</span>
           </div>
 
-          <div class="cart-item">
-            <div class="cart-item-product">
-              <div class="cart-emoji-box">
-                <span>🎽</span>
-              </div>
-              <div class="cart-item-info">
-                <a href="#" data-page="product" class="cart-item-name">12⋮12am Classic Tee</a>
-                <p class="cart-item-variant">Size: L</p>
-                <p class="cart-item-price">$39.00 USD</p>
-              </div>
+          <div id="cart-items-container">
             </div>
-            
-            <div class="cart-item-qty text-center">
-              <div class="qty-control">
-                <button class="qty-btn" onclick="updateQty('cart-qty-1', -1)">-</button>
-                <input type="text" id="cart-qty-1" value="1" readonly>
-                <button class="qty-btn" onclick="updateQty('cart-qty-1', 1)">+</button>
-              </div>
-              <a href="#" class="cart-remove">Remove</a>
-            </div>
-            
-            <div class="cart-item-total text-right">
-              $39.00 USD
-            </div>
-          </div>
         </div>
 
         <div class="cart-footer">
           <div class="cart-subtotal">
             <span>Estimated total</span>
-            <span class="cart-subtotal-price">$39.00 USD</span>
+            <span class="cart-subtotal-price" id="cart-subtotal-price">$0.00 USD</span>
           </div>
           <p class="cart-taxes">Taxes, discounts and <span style="text-decoration:underline; cursor:pointer;">shipping</span> calculated at checkout.</p>
-          <button class="btn-solid-buy full-w">Check out</button>
+          <button class="btn-solid-buy full-w" data-page="checkout">Check out</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="page" id="pg-checkout">
+    <div class="sub">
+      <div class="sub__back" data-page="cart">← Back to Cart</div>
+      <div class="checkout-layout">
+        
+        <div class="checkout-form-col">
+          <h2 class="checkout-heading">Contact</h2>
+          <input type="email" class="clean-input" placeholder="Email address">
+          
+          <h2 class="checkout-heading" style="margin-top: 2.5rem;">Delivery</h2>
+          <div class="form-row">
+            <input type="text" class="clean-input" placeholder="First name">
+            <input type="text" class="clean-input" placeholder="Last name">
+          </div>
+          <input type="text" class="clean-input" placeholder="Address">
+          <input type="text" class="clean-input" placeholder="Apartment, suite, etc. (optional)">
+          <div class="form-row">
+            <input type="text" class="clean-input" placeholder="City">
+            <input type="text" class="clean-input" placeholder="Postal code">
+          </div>
+          
+          <h2 class="checkout-heading" style="margin-top: 2.5rem;">Payment</h2>
+          <p style="font-size: 0.8rem; color: var(--gr-l); margin-bottom: 1rem;">All transactions are secure and encrypted.</p>
+          <div class="payment-box">
+            <input type="text" class="clean-input" placeholder="Card number">
+            <div class="form-row">
+              <input type="text" class="clean-input" placeholder="Expiration date (MM/YY)">
+              <input type="text" class="clean-input" placeholder="Security code">
+            </div>
+            <input type="text" class="clean-input" placeholder="Name on card" style="margin-bottom:0;">
+          </div>
+          
+          <button class="btn-solid-buy" style="margin-top: 2rem;">Pay now</button>
+        </div>
+
+        <div class="checkout-summary-col">
+          <h2 class="checkout-heading">Order Summary</h2>
+          <div id="checkout-summary-items">
+            </div>
+          <div style="border-top: 1px solid var(--db); margin-top: 1.5rem; padding-top: 1.5rem;">
+            <div style="display:flex; justify-content:space-between; margin-bottom: 0.5rem;">
+              <span style="color:var(--gr-l);">Subtotal</span>
+              <span id="checkout-total-price" style="font-weight:bold;">$0.00 USD</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-bottom: 0.5rem;">
+              <span style="color:var(--gr-l);">Shipping</span>
+              <span style="font-size:0.9rem;">Calculated at next step</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-top: 1rem; font-size: 1.3rem; font-weight:bold;">
+              <span>Total</span>
+              <span id="checkout-final-total">$0.00 USD</span>
+            </div>
+          </div>
         </div>
 
       </div>
@@ -363,10 +396,10 @@
         </div>
         <div class="contact-grid">
           <div class="contact-form">
-            <div><label>Name</label><input type="text" placeholder="Your name"></div>
-            <div><label>Email</label><input type="email" placeholder="you@email.com"></div>
-            <div><label>Subject</label><input type="text" placeholder="What's on your mind?"></div>
-            <div><label>Message</label><textarea placeholder="Write your message..."></textarea></div>
+            <div><label>Name</label><input type="text" class="clean-input" placeholder="Your name"></div>
+            <div><label>Email</label><input type="email" class="clean-input" placeholder="you@email.com"></div>
+            <div><label>Subject</label><input type="text" class="clean-input" placeholder="What's on your mind?"></div>
+            <div><label>Message</label><textarea class="clean-input" placeholder="Write your message..." style="min-height: 120px;"></textarea></div>
             <button class="btn btn--outline">Send</button>
           </div>
           <div class="contact-info">
