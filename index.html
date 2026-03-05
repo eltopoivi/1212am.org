@@ -40,6 +40,7 @@
     <a data-page="rooom">Rooom</a>
     <a data-page="dragon12">Dragon12</a>
     <a data-page="store">Store</a>
+    <a data-page="cart">Cart</a>
     <a data-page="lastsurvivors">Last Survivors</a>
     <a data-page="ai36912">36912ai</a>
     <a data-page="contact">Contact</a>
@@ -275,7 +276,6 @@
             </button>
             <div id="payment-message" class="hidden"></div>
           </form>
-          
         </div>
 
         <div class="checkout-summary-col">
@@ -324,13 +324,43 @@
     </div>
   </div>
 
-  <div class="page" id="pg-ai36912">
-    <div class="sub">
-      <div class="sub__back" data-back>← Back</div>
-      <div class="sub__wrap">
-        <div class="section-hero" style="min-height:60vh;display:flex;flex-direction:column;align-items:center;justify-content:center;">
-          <h1 class="section-hero__title" style="font-size: clamp(2.5rem, 6vw, 4.5rem); letter-spacing: 5px; text-transform: lowercase;">we are time</h1>
+  <div class="page" id="pg-ai36912" style="padding: 0;"> <div class="chat-layout">
+      
+      <div class="chat-sidebar">
+        <button class="chat-new-btn" onclick="clearChat()">+ New chat</button>
+        <div class="chat-history">
+          <div class="chat-hist-item">Exploring the wormhole</div>
+          <div class="chat-hist-item">Dragon12 lore</div>
+          <div class="chat-hist-item">System diagnostics</div>
         </div>
+      </div>
+
+      <div class="chat-main">
+        
+        <div class="chat-mobile-header">
+          <span style="font-family: 'Orbitron', sans-serif; color: var(--y); font-weight: bold; letter-spacing: 2px;">36912ai</span>
+        </div>
+
+        <div class="chat-messages" id="chat-messages-container">
+          <div class="chat-msg ai-msg">
+            <div class="chat-avatar">AI</div>
+            <div class="chat-bubble">We are time. Welcome to 36912ai. How can I assist you today?</div>
+          </div>
+        </div>
+
+        <div class="chat-input-area">
+          <div class="chat-input-wrapper">
+            <textarea id="chat-input-field" placeholder="Message 36912ai..." rows="1"></textarea>
+            <button id="chat-send-btn" class="chat-send-btn">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            </button>
+          </div>
+          <div class="chat-disclaimer">36912ai can make mistakes. Consider verifying important information.</div>
+        </div>
+
       </div>
     </div>
   </div>
