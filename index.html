@@ -6,6 +6,7 @@
   <meta name="description" content="12⋮12am™ — The time is now.">
   <title>12⋮12am™</title>
   <link rel="stylesheet" href="css/styles.css">
+  <script src="https://js.stripe.com/v3/"></script>
 </head>
 <body>
 
@@ -14,7 +15,6 @@
       <a class="nav__logo" data-home>
         12<span class="vdots">⋮</span>12<span class="am">am</span><span class="tm">™</span>
       </a>
-      
       <ul class="nav__links">
         <li><a data-page="wormhole">Wormhole</a></li>
         <li><a data-page="rooom">Rooom</a></li>
@@ -24,7 +24,6 @@
         <li><a data-page="ai36912">36912ai</a></li>
         <li><a data-page="contact">Contact</a></li>
       </ul>
-
       <div class="nav__actions">
         <button class="nav__cart-icon" id="open-cart-btn">
           🛒 <span class="cart-badge" id="cart-badge">0</span>
@@ -175,7 +174,6 @@
               <p class="shop-card__price">$39.00 USD</p>
             </div>
           </div>
-          
           <div class="shop-card" onclick="openProduct('Meteor Sports Shorts', '55.00', '👖')" data-gender="men,women" data-type="apparel" data-category="pants">
             <div class="shop-card__emoji-box"><span>👖</span></div>
             <div class="shop-card__info">
@@ -183,7 +181,6 @@
               <p class="shop-card__price">$55.00 USD</p>
             </div>
           </div>
-
           <div class="shop-card" onclick="openProduct('ICHINI Denim Jacket', '95.00', '🧥')" data-gender="men,women" data-type="apparel" data-category="jackets">
             <div class="shop-card__emoji-box"><span>🧥</span></div>
             <div class="shop-card__info">
@@ -191,7 +188,6 @@
               <p class="shop-card__price">$95.00 USD</p>
             </div>
           </div>
-
           <div class="shop-card" onclick="openProduct('Midnight Cap', '29.00', '🧢')" data-gender="men,women" data-type="accessories" data-category="all">
             <div class="shop-card__emoji-box"><span>🧢</span></div>
             <div class="shop-card__info">
@@ -199,7 +195,6 @@
               <p class="shop-card__price">$29.00 USD</p>
             </div>
           </div>
-
           <div class="shop-card" onclick="openProduct('Crew Socks Pack', '18.00', '🧦')" data-gender="men,women" data-type="accessories" data-category="all">
             <div class="shop-card__emoji-box"><span>🧦</span></div>
             <div class="shop-card__info">
@@ -207,7 +202,6 @@
               <p class="shop-card__price">$18.00 USD</p>
             </div>
           </div>
-
           <div class="shop-card" onclick="openProduct('Survivor Mystery Kit', '59.00', '📦')" data-gender="men,women" data-type="accessories" data-category="all">
             <div class="shop-card__emoji-box"><span>📦</span></div>
             <div class="shop-card__info">
@@ -232,7 +226,6 @@
             <p class="prod-features">Limited Edition | High Quality</p>
             <div class="prod-price" id="product-page-price">$39.00 USD</div>
             <div class="prod-reviews">★★★★★ <span style="text-decoration:underline; font-size:0.8rem; margin-left:10px; cursor:pointer;">Reviews</span></div>
-
             <div class="prod-size-box">
               <div class="size-header"><span>Size Guide</span></div>
               <select class="clean-select" id="prod-size">
@@ -242,7 +235,6 @@
                 <option value="XL">XL</option>
               </select>
             </div>
-
             <button class="btn-solid-buy" id="add-to-cart-btn">Add to cart</button>
             <p style="font-size: 0.8rem; color: var(--gr-l); text-align: center; margin-top: 0.5rem;">Taxes and shipping calculated at checkout.</p>
           </div>
@@ -251,15 +243,14 @@
     </div>
   </div>
 
-
   <div class="page" id="pg-checkout">
     <div class="sub">
-      <div class="sub__back" data-page="store">← Back to Store</div>
+      <div class="sub__back" onclick="openCartDrawer()">← Back to Cart</div>
       <div class="checkout-layout">
         
         <div class="checkout-form-col">
           <h2 class="checkout-heading">Contact</h2>
-          <input type="email" class="clean-input" placeholder="Email address">
+          <input type="email" class="clean-input" id="checkout-email" placeholder="Email address" required>
           
           <h2 class="checkout-heading" style="margin-top: 2.5rem;">Delivery</h2>
           <div class="form-row">
@@ -274,24 +265,23 @@
           </div>
           
           <h2 class="checkout-heading" style="margin-top: 2.5rem;">Payment</h2>
-          <p style="font-size: 0.8rem; color: var(--gr-l); margin-bottom: 1rem;">All transactions are secure and encrypted.</p>
+          <p style="font-size: 0.8rem; color: var(--gr-l); margin-bottom: 1rem;">All transactions are secure and encrypted via Stripe.</p>
           
-          <div class="payment-box">
-            <input type="text" class="clean-input" placeholder="Card number">
-            <input type="text" class="clean-input" placeholder="Name on card">
-            <div class="form-row">
-              <input type="text" class="clean-input" placeholder="Expiration date (MM/YY)" style="margin-bottom:0;">
-              <input type="text" class="clean-input" placeholder="Security code" style="margin-bottom:0;">
-            </div>
-          </div>
+          <form id="payment-form">
+            <div id="payment-element" style="margin-bottom: 1rem;">
+              </div>
+            <button class="btn-solid-buy" id="submit-payment" style="margin-top: 1rem;">
+              <span id="button-text">Pay now</span>
+              <div class="spinner hidden" id="spinner"></div>
+            </button>
+            <div id="payment-message" class="hidden"></div>
+          </form>
           
-          <button class="btn-solid-buy" style="margin-top: 2rem;">Pay now</button>
         </div>
 
         <div class="checkout-summary-col">
           <h2 class="checkout-heading">Order Summary</h2>
-          <div id="checkout-summary-items">
-            </div>
+          <div id="checkout-summary-items"></div>
           <div style="border-top: 1px solid var(--db); margin-top: 1.5rem; padding-top: 1.5rem;">
             <div style="display:flex; justify-content:space-between; margin-bottom: 0.5rem;">
               <span style="color:var(--gr-l);">Subtotal</span>
@@ -308,6 +298,16 @@
           </div>
         </div>
 
+      </div>
+    </div>
+  </div>
+
+  <div class="page" id="pg-success">
+    <div class="sub">
+      <div class="sub__wrap" style="text-align: center; padding-top: 10vh;">
+        <h1 style="font-family: 'Exo 2', sans-serif; font-size: 3rem; color: var(--y); margin-bottom: 1rem;">Payment Successful!</h1>
+        <p style="color: var(--lt); margin-bottom: 2rem;">Thank you for your order. Welcome to the wormhole.</p>
+        <button class="btn btn--outline" data-page="store">Return to Store</button>
       </div>
     </div>
   </div>
@@ -360,17 +360,13 @@
     </div>
   </div>
 
-
   <div class="cart-overlay" id="cart-overlay"></div>
   <div class="cart-drawer" id="cart-drawer">
     <div class="cart-drawer__header">
       <h2>Your cart</h2>
       <button class="cart-drawer__close" id="close-cart-btn">✕</button>
     </div>
-    
-    <div class="cart-drawer__items" id="drawer-items-container">
-      </div>
-
+    <div class="cart-drawer__items" id="drawer-items-container"></div>
     <div class="cart-drawer__footer">
       <div class="cart-drawer__subtotal">
         <span>Estimated total</span>
