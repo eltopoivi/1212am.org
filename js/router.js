@@ -1,9 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // === INICIALIZACIÓN STRIPE ===
-  // Sustituimos la clave pública de Test aquí
-  const stripe = Stripe("pk_test_51OSyRzJBofJrA2IJwoX5nP2M0EEr503OnYe644dU61WPlomTvWVcTnODZ7ASU436LWO8i3TsmZK8hnNzvxwQTsQ800mkXMQUFL");
-  let elements;
-
+  
   // === NAVEGACIÓN URL Y MENÚ ===
   const pages = document.querySelectorAll(".page");
   const navLinks = document.querySelectorAll("[data-page]");
@@ -38,7 +34,6 @@ document.addEventListener("DOMContentLoaded", () => {
       history.pushState({ page: pageId }, "", newUrl);
     }
 
-    // Si abrimos la página de checkout, iniciamos Stripe Elements
     if (pageId === 'checkout') {
       initializeStripeCheckout();
     }
@@ -83,13 +78,15 @@ document.addEventListener("DOMContentLoaded", () => {
     history.replaceState({ page: "home" }, "", "/");
   }
 
-  // === FUNCIONES PARA LLAMAR A LA PÁGINA DE PRODUCTO ===
+
+  // === FUNCIONES PÁGINA DE PRODUCTO ===
   window.openProduct = function(title, price, emoji) {
     document.getElementById("product-page-title").innerText = title;
     document.getElementById("product-page-price").innerText = `$${price} USD`;
     document.getElementById("product-page-emoji").innerText = emoji;
     navigate('product');
   };
+
 
   // === LÓGICA DE FILTROS EN LA TIENDA ===
   let filterState = { gender: 'women', type: 'apparel', category: 'all' };
@@ -135,7 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (defaultFilter) defaultFilter.click();
 
 
-  // === LÓGICA DEL CARRITO LATERAL (DRAWER) E-COMMERCE ===
+  // === LÓGICA DEL CARRITO LATERAL ===
   let cart = []; 
   
   const drawerOverlay = document.getElementById('cart-overlay');
@@ -156,24 +153,19 @@ document.addEventListener("DOMContentLoaded", () => {
     drawerOverlay.classList.add('open');
     drawer.classList.add('open');
   }
-
   function closeCartDrawer() {
     drawerOverlay.classList.remove('open');
     drawer.classList.remove('open');
   }
-
   if(openCartBtn) openCartBtn.addEventListener('click', openCartDrawer);
   if(closeCartBtn) closeCartBtn.addEventListener('click', closeCartDrawer);
   if(drawerOverlay) drawerOverlay.addEventListener('click', closeCartDrawer);
 
   window.renderCart = function() {
     if (!drawerItemsContainer) return;
-    
     drawerItemsContainer.innerHTML = '';
     if(checkoutSummary) checkoutSummary.innerHTML = '';
-    
-    let total = 0;
-    let totalItems = 0;
+    let total = 0; let totalItems = 0;
 
     if (cart.length === 0) {
       drawerItemsContainer.innerHTML = '<p style="text-align:center; margin-top: 3rem; color: var(--gr-l);">Your cart is empty.</p>';
@@ -186,23 +178,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     cart.forEach((item, index) => {
       const itemTotal = item.price * item.qty;
-      total += itemTotal;
-      totalItems += item.qty;
+      total += itemTotal; totalItems += item.qty;
 
       drawerItemsContainer.innerHTML += `
         <div class="drawer-item">
           <div class="drawer-emoji"><span>${item.emoji}</span></div>
           <div class="drawer-info">
-            <div>
-              <p class="drawer-title">${item.name}</p>
-              <p class="drawer-variant">Size: ${item.size}</p>
-            </div>
+            <div><p class="drawer-title">${item.name}</p><p class="drawer-variant">Size: ${item.size}</p></div>
             <div class="drawer-actions">
-              <div class="qty-control-mini">
-                <button onclick="updateItemQty(${index}, -1)">-</button>
-                <input type="text" value="${item.qty}" readonly>
-                <button onclick="updateItemQty(${index}, 1)">+</button>
-              </div>
+              <div class="qty-control-mini"><button onclick="updateItemQty(${index}, -1)">-</button><input type="text" value="${item.qty}" readonly><button onclick="updateItemQty(${index}, 1)">+</button></div>
               <button class="drawer-remove" onclick="removeItem(${index})">Remove</button>
             </div>
             <div class="drawer-price">$${itemTotal.toFixed(2)}</div>
@@ -239,9 +223,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.removeItem = function(index) {
     cart.splice(index, 1);
     window.renderCart();
-    if(cart.length === 0 && window.location.pathname === "/checkout") {
-      navigate("store"); // Si borra todo desde checkout, lo devolvemos a la tienda
-    }
+    if(cart.length === 0 && window.location.pathname === "/checkout") navigate("store");
   };
 
   const addToCartBtn = document.getElementById('add-to-cart-btn');
@@ -249,109 +231,86 @@ document.addEventListener("DOMContentLoaded", () => {
     addToCartBtn.addEventListener('click', () => {
       const sizeSelect = document.getElementById('prod-size');
       const selectedSize = sizeSelect && sizeSelect.value !== "Choose your size" ? sizeSelect.value : "M";
-
       const pTitle = document.getElementById("product-page-title").innerText;
       const pPriceStr = document.getElementById("product-page-price").innerText;
       const pEmoji = document.getElementById("product-page-emoji").innerText;
       const pPriceNum = parseFloat(pPriceStr.replace(/[^0-9.]/g, '')); 
 
       cart.push({ name: pTitle, price: pPriceNum, size: selectedSize, qty: 1, emoji: pEmoji });
-      window.renderCart();
-      openCartDrawer(); 
+      window.renderCart(); openCartDrawer(); 
     });
   }
 
   if(drawerCheckoutBtn) {
     drawerCheckoutBtn.addEventListener('click', () => {
       if (cart.length === 0) return alert("Your cart is empty!");
-      closeCartDrawer();
-      navigate('checkout');
+      closeCartDrawer(); navigate('checkout');
     });
   }
 
   window.renderCart();
 
   // === STRIPE PAYMENTS INTEGRATION ===
+  let stripe;
+  let elements;
+  
   async function initializeStripeCheckout() {
-    if (cart.length === 0) return;
+    if (cart.length === 0 || !window.Stripe) return;
+    stripe = Stripe("pk_test_51OSyRzJBofJrA2IJwoX5nP2M0EEr503OnYe644dU61WPlomTvWVcTnODZ7ASU436LWO8i3TsmZK8hnNzvxwQTsQ800mkXMQUFL");
 
     try {
-      // 1. Llamamos a tu servidor backend de Vercel
       const response = await fetch("/api/create-payment-intent", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ items: cart }),
       });
-      
       const data = await response.json();
       if (!response.ok) throw new Error(data.error);
 
-      // 2. Personalizamos la apariencia de la pasarela para que encaje con el Dark Mode
       const appearance = {
         theme: 'night',
-        variables: {
-          fontFamily: '"Exo 2", sans-serif',
-          colorText: '#ffffff',
-          colorBackground: '#161616',
-          colorDanger: '#ff0000',
-          colorPrimary: '#FFD600',
-          borderColor: '#1e1e1e',
-          borderRadius: '4px'
-        }
+        variables: { fontFamily: '"Exo 2", sans-serif', colorText: '#ffffff', colorBackground: '#161616', colorDanger: '#ff0000', colorPrimary: '#FFD600', borderColor: '#1e1e1e', borderRadius: '4px' }
       };
 
       elements = stripe.elements({ appearance, clientSecret: data.clientSecret });
-
-      // 3. Montamos el elemento inyectable en el HTML
       const paymentElement = elements.create("payment");
       paymentElement.mount("#payment-element");
     } catch (error) {
       console.error("Stripe Error:", error);
-      document.querySelector("#payment-message").textContent = "Error initializing payment. Check console.";
+      document.querySelector("#payment-message").textContent = "Error initializing payment.";
       document.querySelector("#payment-message").classList.remove("hidden");
     }
   }
 
-  // Manejar el submit del botón de pago
-  document.querySelector("#payment-form").addEventListener("submit", async (e) => {
-    e.preventDefault();
-    setLoading(true);
+  const paymentForm = document.querySelector("#payment-form");
+  if (paymentForm) {
+    paymentForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      setLoading(true);
 
-    const { error } = await stripe.confirmPayment({
-      elements,
-      confirmParams: {
-        // En una app real de una página (SPA) cambiamos la vista en el callback o mandamos return_url
-        return_url: window.location.origin + "/success",
-        receipt_email: document.getElementById("checkout-email").value,
-      },
-      // Usamos redirect if required (o prevenimos recarga si funciona sin redirección extra)
-      redirect: 'if_required' 
-    });
+      const { error } = await stripe.confirmPayment({
+        elements,
+        confirmParams: {
+          return_url: window.location.origin + "/success",
+          receipt_email: document.getElementById("checkout-email").value,
+        },
+        redirect: 'if_required' 
+      });
 
-    if (error) {
-      if (error.type === "card_error" || error.type === "validation_error") {
-        showMessage(error.message);
+      if (error) {
+        if (error.type === "card_error" || error.type === "validation_error") showMessage(error.message);
+        else showMessage("An unexpected error occurred.");
+        setLoading(false);
       } else {
-        showMessage("An unexpected error occurred.");
+        cart = []; window.renderCart(); navigate("success"); setLoading(false);
       }
-      setLoading(false);
-    } else {
-      // Pago con éxito (Si no forzó redirect)
-      cart = []; // Vaciamos carrito
-      window.renderCart();
-      navigate("success");
-      setLoading(false);
-    }
-  });
+    });
+  }
 
   function showMessage(messageText) {
-    const messageContainer = document.querySelector("#payment-message");
-    messageContainer.classList.remove("hidden");
-    messageContainer.textContent = messageText;
-    setTimeout(function () {
-      messageContainer.classList.add("hidden");
-      messageContainer.textContent = "";
-    }, 4000);
+    const msgContainer = document.querySelector("#payment-message");
+    msgContainer.classList.remove("hidden"); msgContainer.textContent = messageText;
+    setTimeout(() => { msgContainer.classList.add("hidden"); msgContainer.textContent = ""; }, 4000);
   }
 
   function setLoading(isLoading) {
@@ -363,6 +322,115 @@ document.addEventListener("DOMContentLoaded", () => {
       document.querySelector("#submit-payment").disabled = false;
       document.querySelector("#spinner").classList.add("hidden");
       document.querySelector("#button-text").classList.remove("hidden");
+    }
+  }
+
+
+  // ==========================================
+  // LÓGICA CHATBOT 36912AI (RAG N8N PREPARADO)
+  // ==========================================
+  const chatInput = document.getElementById("chat-input-field");
+  const chatSendBtn = document.getElementById("chat-send-btn");
+  const chatContainer = document.getElementById("chat-messages-container");
+
+  // Al clickar en "New Chat" limpiamos la pantalla
+  window.clearChat = function() {
+    if(chatContainer) {
+      chatContainer.innerHTML = `
+        <div class="chat-msg ai-msg">
+          <div class="chat-avatar">AI</div>
+          <div class="chat-bubble">We are time. Welcome to 36912ai. How can I assist you today?</div>
+        </div>
+      `;
+    }
+  };
+
+  // Ajuste altura textarea dinámico
+  if(chatInput) {
+    chatInput.addEventListener('input', function() {
+      this.style.height = 'auto';
+      this.style.height = (this.scrollHeight) + 'px';
+      if(this.value.trim() === '') this.style.height = 'auto';
+    });
+
+    // Enviar con Enter (sin shift)
+    chatInput.addEventListener('keydown', function(e) {
+      if(e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        handleSendMessage();
+      }
+    });
+  }
+
+  if(chatSendBtn) {
+    chatSendBtn.addEventListener('click', handleSendMessage);
+  }
+
+  async function handleSendMessage() {
+    const message = chatInput.value.trim();
+    if (!message) return;
+
+    // 1. Mostrar mensaje del usuario
+    appendMessage('user', message);
+    chatInput.value = '';
+    chatInput.style.height = 'auto';
+
+    // 2. Mostrar indicador de "Escribiendo..."
+    const loadingId = appendMessage('ai', '...');
+
+    // 3. Enviar al Backend RAG (n8n)
+    const reply = await fetchN8nResponse(message);
+
+    // 4. Reemplazar indicador con respuesta real
+    const loadingNode = document.getElementById(loadingId);
+    if(loadingNode) {
+      loadingNode.innerText = reply;
+    }
+  }
+
+  function appendMessage(role, text) {
+    const uniqueId = 'msg-' + Date.now();
+    const isAi = role === 'ai';
+    
+    const msgHTML = `
+      <div class="chat-msg ${isAi ? 'ai-msg' : 'user-msg'}">
+        <div class="chat-avatar">${isAi ? 'AI' : 'U'}</div>
+        <div class="chat-bubble" id="${uniqueId}">${text}</div>
+      </div>
+    `;
+    
+    chatContainer.insertAdjacentHTML('beforeend', msgHTML);
+    chatContainer.scrollTop = chatContainer.scrollHeight;
+    
+    return uniqueId;
+  }
+
+  // --- CONEXIÓN BACKEND n8n ---
+  async function fetchN8nResponse(userMessage) {
+    // 🔥 AQUÍ PEGARÁS LA URL DE TU WEBHOOK DE n8n
+    const N8N_WEBHOOK_URL = 'https://tu-dominio-n8n.com/webhook/tu-endpoint'; 
+
+    try {
+      /* === DESCOMENTAR ESTO CUANDO TENGAS EL N8N LISTO ===
+      const response = await fetch(N8N_WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: userMessage })
+      });
+      const data = await response.json();
+      return data.reply || data.output || "Error: Formato de respuesta no reconocido.";
+      */
+
+      // === SIMULACIÓN FRONTEND TEMPORAL ===
+      return new Promise(resolve => {
+        setTimeout(() => {
+          resolve("This is a simulated response. To connect the real AI, add your n8n webhook URL in router.js.");
+        }, 1500);
+      });
+
+    } catch (error) {
+      console.error("AI Fetch Error:", error);
+      return "Temporal connection severed. Please try again later.";
     }
   }
 
