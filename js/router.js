@@ -366,22 +366,29 @@ document.addEventListener("DOMContentLoaded", () => {
     const message = chatInput.value.trim();
     if (!message) return;
 
-    // 1. Renderiza el mensaje del usuario en la pantalla
+    // 1. Renderiza el mensaje del usuario
     appendMessage('user', message);
     chatInput.value = '';
     chatInput.style.height = 'auto';
+    
+    // Bloquear el botón mientras carga
+    chatSendBtn.disabled = true;
 
-    // 2. Muestra los puntos suspensivos mientras carga
+    // 2. Muestra indicador de carga
     const loadingId = appendMessage('ai', '...');
 
-    // 3. Llama a tu webhook de n8n
+    // 3. Llama a n8n
     const reply = await fetchN8nResponse(message);
 
-    // 4. Cambia los puntos suspensivos por la respuesta real
+    // 4. Actualiza con la respuesta real
     const loadingNode = document.getElementById(loadingId);
     if(loadingNode) {
-      loadingNode.innerText = reply;
+      // Reemplazamos saltos de línea para que se vean bien sin innerText
+      loadingNode.innerHTML = reply.replace(/\n/g, '<br>');
     }
+    
+    chatSendBtn.disabled = false;
+    chatContainer.scrollTop = chatContainer.scrollHeight;
   }
 
   function appendMessage(role, text) {
@@ -403,21 +410,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // --- CONEXIÓN BACKEND n8n ---
   async function fetchN8nResponse(userMessage) {
-    // Tu URL oficial
+    // URL DE PRODUCCIÓN (Asegúrate de haber dado a PUBLISH en n8n)
     const N8N_WEBHOOK_URL = 'https://x36912ai.app.n8n.cloud/webhook/42eb1319-51f2-48a6-bb1f-fe67d105b741'; 
 
     try {
       const response = await fetch(N8N_WEBHOOK_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        // Enviamos el body exactamente con la variable que espera tu webhook
         body: JSON.stringify({ chatInput: userMessage })
       });
       
-      const data = await response.json();
-      
-      // Capturamos el output de tu n8n
-      return data.output || "Error: No data returned from the wormhole.";
+      if (!response.ok) throw new Error("Wormhole connection lost.");
+
+      const contentType = response.headers.get("content-type");
+      if (contentType && contentType.includes("application/json")) {
+          const data = await response.json();
+          // Accedemos a 'output' que es el campo estándar del AI Agent en n8n
+          return data.output || "I couldn't find an answer in the archives.";
+      } else {
+          // Si por alguna razón n8n devuelve texto plano
+          return await response.text();
+      }
 
     } catch (error) {
       console.error("AI Fetch Error:", error);
