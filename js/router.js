@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  // === FUNCIONES PÁGINA DE PRODUCTO ===
+  // === FUNCIONES PARA LLAMAR A LA PÁGINA DE PRODUCTO ===
   window.openProduct = function(title, price, emoji) {
     document.getElementById("product-page-title").innerText = title;
     document.getElementById("product-page-price").innerText = `$${price} USD`;
@@ -325,15 +325,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-
   // ==========================================
-  // LÓGICA CHATBOT 36912AI (RAG N8N PREPARADO)
+  // LÓGICA CHATBOT 36912AI (CONEXIÓN N8N REAL)
   // ==========================================
   const chatInput = document.getElementById("chat-input-field");
   const chatSendBtn = document.getElementById("chat-send-btn");
   const chatContainer = document.getElementById("chat-messages-container");
 
-  // Al clickar en "New Chat" limpiamos la pantalla
   window.clearChat = function() {
     if(chatContainer) {
       chatContainer.innerHTML = `
@@ -345,7 +343,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  // Ajuste altura textarea dinámico
   if(chatInput) {
     chatInput.addEventListener('input', function() {
       this.style.height = 'auto';
@@ -353,7 +350,6 @@ document.addEventListener("DOMContentLoaded", () => {
       if(this.value.trim() === '') this.style.height = 'auto';
     });
 
-    // Enviar con Enter (sin shift)
     chatInput.addEventListener('keydown', function(e) {
       if(e.key === 'Enter' && !e.shiftKey) {
         e.preventDefault();
@@ -370,18 +366,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const message = chatInput.value.trim();
     if (!message) return;
 
-    // 1. Mostrar mensaje del usuario
+    // 1. Renderiza el mensaje del usuario en la pantalla
     appendMessage('user', message);
     chatInput.value = '';
     chatInput.style.height = 'auto';
 
-    // 2. Mostrar indicador de "Escribiendo..."
+    // 2. Muestra los puntos suspensivos mientras carga
     const loadingId = appendMessage('ai', '...');
 
-    // 3. Enviar al Backend RAG (n8n)
+    // 3. Llama a tu webhook de n8n
     const reply = await fetchN8nResponse(message);
 
-    // 4. Reemplazar indicador con respuesta real
+    // 4. Cambia los puntos suspensivos por la respuesta real
     const loadingNode = document.getElementById(loadingId);
     if(loadingNode) {
       loadingNode.innerText = reply;
@@ -407,30 +403,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // --- CONEXIÓN BACKEND n8n ---
   async function fetchN8nResponse(userMessage) {
-    // 🔥 AQUÍ PEGARÁS LA URL DE TU WEBHOOK DE n8n
-    const N8N_WEBHOOK_URL = 'https://tu-dominio-n8n.com/webhook/tu-endpoint'; 
+    // Tu URL oficial
+    const N8N_WEBHOOK_URL = 'https://x36912ai.app.n8n.cloud/webhook/42eb1319-51f2-48a6-bb1f-fe67d105b741'; 
 
     try {
-      /* === DESCOMENTAR ESTO CUANDO TENGAS EL N8N LISTO ===
       const response = await fetch(N8N_WEBHOOK_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: userMessage })
+        // Enviamos el body exactamente con la variable que espera tu webhook
+        body: JSON.stringify({ chatInput: userMessage })
       });
+      
       const data = await response.json();
-      return data.reply || data.output || "Error: Formato de respuesta no reconocido.";
-      */
-
-      // === SIMULACIÓN FRONTEND TEMPORAL ===
-      return new Promise(resolve => {
-        setTimeout(() => {
-          resolve("This is a simulated response. To connect the real AI, add your n8n webhook URL in router.js.");
-        }, 1500);
-      });
+      
+      // Capturamos el output de tu n8n
+      return data.output || "Error: No data returned from the wormhole.";
 
     } catch (error) {
       console.error("AI Fetch Error:", error);
-      return "Temporal connection severed. Please try again later.";
+      return "System offline. Unable to connect to the wormhole.";
     }
   }
 
