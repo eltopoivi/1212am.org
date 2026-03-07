@@ -1,12 +1,15 @@
 document.addEventListener("DOMContentLoaded", () => {
   // === ⚠️ CONFIGURA AQUÍ TU SUPABASE ⚠️ ===
-  const SUPABASE_URL = "https://zgbaakccwajzgvfiqyky.supabase.co"; 
-  const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpnYmFha2Njd2Fqemd2ZmlxeWt5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI2ODE2MDMsImV4cCI6MjA4ODI1NzYwM30.Xor-c2M5whbLvTxAbc2Md1ztPSCZlYujK3OpkA-P6y0";
+  const SUPABASE_URL = "AQUI_TU_PROJECT_URL"; 
+  const SUPABASE_ANON_KEY = "AQUI_TU_ANON_KEY";
   // =======================================
+
+  // Tu logo personalizado para la IA
+  const AI_LOGO_HTML = `<img src="/Gemini_Generated_Image_tz20mhtz20mhtz20_Nero_AI_Background_Remover_transparent.png" class="ai-avatar-img" alt="12:12am AI">`;
 
   // --- ESTADO GLOBAL ---
   let currentUser = JSON.parse(localStorage.getItem('user')) || null;
-  let aiChats = []; // Ahora lo cargaremos de la base de datos
+  let aiChats = []; 
   let activeChatId = null;
 
   // --- LOGIN CON DISCORD ---
@@ -61,7 +64,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     try {
-      // Pedimos a Supabase los chats de este usuario, ordenados por el más reciente
       const response = await fetch(`${SUPABASE_URL}/rest/v1/ai_chats?user_id=eq.${currentUser.id}&order=updated_at.desc`, {
         headers: {
           'apikey': SUPABASE_ANON_KEY,
@@ -80,12 +82,12 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     } catch (error) {
       console.error("Error descargando chats de Supabase:", error);
-      initGuestChats(); // Fallback por si no hay internet
+      initGuestChats(); 
     }
   }
 
   async function saveChatToDB(chatId) {
-    if (!currentUser) return; // Los invitados no guardan en la nube
+    if (!currentUser) return; 
 
     const chatToSave = aiChats.find(c => c.id === chatId);
     if (!chatToSave) return;
@@ -93,7 +95,6 @@ document.addEventListener("DOMContentLoaded", () => {
     chatToSave.updated_at = new Date().toISOString();
 
     try {
-      // Usamos el header Prefer: resolution=merge-duplicates para hacer "Upsert" (Crear o Actualizar)
       await fetch(`${SUPABASE_URL}/rest/v1/ai_chats`, {
         method: 'POST',
         headers: {
@@ -151,7 +152,7 @@ document.addEventListener("DOMContentLoaded", () => {
     container.innerHTML = '';
 
     if(!activeChat || activeChat.messages.length === 0) {
-      container.innerHTML = `<div class="chat-msg ai-msg"><div class="chat-avatar">AI</div><div class="chat-bubble">Archives ready. Welcome back, ${currentUser ? currentUser.name : 'Guest'}. How can I assist you?</div></div>`;
+      container.innerHTML = `<div class="chat-msg ai-msg"><div class="chat-avatar">${AI_LOGO_HTML}</div><div class="chat-bubble">Archives ready. Welcome back, ${currentUser ? currentUser.name : 'Guest'}. How can I assist you?</div></div>`;
       return;
     }
 
@@ -159,7 +160,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const isAi = msg.role === 'ai';
       container.innerHTML += `
         <div class="chat-msg ${isAi ? 'ai-msg' : 'user-msg'}">
-          <div class="chat-avatar">${isAi ? 'AI' : (currentUser?.avatar ? `<img src="${currentUser.avatar}" class="user-avatar-img">` : 'U')}</div>
+          <div class="chat-avatar">${isAi ? AI_LOGO_HTML : (currentUser?.avatar ? `<img src="${currentUser.avatar}" class="user-avatar-img">` : 'U')}</div>
           <div class="chat-bubble">${msg.text}</div>
         </div>
       `;
@@ -203,7 +204,6 @@ document.addEventListener("DOMContentLoaded", () => {
     input.value = '';
     input.style.height = 'auto';
     
-    // UI Rápida: Mostramos el mensaje instantáneamente y guardamos
     window.renderChatUI();
     saveChatToDB(activeChat.id); 
     
@@ -212,7 +212,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Loading State
     const loadingId = 'loading-' + Date.now();
     const container = document.getElementById("chat-messages-container");
-    container.innerHTML += `<div class="chat-msg ai-msg" id="${loadingId}"><div class="chat-avatar">AI</div><div class="chat-bubble">...</div></div>`;
+    container.innerHTML += `<div class="chat-msg ai-msg" id="${loadingId}"><div class="chat-avatar">${AI_LOGO_HTML}</div><div class="chat-bubble">...</div></div>`;
     container.scrollTop = container.scrollHeight;
 
     // Llamada al cerebro en n8n
@@ -223,7 +223,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     chatSendBtn.disabled = false;
     window.renderChatUI();
-    saveChatToDB(activeChat.id); // Guardado final en la nube
+    saveChatToDB(activeChat.id); 
   }
 
   async function fetchN8nResponse(userMessage, userId) {
@@ -261,5 +261,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // --- ARRANQUE ---
   updateChatProfileUI();
-  fetchChatsFromDB(); // Al cargar la web, traemos los chats de Supabase
+  fetchChatsFromDB(); 
 });
