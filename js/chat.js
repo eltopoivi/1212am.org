@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if(discordBtn) {
     discordBtn.addEventListener('click', (e) => {
       e.preventDefault(); // Evita que se quede bloqueado
-      const clientId = "1347604595304726588"; // El Client ID real de tu Discord App
+      const clientId = "1479853900193468640"; // El Client ID real de tu Discord App
       const redirect = encodeURIComponent("https://1212am.org/api/auth/callback");
       
       // Redirige correctamente a la página de autorización
