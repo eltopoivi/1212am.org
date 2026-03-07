@@ -18,7 +18,7 @@
   border-radius: 8px; 
   text-align: center; 
   box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-  margin-top: -5vh; /* Ajuste óptico vertical */
+  margin-top: -5vh; 
 }
 
 .auth-logo { font-family: 'Orbitron', sans-serif; color: var(--y); font-size: 1.8rem; margin-bottom: 2rem; letter-spacing: 2px;}
@@ -80,10 +80,14 @@
 .user-msg { flex-direction: row-reverse; }
 
 .chat-avatar { 
-  width: 32px; height: 32px; border-radius: 4px; display: flex; align-items: center; justify-content: center; 
+  width: 35px; height: 35px; border-radius: 4px; display: flex; align-items: center; justify-content: center; 
   font-family: 'Orbitron', sans-serif; font-size: 0.65rem; font-weight: bold; flex-shrink: 0; 
 }
-.ai-msg .chat-avatar { background: var(--y); color: var(--bk); }
+
+/* CAMBIO: Se quita el fondo amarillo para la IA */
+.ai-msg .chat-avatar { background: transparent; }
+.ai-avatar-img { width: 100%; height: 100%; object-fit: contain; }
+
 .user-msg .chat-avatar { background: var(--dk3); color: var(--wh); border: 1px solid var(--db); }
 
 .chat-bubble { font-size: 1rem; line-height: 1.6; color: var(--wh); word-wrap: break-word; white-space: pre-wrap; }
