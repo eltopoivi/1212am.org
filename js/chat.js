@@ -1,18 +1,21 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // === ⚠️ CONFIGURA AQUÍ TU SUPABASE ⚠️ ===
+  const SUPABASE_URL = "https://zgbaakccwajzgvfiqyky.supabase.co"; 
+  const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpnYmFha2Njd2Fqemd2ZmlxeWt5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI2ODE2MDMsImV4cCI6MjA4ODI1NzYwM30.Xor-c2M5whbLvTxAbc2Md1ztPSCZlYujK3OpkA-P6y0";
+  // =======================================
+
   // --- ESTADO GLOBAL ---
   let currentUser = JSON.parse(localStorage.getItem('user')) || null;
-  let aiChats = JSON.parse(localStorage.getItem('ai_chats')) || [];
-  let activeChatId = localStorage.getItem('active_chat_id') || null;
+  let aiChats = []; // Ahora lo cargaremos de la base de datos
+  let activeChatId = null;
 
-  // --- LOGIN CON DISCORD REPARADO ---
+  // --- LOGIN CON DISCORD ---
   const discordBtn = document.getElementById('discord-login-btn');
   if(discordBtn) {
     discordBtn.addEventListener('click', (e) => {
-      e.preventDefault(); // Evita que se quede bloqueado
-      const clientId = "1479853900193468640"; // El Client ID real de tu Discord App
+      e.preventDefault(); 
+      const clientId = "1347604595304726588"; 
       const redirect = encodeURIComponent("https://1212am.org/api/auth/callback");
-      
-      // Redirige correctamente a la página de autorización
       window.location.href = `https://discord.com/api/oauth2/authorize?client_id=${clientId}&redirect_uri=${redirect}&response_type=code&scope=identify%20email`;
     });
   }
@@ -24,6 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();
       const email = document.getElementById("auth-email").value;
       currentUser = { id: "user-" + Date.now(), email: email, name: email.split('@')[0] };
+      localStorage.setItem('user', JSON.stringify(currentUser));
       await fetchChatsFromDB();
       updateChatProfileUI();
       window.navigate("ai36912"); 
@@ -37,6 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function handleAuthClick() {
     if(currentUser) {
       currentUser = null;
+      localStorage.removeItem('user');
       updateChatProfileUI();
       initGuestChats(); 
     } else {
@@ -48,14 +53,59 @@ document.addEventListener("DOMContentLoaded", () => {
   if(mobileAuthBtn) mobileAuthBtn.addEventListener("click", handleAuthClick);
 
 
-  // --- GESTIÓN DE CHATS ---
+  // --- GESTIÓN DE CHATS EN SUPABASE ---
   async function fetchChatsFromDB() {
-    // Si estás logueado y no hay chats, creamos uno base
-    if(aiChats.length === 0) {
-       window.startNewChat();
-    } else {
-       activeChatId = aiChats[0].id;
-       window.renderChatUI();
+    if (!currentUser) {
+      initGuestChats();
+      return;
+    }
+
+    try {
+      // Pedimos a Supabase los chats de este usuario, ordenados por el más reciente
+      const response = await fetch(`${SUPABASE_URL}/rest/v1/ai_chats?user_id=eq.${currentUser.id}&order=updated_at.desc`, {
+        headers: {
+          'apikey': SUPABASE_ANON_KEY,
+          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+        }
+      });
+
+      const data = await response.json();
+
+      if (data && data.length > 0) {
+        aiChats = data;
+        activeChatId = aiChats[0].id;
+        window.renderChatUI();
+      } else {
+        window.startNewChat();
+      }
+    } catch (error) {
+      console.error("Error descargando chats de Supabase:", error);
+      initGuestChats(); // Fallback por si no hay internet
+    }
+  }
+
+  async function saveChatToDB(chatId) {
+    if (!currentUser) return; // Los invitados no guardan en la nube
+
+    const chatToSave = aiChats.find(c => c.id === chatId);
+    if (!chatToSave) return;
+
+    chatToSave.updated_at = new Date().toISOString();
+
+    try {
+      // Usamos el header Prefer: resolution=merge-duplicates para hacer "Upsert" (Crear o Actualizar)
+      await fetch(`${SUPABASE_URL}/rest/v1/ai_chats`, {
+        method: 'POST',
+        headers: {
+          'apikey': SUPABASE_ANON_KEY,
+          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+          'Content-Type': 'application/json',
+          'Prefer': 'resolution=merge-duplicates'
+        },
+        body: JSON.stringify(chatToSave)
+      });
+    } catch (error) {
+      console.error("Error guardando en Supabase:", error);
     }
   }
 
@@ -69,23 +119,18 @@ document.addEventListener("DOMContentLoaded", () => {
       id: "chat-" + Date.now(), 
       title: "New chat", 
       messages: [],
-      userId: currentUser ? currentUser.id : 'guest'
+      user_id: currentUser ? currentUser.id : 'guest',
+      updated_at: new Date().toISOString()
     };
     aiChats.unshift(newChat);
     activeChatId = newChat.id;
-    saveAndRender();
+    window.renderChatUI();
+    if(currentUser) saveChatToDB(newChat.id);
   }
 
   window.switchChat = function(id) {
     activeChatId = id;
-    saveAndRender();
-  }
-
-  function saveAndRender() {
-    localStorage.setItem('ai_chats', JSON.stringify(aiChats));
-    localStorage.setItem('active_chat_id', activeChatId);
     window.renderChatUI();
-    updateChatProfileUI();
   }
 
   window.renderChatUI = function() {
@@ -96,7 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Render Sidebar
     list.innerHTML = '';
     const currentUid = currentUser ? currentUser.id : 'guest';
-    aiChats.filter(c => c.userId === currentUid).forEach(c => {
+    aiChats.filter(c => c.user_id === currentUid).forEach(c => {
       const isActive = c.id === activeChatId ? 'active' : '';
       list.innerHTML += `<div class="chat-hist-item ${isActive}" onclick="switchChat('${c.id}')">${c.title}</div>`;
     });
@@ -151,16 +196,34 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!activeChatId) window.startNewChat();
     const activeChat = aiChats.find(c => c.id === activeChatId);
 
-    if(activeChat.messages.length === 0) activeChat.title = message.substring(0, 20);
+    // Titular el chat automáticamente con el primer mensaje
+    if(activeChat.messages.length === 0) activeChat.title = message.length > 20 ? message.substring(0, 20) + "..." : message;
 
     activeChat.messages.push({ role: 'user', text: message });
     input.value = '';
     input.style.height = 'auto';
-    saveAndRender();
+    
+    // UI Rápida: Mostramos el mensaje instantáneamente y guardamos
+    window.renderChatUI();
+    saveChatToDB(activeChat.id); 
+    
+    chatSendBtn.disabled = true;
 
+    // Loading State
+    const loadingId = 'loading-' + Date.now();
+    const container = document.getElementById("chat-messages-container");
+    container.innerHTML += `<div class="chat-msg ai-msg" id="${loadingId}"><div class="chat-avatar">AI</div><div class="chat-bubble">...</div></div>`;
+    container.scrollTop = container.scrollHeight;
+
+    // Llamada al cerebro en n8n
     const reply = await fetchN8nResponse(message, currentUser?.id || 'guest');
+    
+    // Actualizamos respuesta de la IA
     activeChat.messages.push({ role: 'ai', text: reply.replace(/\n/g, '<br>') });
-    saveAndRender();
+    
+    chatSendBtn.disabled = false;
+    window.renderChatUI();
+    saveChatToDB(activeChat.id); // Guardado final en la nube
   }
 
   async function fetchN8nResponse(userMessage, userId) {
@@ -187,17 +250,16 @@ document.addEventListener("DOMContentLoaded", () => {
         ? `<img src="${currentUser.avatar}" class="user-avatar-img"><span>${currentUser.name}</span>`
         : `<div class="chat-avatar" style="background:var(--y); color:var(--bk);">${currentUser.name[0]}</div><span>${currentUser.name}</span>`;
       
-      if(btn) { btn.innerText = "Logout"; btn.onclick = () => { localStorage.removeItem('user'); location.reload(); }; }
-      if(mobileBtn) { mobileBtn.innerText = "Logout"; mobileBtn.onclick = () => { localStorage.removeItem('user'); location.reload(); }; }
+      if(btn) btn.innerText = "Log out"; 
+      if(mobileBtn) mobileBtn.innerText = "Log out"; 
     } else {
       userInfo.innerHTML = `<div class="chat-avatar">G</div><span>Guest</span>`;
-      if(btn) { btn.innerText = "Login"; btn.onclick = () => window.navigate('auth'); }
-      if(mobileBtn) { mobileBtn.innerText = "Login"; mobileBtn.onclick = () => window.navigate('auth'); }
+      if(btn) btn.innerText = "Log in";
+      if(mobileBtn) mobileBtn.innerText = "Log in";
     }
   }
 
-  // Inicializar todo al arrancar
+  // --- ARRANQUE ---
   updateChatProfileUI();
-  if(aiChats.length === 0) initGuestChats();
-  else window.renderChatUI();
+  fetchChatsFromDB(); // Al cargar la web, traemos los chats de Supabase
 });
