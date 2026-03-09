@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
   document.getElementById("chat-auth-action-btn")?.addEventListener("click", () => currentUser ? logout() : window.navigate('auth'));
 
-  // --- LÓGICA DE BASE DE DATOS (SUPABASE) ---
+  // --- LÓGICA DE BASE DE DATOS (SUPABASE UI) ---
   async function fetchChatsFromDB() {
     if (!currentUser) { renderChatUI(); return; }
     try {
@@ -118,15 +118,25 @@ document.addEventListener("DOMContentLoaded", () => {
     renderChatUI();
 
     try {
-      const res = await fetch('https://x36912ai.app.n8n.cloud/webhook/42eb1319-51f2-48a6-bb1f-fe67d105b741', {
+      // ⚠️ TEST URL ACTIVADA ⚠️
+      // Una vez que funcione en n8n y lo publiques, debes quitar la palabra "-test" de esta URL.
+      const urlN8N = 'https://x36912ai.app.n8n.cloud/webhook-test/42eb1319-51f2-48a6-bb1f-fe67d105b741';
+      
+      const res = await fetch(urlN8N, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ chatInput: msg, userId: currentUser ? currentUser.id : 'guest' })
       });
+      
       const data = await res.json();
-      chat.messages.push({ role: 'ai', text: (data.output || "No signal received.").replace(/\n/g, '<br>') });
+      
+      // Ajuste para leer "output" (texto de la IA) sin fallar
+      const iaText = data.output || data.text || "No signal received from Wormhole.";
+      chat.messages.push({ role: 'ai', text: iaText.replace(/\n/g, '<br>') });
+      
     } catch (err) {
-      chat.messages.push({ role: 'ai', text: "Wormhole connection timed out." });
+      console.error("Error n8n:", err);
+      chat.messages.push({ role: 'ai', text: "Wormhole connection timed out. Asegúrate de tener n8n en 'Listen for test event'." });
     }
     
     renderChatUI();
