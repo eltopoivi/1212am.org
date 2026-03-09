@@ -21,11 +21,11 @@
       </a>
       <ul class="nav__links">
         <li><a data-page="wormhole">Wormhole</a></li>
-        <li><a data-page="rooom">Rooom</a></li>
-        <li><a data-page="dragon12">Dragon12</a></li>
-        <li><a data-page="store">Store</a></li>
         <li><a data-page="lastsurvivors">Last Survivors</a></li>
         <li><a data-page="ai36912">36912ai</a></li>
+        <li><a data-page="store">Store</a></li>
+        <li><a data-page="dragon12">Dragon12</a></li>
+        <li><a data-page="rooom">Rooom</a></li>
         <li><a data-page="contact">Contact</a></li>
       </ul>
       <div class="nav__actions">
@@ -41,12 +41,11 @@
 
   <div class="nav__mobile" id="mobileMenu">
     <a data-page="wormhole">Wormhole</a>
-    <a data-page="rooom">Rooom</a>
-    <a data-page="dragon12">Dragon12</a>
-    <a data-page="store">Store</a>
-    <a data-page="cart">Cart</a>
     <a data-page="lastsurvivors">Last Survivors</a>
     <a data-page="ai36912">36912ai</a>
+    <a data-page="store">Store</a>
+    <a data-page="dragon12">Dragon12</a>
+    <a data-page="rooom">Rooom</a>
     <a data-page="contact">Contact</a>
   </div>
 
@@ -317,16 +316,11 @@
     <div class="auth-box">
       <h2 class="auth-logo">12<span class="vdots">⋮</span>12<span class="am">am</span><span class="tm">™</span></h2>
       <h1 class="auth-title">Identify yourself</h1>
-      
       <button id="discord-login-btn" class="btn-discord">
-        <svg width="24" height="24" viewBox="0 0 127.14 96.36" fill="currentColor">
-          <path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.31,60,73.31,53s5-12.74,11.43-12.74S96.33,46,96.22,53,91.08,65.69,84.69,65.69Z"/>
-        </svg>
+        <svg width="24" height="24" viewBox="0 0 127.14 96.36" fill="currentColor"><path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.31,60,73.31,53s5-12.74,11.43-12.74S96.33,46,96.22,53,91.08,65.69,84.69,65.69Z"/></svg>
         Login with Discord
       </button>
-
       <div class="auth-divider"><span>WORMHOLE ACCESS</span></div>
-
       <form id="auth-form" class="auth-form">
         <input type="email" id="auth-email" class="clean-input" placeholder="Email address" required>
         <input type="password" id="auth-password" class="clean-input" placeholder="Password" required>
@@ -337,46 +331,28 @@
 
   <div class="page" id="pg-ai36912" style="padding: 0;">
     <div class="chat-layout">
-      
       <div class="chat-sidebar">
-        <button class="chat-new-btn" onclick="startNewChat()">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:8px; vertical-align: middle;">
-            <line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>
-          </svg>
-          New chat
-        </button>
+        <button class="chat-new-btn" onclick="startNewChat()">+ New chat</button>
         <div class="chat-history" id="chat-history-list"></div>
-
         <div class="chat-user-area">
-          <div class="chat-user-info" id="chat-user-info">
-            <div class="chat-avatar">G</div>
-            <span>Guest</span>
-          </div>
+          <div class="chat-user-info" id="chat-user-info"><span>Guest</span></div>
           <button id="chat-auth-action-btn" class="chat-login-btn">Log in</button>
         </div>
       </div>
-
       <div class="chat-main">
         <div class="chat-mobile-header">
           <span style="font-family: 'Orbitron', sans-serif; color: var(--y); font-weight: bold; letter-spacing: 2px;">36912ai</span>
           <button id="mobile-auth-action-btn" class="chat-login-btn" style="position:absolute; right:1rem; top:0.8rem;">Log in</button>
         </div>
-
         <div class="chat-messages" id="chat-messages-container"></div>
-
         <div class="chat-input-area">
           <div class="chat-input-wrapper">
             <textarea id="chat-input-field" placeholder="Message 36912ai..." rows="1"></textarea>
             <button id="chat-send-btn" class="chat-send-btn">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="22" y1="2" x2="11" y2="13"></line>
-                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-              </svg>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
             </button>
           </div>
-          <div class="chat-disclaimer">36912ai can make mistakes. Consider verifying important information.</div>
         </div>
-
       </div>
     </div>
   </div>
@@ -438,6 +414,5 @@
   <script src="/js/router.js"></script> 
   <script src="/js/shop.js"></script> 
   <script src="/js/chat.js"></script> 
-
 </body>
 </html>
