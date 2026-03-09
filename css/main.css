@@ -191,10 +191,23 @@ button { font-family:inherit; cursor:pointer; }
   .nav__logo { font-size: 1.35rem; margin-left: 0; } 
   .nav__links { display:none; }
   .nav__hamburger { display:flex; }
+  
   .floating-cart-btn { top: auto; bottom: 2rem; right: 1.5rem; width: 60px; height: 60px; }
+  
   .contact-grid { grid-template-columns:1fr; }
   .home__center { padding-top: 15vh; }
-  .home__wormhole-bg { bottom: 15vh; }
+  
+  /* --- MÓVIL: AJUSTE DE WORMHOLE GIGANTE --- */
+  #pg-wormhole .home__wormhole-bg {
+    top: 55% !important; /* Centrado vertical */
+    bottom: auto !important; /* Anula el fondo anclado original */
+    transform: translate(-50%, -50%) !important; /* Posición absoluta al centro */
+  }
+  
+  #pg-wormhole .home__wormhole-bg img {
+    width: 150vw !important; /* Extremadamente grande, sobrepasando los bordes */
+    max-width: 800px !important; 
+  }
 }
 
 @media (max-width:600px) {
@@ -203,4 +216,9 @@ button { font-family:inherit; cursor:pointer; }
   .collage-img { width: clamp(50px, 15vw, 90px); }
   .split-header { flex-direction: column-reverse; gap: 1.5rem; }
   .split-header__logo { width: 140px; height: 140px; }
+  
+  /* Aún más grande en pantallas muy pequeñas para el efecto portal */
+  #pg-wormhole .home__wormhole-bg img {
+    width: 170vw !important;
+  }
 }
