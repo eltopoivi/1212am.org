@@ -36,7 +36,7 @@ a { color:inherit; text-decoration:none; }
 img { display:block; max-width:100%; }
 button { font-family:inherit; cursor:pointer; }
 
-/* ============ NAV (ESTILO TIPO LANGCHAIN) ============ */
+/* ============ NAV ============ */
 .nav { 
   position:fixed; top:0; left:0; right:0; z-index:1000; 
   pointer-events: none; 
@@ -120,12 +120,14 @@ button { font-family:inherit; cursor:pointer; }
 @keyframes tp-star { 0% { top: 80%; left: 15%; transform: translate(-50%, -50%) rotate(-10deg) scale(0.9); } 33.33%{ top: 15%; left: 65%; transform: translate(-50%, -50%) rotate(35deg) scale(1.1); } 66.66%{ top: 85%; left: 85%; transform: translate(-50%, -50%) rotate(-25deg); } 100% { top: 80%; left: 15%; transform: translate(-50%, -50%) rotate(-10deg) scale(0.9); } }
 @keyframes tp-1212 { 0% { top: 75%; left: 85%; transform: translate(-50%, -50%) rotate(15deg); } 33.33%{ top: 25%; left: 15%; transform: translate(-50%, -50%) rotate(-30deg) scale(1.05); } 66.66%{ top: 85%; left: 35%; transform: translate(-50%, -50%) rotate(10deg) scale(0.95); } 100% { top: 75%; left: 85%; transform: translate(-50%, -50%) rotate(15deg); } }
 @keyframes tp-wormhole { 0% { top: 15%; left: 35%; transform: translate(-50%, -50%) rotate(5deg) scale(1.1); } 33.33%{ top: 50%; left: 80%; transform: translate(-50%, -50%) rotate(-20deg) scale(0.9); } 66.66%{ top: 75%; left: 25%; transform: translate(-50%, -50%) rotate(15deg); } 100% { top: 15%; left: 35%; transform: translate(-50%, -50%) rotate(5deg) scale(1.1); } }
+
 .home__brand-group { position: static; display: flex; flex-direction: column; align-items: center; pointer-events: auto; }
 .home__brand { font-family: 'Sedgwick Ave', cursive; font-weight: normal; font-size: clamp(4rem, 10vw, 8.5rem); color: var(--y); -webkit-text-stroke: 2px var(--y); text-shadow: 0 0 50px var(--y-glow-s), 0 0 100px var(--y-glow); letter-spacing: .02em; line-height: 1; display: flex; align-items: baseline; justify-content: center; animation: brandIn 1.2s var(--ease); position: relative; z-index: 5; }
 @keyframes brandIn { from{opacity:0;transform:translateY(30px);filter:blur(8px);} to{opacity:1;transform:none;filter:none;} }
 .home__brand .vd { display:inline-flex; flex-direction:column; align-items:center; line-height:.35; font-size:.85em; margin:0 .06em; position:relative; top:-.05em; font-family:'Orbitron',sans-serif; -webkit-text-stroke: 0; }
 .home__brand .am { font-size:.55em; position:relative; top:-.02em; }
 .home__brand .tm { font-family:'Orbitron',sans-serif; font-size:.12em; position:relative; top:-3.5em; margin-left:.15em; letter-spacing: 0; -webkit-text-stroke: 0; }
+
 .home__join-group { display: flex; flex-direction: column; align-items: center; margin-top: 1rem; gap: 0.2rem; pointer-events: auto; }
 .home__join-text { font-family: 'Sedgwick Ave', cursive; font-weight: normal; font-size: clamp(1.2rem, 2vw, 1.8rem); color: #ffffff; letter-spacing: 1px; text-transform: lowercase; text-shadow: 0 0 10px rgba(255,255,255,0.2); }
 .home__join-arrow { color: rgba(255,255,255,0.6); font-size: 1.2rem; animation: floatArrow 2s ease-in-out infinite; }
@@ -138,7 +140,7 @@ button { font-family:inherit; cursor:pointer; }
 /* ============ SUBPAGE COMMON ============ */
 .sub { padding:clamp(2rem,4vw,4rem) clamp(1.2rem,3vw,2.5rem); }
 
-/* NUEVO LOGO COMO BOTÓN VOLVER */
+/* LOGO COMO BOTÓN VOLVER */
 .sub__logo-back { margin-bottom: 2rem; display: inline-flex; justify-self: auto; margin-left: 0;}
 .sub__logo-back:hover { opacity: .85; }
 
@@ -188,7 +190,10 @@ button { font-family:inherit; cursor:pointer; }
 @media (max-width:900px) {
   .nav { padding-top: 0; pointer-events: auto; background:rgba(0,0,0,.88); backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px); border-bottom:1px solid var(--db); height:var(--nav-h); }
   .nav__inner { display: flex; justify-content: space-between; border: none; border-radius: 0; background: transparent; height: 100%; padding: 0 clamp(1rem,3vw,2.5rem); max-width: 100%; box-shadow: none; backdrop-filter: none; }
-  .nav__logo { font-size: 1.35rem; margin-left: 0; } 
+  
+  /* Logo del menú ligeramente más pequeño para móviles */
+  .nav__logo { font-size: 1.15rem; margin-left: 0; } 
+  
   .nav__links { display:none; }
   .nav__hamburger { display:flex; }
   
@@ -199,25 +204,27 @@ button { font-family:inherit; cursor:pointer; }
   
   /* --- MÓVIL: AJUSTE DE WORMHOLE GIGANTE --- */
   #pg-wormhole .home__wormhole-bg {
-    top: 55% !important; /* Centrado vertical */
-    bottom: auto !important; /* Anula el fondo anclado original */
-    transform: translate(-50%, -50%) !important; /* Posición absoluta al centro */
+    top: 55% !important; 
+    bottom: auto !important; 
+    transform: translate(-50%, -50%) !important; 
   }
   
   #pg-wormhole .home__wormhole-bg img {
-    width: 150vw !important; /* Extremadamente grande, sobrepasando los bordes */
+    width: 150vw !important; 
     max-width: 800px !important; 
   }
 }
 
 @media (max-width:600px) {
   .map-embed iframe { height:220px; }
-  .home__brand { font-size: clamp(3.5rem, 15vw, 5rem); }
-  .collage-img { width: clamp(50px, 15vw, 90px); }
+  
+  /* --- AJUSTE CLAVE: LOGO CENTRAL MÁS PEQUEÑO PARA QUE NO TOQUE LOS BORDES --- */
+  .home__brand { font-size: clamp(2.5rem, 11vw, 3.8rem); }
+  
+  .collage-img { width: clamp(40px, 12vw, 80px); }
   .split-header { flex-direction: column-reverse; gap: 1.5rem; }
   .split-header__logo { width: 140px; height: 140px; }
   
-  /* Aún más grande en pantallas muy pequeñas para el efecto portal */
   #pg-wormhole .home__wormhole-bg img {
     width: 170vw !important;
   }
