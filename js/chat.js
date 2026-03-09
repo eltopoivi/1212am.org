@@ -120,7 +120,8 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
       // ⚠️ TEST URL ACTIVADA ⚠️
       // Una vez que funcione en n8n y lo publiques, debes quitar la palabra "-test" de esta URL.
-      const urlN8N = 'https://x36912ai.app.n8n.cloud/webhook-test/42eb1319-51f2-48a6-bb1f-fe67d105b741';
+      // Fíjate que ahora pone /webhook/ en lugar de /webhook-test/
+const urlN8N = 'https://x36912ai.app.n8n.cloud/webhook/42eb1319-51f2-48a6-bb1f-fe67d105b741';
       
       const res = await fetch(urlN8N, {
         method: 'POST',
