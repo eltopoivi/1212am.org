@@ -32,6 +32,17 @@ document.addEventListener("DOMContentLoaded", () => {
       history.pushState({ page: pageId }, "", newUrl);
     }
 
+    // === LÓGICA PARA OCULTAR/MOSTRAR EL CARRITO ===
+    const cartBtn = document.getElementById("open-cart-btn");
+    if(cartBtn) {
+      // El carrito SOLO aparece en estas 3 secciones (siempre y cuando estemos en Desktop)
+      if(['store', 'product', 'checkout'].includes(pageId)) {
+        cartBtn.style.display = 'block';
+      } else {
+        cartBtn.style.display = 'none';
+      }
+    }
+
     if (pageId === 'checkout' && window.initializeStripeCheckout) {
       window.initializeStripeCheckout();
     }
