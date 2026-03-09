@@ -39,13 +39,13 @@ button { font-family:inherit; cursor:pointer; }
 /* ============ NAV (ESTILO TIPO LANGCHAIN) ============ */
 .nav { 
   position:fixed; top:0; left:0; right:0; z-index:1000; 
-  pointer-events: none; /* Permite hacer clic a través de la zona invisible */
-  padding-top: 1.5rem; /* Margen flotante arriba */
+  pointer-events: none; 
+  padding-top: 1.5rem; 
   transition: opacity 0.3s ease;
 }
 
 .nav__inner { 
-  pointer-events: auto; /* Reactiva los clics dentro de la caja */
+  pointer-events: auto; 
   max-width: 1100px; 
   margin: 0 auto; 
   height: 60px; 
@@ -61,12 +61,11 @@ button { font-family:inherit; cursor:pointer; }
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
 }
 
-/* LOGO MÁS GRANDE Y APARTADO A LA IZQUIERDA */
 .nav__logo { 
   justify-self: start; 
   font-family:'Orbitron',sans-serif; 
   font-weight:900; 
-  font-size:1.55rem; /* Más grande */
+  font-size:1.55rem; 
   color:var(--y); 
   letter-spacing:2px; 
   cursor:pointer; 
@@ -75,7 +74,7 @@ button { font-family:inherit; cursor:pointer; }
   align-items:baseline; 
   gap:1px; 
   transition:opacity .3s; 
-  margin-left: -10px; /* Apartado a la izquierda */
+  margin-left: -10px; 
 }
 .nav__logo:hover { opacity:.85; }
 .nav__logo .vdots { display:inline-flex; flex-direction:column; align-items:center; line-height:.32; font-size:.92em; margin:0 .04em; position:relative; top:-.05em; }
@@ -87,7 +86,6 @@ button { font-family:inherit; cursor:pointer; }
 .nav__links a:hover, .nav__links a.active { color:var(--wh); }
 
 .nav__actions { justify-self: end; display: flex; align-items: center; gap: 1.5rem; }
-
 .nav__hamburger { display:none; flex-direction:column; gap:5px; background:none; border:none; padding:6px; cursor:pointer;}
 .nav__hamburger span { width:22px; height:1.5px; background:var(--y); transition:all .3s; }
 
@@ -96,48 +94,10 @@ button { font-family:inherit; cursor:pointer; }
 .nav__mobile a { font-family:'Orbitron',sans-serif; font-weight:700; font-size:.95rem; letter-spacing:4px; text-transform:uppercase; color:var(--gr); padding:.6rem; transition:color .3s; cursor:pointer; }
 .nav__mobile a:hover { color:var(--y); }
 
-/* ============ CARRITO FLOTANTE (NUEVO DISEÑO) ============ */
-.floating-cart-btn {
-  position: fixed;
-  top: 1.5rem;
-  right: 2rem;
-  z-index: 1001;
-  background: rgba(14, 14, 14, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--db);
-  border-radius: 50%;
-  width: 56px;
-  height: 56px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.4rem;
-  color: var(--wh);
-  cursor: pointer;
-  transition: transform 0.3s, border-color 0.3s;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.6);
-}
-.floating-cart-btn:hover {
-  transform: scale(1.08);
-  border-color: var(--gr);
-}
-.floating-cart-btn .cart-badge {
-  position: absolute;
-  top: 0px;
-  right: -2px;
-  background: red;
-  color: white;
-  font-family: sans-serif;
-  font-size: 0.75rem;
-  font-weight: bold;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+/* ============ CARRITO FLOTANTE ============ */
+.floating-cart-btn { position: fixed; top: 1.5rem; right: 2rem; z-index: 1001; background: rgba(14, 14, 14, 0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid var(--db); border-radius: 50%; width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; color: var(--wh); cursor: pointer; transition: transform 0.3s, border-color 0.3s; box-shadow: 0 4px 20px rgba(0,0,0,0.6); }
+.floating-cart-btn:hover { transform: scale(1.08); border-color: var(--gr); }
+.floating-cart-btn .cart-badge { position: absolute; top: 0px; right: -2px; background: red; color: white; font-family: sans-serif; font-size: 0.75rem; font-weight: bold; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
 
 .page { display:none; position:fixed; top:0; left:0; right:0; bottom:0; overflow-y:auto; overflow-x:hidden; background:var(--bk); }
 .page.active { display:block; animation:pageEnter .45s var(--ease); }
@@ -177,16 +137,20 @@ button { font-family:inherit; cursor:pointer; }
 
 /* ============ SUBPAGE COMMON ============ */
 .sub { padding:clamp(2rem,4vw,4rem) clamp(1.2rem,3vw,2.5rem); }
-.sub__back { display:inline-flex; align-items:center; gap:.4rem; font-family:'Exo 2',sans-serif; font-size:.85rem; font-weight: 500; color:var(--gr); cursor:pointer; transition:color .3s; margin-bottom:2rem; text-transform: uppercase; letter-spacing: 1px; }
-.sub__back:hover { color:var(--wh); }
-.sub__wrap { max-width:1100px; margin:0 auto; }
 
+/* NUEVO LOGO COMO BOTÓN VOLVER */
+.sub__logo-back { margin-bottom: 2rem; display: inline-flex; justify-self: auto; margin-left: 0;}
+.sub__logo-back:hover { opacity: .85; }
+
+.sub__wrap { max-width:1100px; margin:0 auto; }
 .split-header { display: flex; align-items: center; justify-content: center; gap: 3rem; margin-bottom: 2rem; width: 100%; }
 .split-header__media { flex: 1; max-width: 450px; border: 1px solid var(--db); border-radius: 4px; overflow: hidden; }
 .split-header__media img { width: 100%; height: auto; display: block; filter: brightness(0.9); }
 .split-header__logo { width: 180px; height: 180px; border-radius: 50%; overflow: hidden; flex-shrink: 0; }
 .split-header__logo img { width: 100%; height: 100%; object-fit: cover; }
 .location-box { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 1rem; }
+
+/* OLD COMPONENTS */
 .btn { display:inline-flex; align-items:center; gap:.5rem; font-family:'Orbitron',sans-serif; font-weight:700; font-size:.68rem; letter-spacing:2.5px; text-transform:uppercase; padding:.75rem 1.8rem; border:none; cursor:pointer; transition:all .3s var(--ease); text-decoration:none; }
 .btn--outline { background:transparent; border:1px solid var(--y); color:var(--y); }
 .btn--outline:hover { background:var(--y); color:var(--bk); }
@@ -204,6 +168,7 @@ button { font-family:inherit; cursor:pointer; }
 @keyframes floatLogo { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-8px);} }
 .logo-img--dragon { animation:dragonPulse 4s ease-in-out infinite; }
 @keyframes dragonPulse { 0%,100%{transform:scale(1);filter:drop-shadow(0 0 15px rgba(255,214,0,.1));} 50%{transform:scale(1.03);filter:drop-shadow(0 0 35px rgba(255,214,0,.25));} }
+
 .panel { background:var(--dk2); border:1px solid var(--db); max-width:640px; margin:0 auto; padding:2.5rem; text-align:center; position:relative; overflow:hidden; }
 .panel::before { content:attr(data-bg); position:absolute; right:-8px; top:-16px; font-size:8rem; opacity:.02; color:var(--y); pointer-events:none; }
 .panel__title { font-family:'Orbitron',sans-serif; font-size:1.05rem; font-weight:700; letter-spacing:2px; margin-bottom:1.2rem; }
@@ -221,29 +186,12 @@ button { font-family:inherit; cursor:pointer; }
 
 /* ============ RESPONSIVE MÓVIL ============ */
 @media (max-width:900px) {
-  .nav { 
-    padding-top: 0; pointer-events: auto; background:rgba(0,0,0,.88); 
-    backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px); 
-    border-bottom:1px solid var(--db); height:var(--nav-h); 
-  }
-  .nav__inner { 
-    display: flex; justify-content: space-between; border: none; 
-    border-radius: 0; background: transparent; height: 100%; 
-    padding: 0 clamp(1rem,3vw,2.5rem); max-width: 100%; 
-    box-shadow: none; backdrop-filter: none; 
-  }
-  .nav__logo { font-size: 1.35rem; margin-left: 0; } /* Ajuste móvil */
+  .nav { padding-top: 0; pointer-events: auto; background:rgba(0,0,0,.88); backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px); border-bottom:1px solid var(--db); height:var(--nav-h); }
+  .nav__inner { display: flex; justify-content: space-between; border: none; border-radius: 0; background: transparent; height: 100%; padding: 0 clamp(1rem,3vw,2.5rem); max-width: 100%; box-shadow: none; backdrop-filter: none; }
+  .nav__logo { font-size: 1.35rem; margin-left: 0; } 
   .nav__links { display:none; }
   .nav__hamburger { display:flex; }
-  
-  .floating-cart-btn {
-    top: auto;
-    bottom: 2rem;
-    right: 1.5rem;
-    width: 60px;
-    height: 60px;
-  }
-
+  .floating-cart-btn { top: auto; bottom: 2rem; right: 1.5rem; width: 60px; height: 60px; }
   .contact-grid { grid-template-columns:1fr; }
   .home__center { padding-top: 15vh; }
   .home__wormhole-bg { bottom: 15vh; }
