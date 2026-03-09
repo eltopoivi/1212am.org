@@ -32,14 +32,23 @@ document.addEventListener("DOMContentLoaded", () => {
       history.pushState({ page: pageId }, "", newUrl);
     }
 
-    // === LÓGICA PARA OCULTAR/MOSTRAR EL CARRITO ===
+    // === LÓGICA: OCULTAR EL HEADER FUERA DE LA HOME ===
+    const nav = document.querySelector(".nav");
+    if(nav) {
+      if(pageId === 'home') {
+        nav.style.display = 'block'; // Mostrar Header
+      } else {
+        nav.style.display = 'none';  // Esconder Header
+      }
+    }
+
+    // === LÓGICA: MOSTRAR CARRITO FLOTANTE SOLO EN LA TIENDA ===
     const cartBtn = document.getElementById("open-cart-btn");
     if(cartBtn) {
-      // El carrito SOLO aparece en estas 3 secciones (siempre y cuando estemos en Desktop)
       if(['store', 'product', 'checkout'].includes(pageId)) {
-        cartBtn.style.display = 'block';
+        cartBtn.style.display = 'flex'; // Activar Botón
       } else {
-        cartBtn.style.display = 'none';
+        cartBtn.style.display = 'none'; // Esconder Botón
       }
     }
 
