@@ -210,22 +210,18 @@ button { font-family:inherit; cursor:pointer; }
   }
   
   #pg-wormhole .home__wormhole-bg img {
-    width: 150vw !important; 
-    max-width: 800px !important; 
+    width: 100vw !important; /* --- MODIFICADO: Wormhole más pequeño --- */
+    max-width: 500px !important; 
   }
 }
 
 @media (max-width:600px) {
   .map-embed iframe { height:220px; }
   
-  /* --- AJUSTE CLAVE: LOGO CENTRAL MÁS PEQUEÑO PARA QUE NO TOQUE LOS BORDES --- */
-  .home__brand { font-size: clamp(2.5rem, 11vw, 3.8rem); }
+  /* --- MODIFICADO: LOGO CENTRAL MÁS GRANDE --- */
+  .home__brand { font-size: clamp(3.8rem, 16vw, 6rem); }
   
   .collage-img { width: clamp(40px, 12vw, 80px); }
   .split-header { flex-direction: column-reverse; gap: 1.5rem; }
   .split-header__logo { width: 140px; height: 140px; }
-  
-  #pg-wormhole .home__wormhole-bg img {
-    width: 170vw !important;
-  }
 }
