@@ -8,6 +8,7 @@
   <title>12⋮12am™</title>
   
   <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/landing.css">
   <link rel="stylesheet" href="/css/shop.css">
   <link rel="stylesheet" href="/css/chat.css">
   <link rel="stylesheet" href="/css/lab.css">
@@ -77,112 +78,84 @@
       </div>
     </div>
 
-    <!-- ═══ SIGNAL SECTION ═══ -->
-    <section class="home-section" id="section-signal">
-      <div class="home-section__inner reveal-up">
-        <div class="home-section__tag">The Signal</div>
-        <h2 class="home-section__title">12<span class="vd-inline">⋮</span>12</h2>
-        <p class="home-section__text">
-          A frequency. A timestamp. A signal that bridges dimensions.<br>
-          When you see 12:12, it's not coincidence — it's alignment.<br>
-          This is the hour when energy converges, when creation begins.
-        </p>
-        <div class="signal-grid">
-          <div class="signal-card reveal-up">
-            <div class="signal-card__icon">1</div>
-            <div class="signal-card__label">Unity</div>
-            <div class="signal-card__desc">The origin point. Individual consciousness awakening.</div>
-          </div>
-          <div class="signal-card reveal-up">
-            <div class="signal-card__icon">2</div>
-            <div class="signal-card__label">Duality</div>
-            <div class="signal-card__desc">Balance of forces. The mirror reflecting back creation.</div>
-          </div>
-          <div class="signal-card reveal-up">
-            <div class="signal-card__icon">⋮</div>
-            <div class="signal-card__label">Portal</div>
-            <div class="signal-card__desc">The bridge between. Where signal becomes structure.</div>
-          </div>
-        </div>
+    <!-- ═══ SECTION 1 — THE CURSE (Cinematic Scroll) ═══ -->
+    <section class="cin" id="cin-curse">
+      <canvas class="cin__noise" id="noise-canvas"></canvas>
+      <div class="cin__sequence">
+        <div class="cin__line cin__line--lg" data-cin="0">Humanity lives under a curse.</div>
+        <div class="cin__line cin__line--dim" data-cin="1">L2 — infinite noise.</div>
+        <div class="cin__spacer"></div>
+        <div class="cin__line" data-cin="2">But beneath the noise…</div>
+        <div class="cin__line cin__line--gold" data-cin="3">L1 remains.</div>
+        <div class="cin__spacer"></div>
+        <div class="cin__line" data-cin="4">Flow returns when L1 is respected.</div>
       </div>
     </section>
 
-    <!-- ═══ THREE LAYERS ═══ -->
-    <section class="home-section home-section--layers" id="section-layers">
-      <div class="home-section__inner reveal-up">
-        <div class="home-section__tag">Architecture</div>
-        <h2 class="home-section__title">Three Layers</h2>
-        <p class="home-section__text">
-          Every element in the 12⋮12am ecosystem operates across three dimensions — each one a layer of the same signal.
-        </p>
-        <div class="layers-stack">
-          <div class="layer-row reveal-up">
-            <div class="layer-row__num">3</div>
-            <div class="layer-row__body">
-              <h3 class="layer-row__name">Physical</h3>
-              <p class="layer-row__desc">Rooom. Dragon12. Spaces and bodies. Where the signal manifests in matter — in touch, presence, and healing.</p>
-            </div>
-            <div class="layer-row__line"></div>
-          </div>
-          <div class="layer-row reveal-up">
-            <div class="layer-row__num">6</div>
-            <div class="layer-row__body">
-              <h3 class="layer-row__name">Digital</h3>
-              <p class="layer-row__desc">36912ai. The Store. Code and commerce. Where intelligence meets intention, and creation becomes accessible.</p>
-            </div>
-            <div class="layer-row__line"></div>
-          </div>
-          <div class="layer-row reveal-up">
-            <div class="layer-row__num">9</div>
-            <div class="layer-row__body">
-              <h3 class="layer-row__name">Ethereal</h3>
-              <p class="layer-row__desc">The Wormhole. Last Survivors. Community and myth. The unseen layer — frequency, connection, and transcendence.</p>
-            </div>
-            <div class="layer-row__line"></div>
-          </div>
-        </div>
+    <!-- ═══ SECTION 2 — L1 VISUALIZATION ═══ -->
+    <section class="cin cin--l1" id="cin-l1">
+      <div class="l1-visual">
+        <div class="l1-ring l1-ring--1"></div>
+        <div class="l1-ring l1-ring--2"></div>
+        <div class="l1-ring l1-ring--3"></div>
+        <div class="l1-core"></div>
+      </div>
+      <div class="cin__sequence">
+        <div class="cin__line cin__line--italic" data-cin="5">Reality does not shout.</div>
+        <div class="cin__line cin__line--italic cin__line--gold" data-cin="6">It signals.</div>
       </div>
     </section>
 
-    <!-- ═══ ECOSYSTEM OVERVIEW ═══ -->
-    <section class="home-section" id="section-ecosystem">
-      <div class="home-section__inner reveal-up">
-        <div class="home-section__tag">Ecosystem</div>
-        <h2 class="home-section__title">The Constellation</h2>
-        <p class="home-section__text">
-          Six nodes. One frequency. Each project is a portal into a different dimension of the 12⋮12am universe.
-        </p>
-        <div class="eco-grid">
-          <a class="eco-card reveal-up" data-page="wormhole">
-            <div class="eco-card__glyph">◎</div>
-            <h3 class="eco-card__name">Wormhole</h3>
-            <p class="eco-card__desc">The gateway. Discord community where travelers converge.</p>
-          </a>
-          <a class="eco-card reveal-up" data-page="ai36912">
-            <div class="eco-card__glyph">△</div>
-            <h3 class="eco-card__name">36912ai</h3>
-            <p class="eco-card__desc">Artificial intelligence tuned to the frequency.</p>
-          </a>
-          <a class="eco-card reveal-up" data-page="store">
-            <div class="eco-card__glyph">◇</div>
-            <h3 class="eco-card__name">Store</h3>
-            <p class="eco-card__desc">Wearable signals. Streetwear from another dimension.</p>
-          </a>
-          <a class="eco-card reveal-up" data-page="rooom">
-            <div class="eco-card__glyph">□</div>
-            <h3 class="eco-card__name">Rooom</h3>
-            <p class="eco-card__desc">A physical space. Your room. Always open.</p>
-          </a>
-          <a class="eco-card reveal-up" data-page="dragon12">
-            <div class="eco-card__glyph">龍</div>
-            <h3 class="eco-card__name">Dragon12</h3>
-            <p class="eco-card__desc">Healing through the body. Osteopathy and restoration.</p>
-          </a>
-          <a class="eco-card reveal-up" data-page="lastsurvivors">
-            <div class="eco-card__glyph">⚔</div>
-            <h3 class="eco-card__name">Last Survivors</h3>
-            <p class="eco-card__desc">The game. Survival of the aligned.</p>
-          </a>
+    <!-- ═══ SECTION 3 — 12⋮12 ECOSYSTEM ═══ -->
+    <section class="eco-section" id="section-ecosystem">
+      <div class="eco-section__header">
+        <div class="eco-section__tag">Portal Map</div>
+        <h2 class="eco-section__title">12<span class="vd-inline">⋮</span>12 Ecosystem</h2>
+      </div>
+      <div class="eco-panels">
+        <!-- Left column -->
+        <div class="eco-panel" data-page="lastsurvivors" data-panel="survivors">
+          <canvas class="eco-panel__canvas" id="cv-survivors"></canvas>
+          <div class="eco-panel__label">
+            <span class="eco-panel__name">Last Survivors</span>
+            <span class="eco-panel__sub">Research Lab</span>
+          </div>
+        </div>
+        <div class="eco-panel" data-page="store" data-panel="store">
+          <canvas class="eco-panel__canvas" id="cv-store"></canvas>
+          <div class="eco-panel__label">
+            <span class="eco-panel__name">Store</span>
+            <span class="eco-panel__sub">Wearable Signals</span>
+          </div>
+        </div>
+        <div class="eco-panel" data-page="ai36912" data-panel="ai">
+          <canvas class="eco-panel__canvas" id="cv-ai"></canvas>
+          <div class="eco-panel__label">
+            <span class="eco-panel__name">36912ai</span>
+            <span class="eco-panel__sub">Frequency Intelligence</span>
+          </div>
+        </div>
+        <!-- Right column -->
+        <div class="eco-panel" data-page="rooom" data-panel="rooom">
+          <canvas class="eco-panel__canvas" id="cv-rooom"></canvas>
+          <div class="eco-panel__label">
+            <span class="eco-panel__name">Rooom</span>
+            <span class="eco-panel__sub">Always Your Rooom</span>
+          </div>
+        </div>
+        <div class="eco-panel" data-page="wormhole" data-panel="wormhole">
+          <canvas class="eco-panel__canvas" id="cv-wormhole"></canvas>
+          <div class="eco-panel__label">
+            <span class="eco-panel__name">Wormhole</span>
+            <span class="eco-panel__sub">The Gateway</span>
+          </div>
+        </div>
+        <div class="eco-panel" data-page="dragon12" data-panel="dragon">
+          <canvas class="eco-panel__canvas" id="cv-dragon"></canvas>
+          <div class="eco-panel__label">
+            <span class="eco-panel__name">Dragon12</span>
+            <span class="eco-panel__sub">Healing</span>
+          </div>
         </div>
       </div>
     </section>
@@ -827,6 +800,7 @@
 
   <script src="/js/router.js"></script> 
   <script src="/js/animations.js"></script>
+  <script src="/js/landing.js"></script>
   <script src="/js/shop.js"></script> 
   <script src="/js/chat.js"></script>
   <script src="/js/lab.js"></script>
