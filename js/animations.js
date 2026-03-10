@@ -5,52 +5,69 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   // ── Scroll-reveal via IntersectionObserver ──
-  const revealElements = document.querySelectorAll('.reveal-up');
+  function initRevealObserver() {
+    const revealElements = document.querySelectorAll('.reveal-up');
+    if (!revealElements.length) return;
 
-  if ('IntersectionObserver' in window) {
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          // Stagger siblings slightly
-          const siblings = entry.target.parentElement.querySelectorAll('.reveal-up');
-          let delay = 0;
-          siblings.forEach((sib, idx) => {
-            if (sib === entry.target) delay = idx * 80;
-          });
-          setTimeout(() => {
-            entry.target.classList.add('is-visible');
-          }, delay);
-          revealObserver.unobserve(entry.target);
-        }
+    if ('IntersectionObserver' in window) {
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const parent = entry.target.parentElement;
+            const siblings = parent ? Array.from(parent.querySelectorAll('.reveal-up')) : [];
+            const idx = siblings.indexOf(entry.target);
+            const delay = idx >= 0 ? idx * 100 : 0;
+            setTimeout(() => {
+              entry.target.classList.add('is-visible');
+            }, delay);
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, {
+        root: document.getElementById('pg-home'),
+        threshold: 0.1,
+        rootMargin: '0px 0px -30px 0px'
       });
-    }, {
-      threshold: 0.15,
-      rootMargin: '0px 0px -40px 0px'
-    });
 
-    revealElements.forEach(el => revealObserver.observe(el));
-  } else {
-    // Fallback: just show everything
-    revealElements.forEach(el => el.classList.add('is-visible'));
+      revealElements.forEach(el => revealObserver.observe(el));
+    } else {
+      revealElements.forEach(el => el.classList.add('is-visible'));
+    }
+  }
+
+  initRevealObserver();
+
+  // ── Scroll hint: click to scroll down ──
+  const homeEl = document.getElementById('pg-home');
+  const scrollHintBtn = document.getElementById('scroll-hint-btn');
+  const firstSection = document.getElementById('section-signal');
+
+  if (scrollHintBtn && homeEl && firstSection) {
+    scrollHintBtn.addEventListener('click', () => {
+      const targetTop = firstSection.offsetTop;
+      homeEl.scrollTo({
+        top: targetTop,
+        behavior: 'smooth'
+      });
+    });
   }
 
   // ── Hide scroll hint on scroll ──
-  const homeEl = document.getElementById('pg-home');
-  const scrollHint = document.querySelector('.home__scroll-hint');
-
-  if (homeEl && scrollHint) {
+  if (homeEl && scrollHintBtn) {
     homeEl.addEventListener('scroll', () => {
-      if (homeEl.scrollTop > 80) {
-        scrollHint.style.opacity = '0';
-        scrollHint.style.transition = 'opacity 0.5s';
+      if (homeEl.scrollTop > 100) {
+        scrollHintBtn.style.opacity = '0';
+        scrollHintBtn.style.pointerEvents = 'none';
+        scrollHintBtn.style.transition = 'opacity 0.4s';
       } else {
-        scrollHint.style.opacity = '';
-        scrollHint.style.transition = '';
+        scrollHintBtn.style.opacity = '';
+        scrollHintBtn.style.pointerEvents = '';
+        scrollHintBtn.style.transition = '';
       }
     }, { passive: true });
   }
 
-  // ── Eco-card navigation (they have data-page) ──
+  // ── Eco-card navigation ──
   document.querySelectorAll('.eco-card[data-page]').forEach(card => {
     card.addEventListener('click', (e) => {
       e.preventDefault();
