@@ -1,6 +1,6 @@
 /* ====================================================
-   12⋮12am™ — CINEMATIC LANDING v3
-   GSAP + Three.js powered
+   12⋮12am™ — CINEMATIC LANDING
+   GSAP powered — scroll storytelling only
    ==================================================== */
 
 /* ═══ CINEMATIC SCROLL SECTIONS ═══ */
@@ -20,14 +20,10 @@
 .cin__line {
   font-family: 'Exo 2', sans-serif;
   font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-  font-weight: 300;
-  color: var(--lt);
-  line-height: 1.6;
-  letter-spacing: 0.5px;
-  opacity: 0;
-  transform: translateY(30px);
-  padding: 0.5rem 0;
-  will-change: transform, opacity;
+  font-weight: 300; color: var(--lt);
+  line-height: 1.6; letter-spacing: 0.5px;
+  opacity: 0; transform: translateY(30px);
+  padding: 0.5rem 0; will-change: transform, opacity;
 }
 .cin__line--lg { font-size: clamp(1.6rem, 3.5vw, 2.4rem); font-weight: 400; color: var(--wh); letter-spacing: 1px; }
 .cin__line--dim { color: var(--gr); font-family: 'Share Tech Mono', monospace; font-size: clamp(0.85rem, 1.5vw, 1.05rem); letter-spacing: 3px; text-transform: uppercase; }
@@ -47,68 +43,8 @@
   box-shadow: 0 0 20px var(--y-glow-s), 0 0 60px var(--y-glow);
 }
 
-/* ═══ ECOSYSTEM SECTION ═══ */
-.eco-section { padding: clamp(3rem, 6vh, 5rem) clamp(1rem, 3vw, 2rem); border-top: 1px solid rgba(255, 255, 255, 0.03); }
-.eco-section__header { text-align: center; margin-bottom: 2.5rem; }
-.eco-section__tag { font-family: 'Share Tech Mono', monospace; font-size: 0.65rem; letter-spacing: 4px; text-transform: uppercase; color: var(--y-dim); margin-bottom: 1rem; }
-.eco-section__title { font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: clamp(1.6rem, 3.5vw, 2.4rem); color: var(--y); letter-spacing: 3px; text-shadow: 0 0 30px var(--y-glow); }
-
-/* ═══ 3-COL PANEL GRID ═══ */
-.eco-panels {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 3px;
-  max-width: 1100px;
-  margin: 0 auto;
-  background: var(--db);
-  border: 1px solid var(--db);
-}
-.eco-panel {
-  position: relative;
-  aspect-ratio: 1;
-  background: var(--bk);
-  cursor: pointer;
-  overflow: hidden;
-}
-.eco-panel__scene {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  transition: opacity 0.8s var(--ease);
-  z-index: 2;
-  overflow: hidden;
-}
-.eco-panel__scene canvas { display: block; width: 100% !important; height: 100% !important; }
-.eco-panel.is-active .eco-panel__scene { opacity: 1; }
-
-/* ── Big centered title ── */
-.eco-panel__title-overlay {
-  position: absolute; inset: 0;
-  display: flex; align-items: center; justify-content: center;
-  z-index: 5; pointer-events: none;
-}
-.eco-panel__title-overlay span {
-  font-family: 'Orbitron', sans-serif; font-weight: 900;
-  font-size: clamp(1rem, 2.2vw, 1.6rem);
-  letter-spacing: 3px; text-transform: uppercase; color: var(--wh);
-  text-align: center; line-height: 1.3;
-  text-shadow: 0 2px 30px rgba(0,0,0,0.9), 0 0 60px rgba(0,0,0,0.5);
-  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
-  will-change: transform, opacity;
-}
-.eco-panel.is-active .eco-panel__title-overlay span {
-  opacity: 0;
-  transform: scale(1.15);
-}
-
 /* ═══ RESPONSIVE ═══ */
-@media (max-width: 800px) {
-  .eco-panels { grid-template-columns: repeat(2, 1fr); }
-  .eco-panel__title-overlay span { font-size: clamp(0.9rem, 3vw, 1.3rem); }
-}
 @media (max-width: 500px) {
-  .eco-panels { grid-template-columns: 1fr; }
-  .eco-panel { aspect-ratio: 4 / 3; }
   .cin { padding: 4rem 1.5rem; min-height: 80vh; }
   .cin__spacer { height: 2.5rem; }
 }
