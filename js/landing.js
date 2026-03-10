@@ -52,6 +52,88 @@ gsap.to('.l1-core',{scale:1.8,duration:2,repeat:-1,yoyo:true,ease:'sine.inOut'})
 gsap.fromTo('#section-cta .cta-block',{opacity:0,y:40},{opacity:1,y:0,duration:1,ease:'power2.out',
   scrollTrigger:{trigger:'#section-cta',start:'top 80%'}});
 
+/* ═══════════════════════════════════════════
+   INFO REVEAL — Character sweep + split animations
+   ═══════════════════════════════════════════ */
+
+// Split headline into individual character spans
+const headline = document.getElementById('headline-sweep');
+if (headline) {
+  const text = headline.textContent;
+  headline.innerHTML = '';
+  const chars = [];
+  for (let i = 0; i < text.length; i++) {
+    if (text[i] === ' ') {
+      const sp = document.createElement('span');
+      sp.className = 'char-space';
+      sp.innerHTML = '&nbsp;';
+      headline.appendChild(sp);
+    } else {
+      const span = document.createElement('span');
+      span.className = 'char';
+      span.textContent = text[i];
+      headline.appendChild(span);
+      chars.push(span);
+    }
+  }
+
+  // GSAP ScrollTrigger: sweep light across characters as you scroll
+  ScrollTrigger.create({
+    trigger: '#info-reveal',
+    start: 'top 75%',
+    end: 'top 20%',
+    scrub: 0.8,
+    onUpdate: (self) => {
+      const progress = self.progress;
+      const litCount = Math.floor(progress * chars.length);
+      chars.forEach((ch, i) => {
+        if (i < litCount) {
+          ch.classList.add('is-lit');
+        } else {
+          ch.classList.remove('is-lit');
+        }
+      });
+    }
+  });
+}
+
+// Split section reveals — staggered
+document.querySelectorAll('.info-split').forEach((split, i) => {
+  gsap.fromTo(split,
+    { opacity: 0, y: 40 },
+    {
+      opacity: 1, y: 0, duration: 1, ease: 'power2.out',
+      scrollTrigger: {
+        trigger: split,
+        start: 'top 80%',
+        toggleActions: 'play none none none'
+      }
+    }
+  );
+  // Animate the divider dot
+  const dot = split.querySelector('.info-split__dot');
+  if (dot) {
+    gsap.fromTo(dot,
+      { scale: 0, opacity: 0 },
+      {
+        scale: 1, opacity: 1, duration: 0.6, ease: 'back.out(2)',
+        scrollTrigger: { trigger: split, start: 'top 75%', toggleActions: 'play none none none' }
+      }
+    );
+  }
+  // Animate the line growing
+  const line = split.querySelector('.info-split__line');
+  if (line) {
+    gsap.fromTo(line,
+      { scaleY: 0 },
+      {
+        scaleY: 1, duration: 0.8, ease: 'power2.out', transformOrigin: 'top center',
+        scrollTrigger: { trigger: split, start: 'top 78%', toggleActions: 'play none none none' }
+      }
+    );
+  }
+});
+
 
 /* ═══════════════════════════════════════════
    ROOOM PAGE — Floating balloons background
