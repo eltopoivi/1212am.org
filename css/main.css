@@ -121,8 +121,9 @@ button { font-family:inherit; cursor:pointer; }
 @keyframes pageEnter { from{opacity:0;transform:translateY(8px);} to{opacity:1;transform:none;} }
 
 /* ============ HOME & GLITCH ============ */
-.home { overflow-y: auto; overflow-x: hidden; position: relative; background: var(--bk); }
-.home__center { position:relative; z-index:10; text-align:center; width:100%; padding:0 2rem; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; padding-top: 6vh; height: 100vh; height: 100dvh; pointer-events: none; }
+.home { overflow-y: auto; overflow-x: hidden; background: var(--bk); }
+.home__hero-section { position: relative; width: 100%; height: 100vh; height: 100dvh; overflow: hidden; flex-shrink: 0; }
+.home__center { position:relative; z-index:10; text-align:center; width:100%; padding:0 2rem; display:flex; flex-direction:column; align-items:center; justify-content:center; height: 100%; pointer-events: none; }
 
 @keyframes glitch-fx { 0% { filter: drop-shadow(-6px 0 0 #ff00ea) drop-shadow(6px 0 0 #00f0ff) brightness(1.5); opacity: 1; } 2% { filter: drop-shadow(6px 0 0 #ff00ea) drop-shadow(-6px 0 0 #00f0ff) brightness(2); opacity: 0.6; } 4% { filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.08)); opacity: 0.85; } 100% { filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.08)); opacity: 0.85; } }
 .collage-img { position: absolute; width: clamp(70px, 12vw, 130px); pointer-events: none; z-index: 1; opacity: 0.85; }
@@ -209,8 +210,6 @@ button { font-family:inherit; cursor:pointer; }
   
   .floating-cart-btn { top: auto; bottom: 2rem; right: 1.5rem; width: 60px; height: 60px; }
   
-  .home__center { padding-top: 15vh; }
-  
   /* --- MÓVIL: AJUSTE DE WORMHOLE GIGANTE --- */
   #pg-wormhole .home__wormhole-bg {
     top: 55% !important; 
@@ -258,28 +257,31 @@ button { font-family:inherit; cursor:pointer; }
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.6rem;
   z-index: 20;
-  opacity: 0.5;
-  animation: hintFade 3s ease-in-out infinite;
+  cursor: pointer;
+  opacity: 0.7;
+  animation: hintPulse 2.5s ease-in-out infinite;
+  transition: opacity 0.3s;
 }
+.home__scroll-hint:hover { opacity: 1; }
 .home__scroll-hint span {
   font-family: 'Share Tech Mono', monospace;
-  font-size: 0.65rem;
+  font-size: 0.7rem;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.4);
+  color: var(--y-dim);
 }
 .home__scroll-dot {
   animation: scrollDot 2s ease-in-out infinite;
 }
 @keyframes scrollDot {
-  0%, 100% { cy: 8; opacity: 1; }
-  50% { cy: 18; opacity: 0.3; }
+  0%, 100% { cy: 10; opacity: 1; }
+  50% { cy: 22; opacity: 0.3; }
 }
-@keyframes hintFade {
-  0%, 100% { opacity: 0.5; }
-  50% { opacity: 0.2; }
+@keyframes hintPulse {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 0.35; }
 }
 
 /* ── Section base ── */
