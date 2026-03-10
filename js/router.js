@@ -16,7 +16,10 @@ document.addEventListener("DOMContentLoaded", () => {
     navLinks.forEach(link => link.classList.remove("active"));
 
     const target = document.getElementById("pg-" + pageId);
-    if (target) target.classList.add("active");
+    if (target) {
+      target.classList.add("active");
+      target.scrollTop = 0; // Reset scroll position
+    }
 
     const activeLinks = document.querySelectorAll(`nav [data-page="${pageId}"], .nav__mobile [data-page="${pageId}"]`);
     activeLinks.forEach(link => link.classList.add("active"));
