@@ -1,0 +1,493 @@
+/* ====================================================
+   LAST SURVIVORS — RESEARCH LAB
+   Uses existing design system: --y, --dk, --dk2, --db,
+   --gr, --gr-l, --lt, --wh, Orbitron, Exo 2, Share Tech Mono
+   ==================================================== */
+
+/* ── Layout override ── */
+.lab-wrap { max-width: 860px; }
+
+/* ── HERO ── */
+.lab-hero {
+  padding: 2rem 0 3.5rem;
+  border-bottom: 1px solid var(--db);
+  margin-bottom: 3.5rem;
+}
+.lab-hero__tag {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gr);
+  margin-bottom: 1.5rem;
+}
+.lab-hero__title {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+  font-size: clamp(1.8rem, 4.5vw, 3rem);
+  letter-spacing: 2px;
+  color: var(--wh);
+  line-height: 1.2;
+  margin-bottom: 1.2rem;
+}
+.lab-hero__title span {
+  color: var(--y);
+  text-shadow: 0 0 30px var(--y-glow);
+}
+.lab-hero__subtitle {
+  font-family: 'Exo 2', sans-serif;
+  font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+  color: var(--lt);
+  font-weight: 400;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+.lab-hero__text {
+  font-size: 0.88rem;
+  color: var(--gr-l);
+  line-height: 1.8;
+  max-width: 600px;
+}
+.lab-hero__line {
+  width: 40px;
+  height: 1px;
+  background: var(--y-dim);
+  margin-top: 2rem;
+}
+
+/* ── SECTION PATTERN ── */
+.lab-section {
+  margin-bottom: 4rem;
+}
+.lab-section__header {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid var(--db);
+}
+.lab-section__idx {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--y-dim);
+  letter-spacing: 2px;
+}
+.lab-section__title {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  letter-spacing: 2px;
+  color: var(--wh);
+}
+.lab-section__desc {
+  font-size: 0.85rem;
+  color: var(--gr-l);
+  margin-bottom: 2rem;
+  line-height: 1.7;
+}
+
+/* ── DOMAIN CARDS ── */
+.lab-domains-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--db);
+  border: 1px solid var(--db);
+}
+.lab-domain-card {
+  background: var(--dk);
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  transition: background 0.3s var(--ease);
+}
+.lab-domain-card:hover {
+  background: var(--dk2);
+}
+.lab-domain-card__num {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 3px;
+  color: var(--y-dim);
+  margin-bottom: 1rem;
+}
+.lab-domain-card__title {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--wh);
+  margin-bottom: 0.8rem;
+}
+.lab-domain-card__desc {
+  font-size: 0.82rem;
+  color: var(--gr-l);
+  line-height: 1.7;
+  flex: 1;
+  margin-bottom: 1.5rem;
+}
+.lab-domain-card__btn {
+  background: none;
+  border: none;
+  color: var(--y-dim);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  text-align: left;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.3s;
+}
+.lab-domain-card__btn:hover {
+  color: var(--y);
+}
+
+/* ── FILTERS ── */
+.lab-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+.lab-filter-btn {
+  background: none;
+  border: none;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gr);
+  cursor: pointer;
+  padding: 0.3rem 0;
+  border-bottom: 1px solid transparent;
+  transition: color 0.3s, border-color 0.3s;
+}
+.lab-filter-btn:hover {
+  color: var(--lt);
+}
+.lab-filter-btn.active {
+  color: var(--wh);
+  border-bottom-color: var(--y-dim);
+}
+
+/* ── PUBLICATION CARDS ── */
+.lab-research-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.lab-pub {
+  padding: 1.8rem 0;
+  border-bottom: 1px solid var(--db);
+  transition: opacity 0.3s var(--ease);
+}
+.lab-pub:first-child {
+  border-top: 1px solid var(--db);
+}
+.lab-pub.lab-hidden {
+  display: none;
+}
+.lab-pub__meta {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin-bottom: 0.7rem;
+}
+.lab-pub__cat {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--y-dim);
+}
+.lab-pub__date {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 1px;
+  color: var(--gr);
+}
+.lab-pub__title {
+  font-family: 'Exo 2', sans-serif;
+  font-weight: 600;
+  font-size: 1.15rem;
+  color: var(--wh);
+  margin-bottom: 0.6rem;
+  line-height: 1.3;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+.lab-pub__title:hover {
+  color: var(--y);
+}
+.lab-pub__abstract {
+  font-size: 0.85rem;
+  color: var(--gr-l);
+  line-height: 1.8;
+  max-width: 680px;
+}
+.lab-pub__foot {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 0.8rem;
+}
+.lab-pub__time,
+.lab-pub__id {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 1.5px;
+  color: var(--gr);
+}
+
+/* ── FIELD NOTES ── */
+.lab-notes-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--db);
+  border: 1px solid var(--db);
+}
+.lab-note {
+  background: var(--dk);
+  padding: 1.5rem;
+  transition: background 0.3s var(--ease);
+}
+.lab-note:hover {
+  background: var(--dk2);
+}
+.lab-note__id {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 2px;
+  color: var(--y-dim);
+  margin-bottom: 0.8rem;
+}
+.lab-note__text {
+  font-size: 0.84rem;
+  color: var(--lt);
+  line-height: 1.75;
+  font-style: italic;
+}
+
+/* ── MANUAL CARD ── */
+.lab-manual-card {
+  border: 1px solid var(--db);
+  background: var(--dk);
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.4s var(--ease);
+}
+.lab-manual-card:hover {
+  border-color: rgba(255, 214, 0, 0.12);
+}
+.lab-manual-card__badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--bk);
+  background: var(--y-dim);
+  padding: 0.35rem 1rem;
+}
+.lab-manual-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+.lab-manual-card__icon {
+  color: var(--y-dim);
+  margin-bottom: 0.3rem;
+}
+.lab-manual-card__title {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 2px;
+  color: var(--wh);
+}
+.lab-manual-card__desc {
+  font-size: 0.85rem;
+  color: var(--gr-l);
+  line-height: 1.8;
+  max-width: 550px;
+}
+.lab-manual-card__meta {
+  display: flex;
+  gap: 1.5rem;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 1.5px;
+  color: var(--gr);
+}
+.lab-manual-card__btn {
+  align-self: flex-start;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  font-size: 0.65rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  padding: 0.8rem 2rem;
+  background: transparent;
+  border: 1px solid var(--y);
+  color: var(--y);
+  cursor: pointer;
+  transition: all 0.3s var(--ease);
+}
+.lab-manual-card__btn:hover {
+  background: var(--y);
+  color: var(--bk);
+}
+
+/* ── PRINCIPLES ── */
+.lab-principles-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid var(--db);
+}
+.lab-principle {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.3rem 1.5rem;
+  border-bottom: 1px solid var(--db);
+  transition: background 0.3s var(--ease);
+}
+.lab-principle:last-child {
+  border-bottom: none;
+}
+.lab-principle:hover {
+  background: var(--dk);
+}
+.lab-principle__num {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  color: var(--y-dim);
+  min-width: 28px;
+}
+.lab-principle__text {
+  font-family: 'Exo 2', sans-serif;
+  font-size: 0.95rem;
+  color: var(--lt);
+  letter-spacing: 0.5px;
+}
+
+/* ── CONTRIBUTE ── */
+.lab-section--contribute {
+  margin-bottom: 2rem;
+}
+.lab-contribute-box {
+  border: 1px solid var(--db);
+  padding: 2.5rem;
+  text-align: center;
+  background: linear-gradient(180deg, rgba(255,214,0,0.015) 0%, transparent 100%);
+}
+.lab-contribute-box__title {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 3px;
+  color: var(--y);
+  margin-bottom: 1rem;
+}
+.lab-contribute-box__text {
+  font-size: 0.88rem;
+  color: var(--gr-l);
+  line-height: 1.8;
+  max-width: 520px;
+  margin: 0 auto 1.8rem;
+}
+.lab-contribute-box__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  font-size: 0.65rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  padding: 0.8rem 2rem;
+  background: var(--y);
+  color: var(--bk);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s var(--ease);
+  text-decoration: none;
+}
+.lab-contribute-box__btn:hover {
+  background: var(--wh);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px var(--y-glow-s);
+}
+
+/* ── LAB FOOTER ── */
+.lab-footer {
+  padding: 2rem 0 1rem;
+}
+.lab-footer__line {
+  width: 100%;
+  height: 1px;
+  background: var(--db);
+  margin-bottom: 1.5rem;
+}
+.lab-footer__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.lab-footer__label {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 2px;
+  color: var(--gr);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .lab-domains-grid {
+    grid-template-columns: 1fr;
+  }
+  .lab-notes-grid {
+    grid-template-columns: 1fr;
+  }
+  .lab-filters {
+    gap: 1rem;
+  }
+  .lab-footer__row {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+  .lab-hero__title {
+    font-size: clamp(1.5rem, 6vw, 2.2rem);
+  }
+  .lab-manual-card {
+    padding: 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .lab-domain-card {
+    padding: 1.5rem 1.2rem;
+  }
+  .lab-note {
+    padding: 1.2rem;
+  }
+  .lab-principle {
+    padding: 1rem 1.2rem;
+    gap: 1rem;
+  }
+  .lab-contribute-box {
+    padding: 2rem 1.5rem;
+  }
+}
