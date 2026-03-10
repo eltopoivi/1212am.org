@@ -57,7 +57,6 @@
   </button>
 
   <div class="page home active" id="pg-home">
-    <!-- ═══ HERO (unchanged visual) ═══ -->
     <div class="home__hero-section">
       <div class="home__glow"></div>
       <div class="home__center">
@@ -74,21 +73,29 @@
       </div>
     </div>
 
-    <!-- ═══ SECTION 1 — THE CURSE (Cinematic Scroll) ═══ -->
-    <section class="cin" id="cin-curse">
-      <canvas class="cin__noise" id="noise-canvas"></canvas>
-      <div class="cin__sequence">
-        <div class="cin__line cin__line--lg" data-cin="0">Humanity lives under a curse.</div>
-        <div class="cin__line cin__line--dim" data-cin="1">L2 — infinite noise.</div>
-        <div class="cin__spacer"></div>
-        <div class="cin__line" data-cin="2">But beneath the noise…</div>
-        <div class="cin__line cin__line--gold" data-cin="3">L1 remains.</div>
-        <div class="cin__spacer"></div>
-        <div class="cin__line" data-cin="4">Flow returns when L1 is respected.</div>
+    <section class="ls-split-section" id="curse-section">
+      <div class="ls-split">
+        <div class="ls-split__left">
+          <h2 class="ls-split__title">
+            <span class="highlight-y">Humanity</span><br>
+            <span class="highlight-w">lives under a curse.</span>
+          </h2>
+        </div>
+        <div class="ls-split__center">
+          <div class="ls-line-top"></div>
+          <div class="ls-dot"></div>
+          <div class="ls-line-bottom"></div>
+        </div>
+        <div class="ls-split__right">
+          <p class="ls-split__desc">
+            <span class="dim-text">L2 — infinite noise.</span><br><br>
+            But beneath the noise… <span class="highlight-y-sm">L1 remains.</span><br><br>
+            Flow returns when L1 is respected.
+          </p>
+        </div>
       </div>
     </section>
 
-    <!-- ═══ SECTION 2 — L1 VISUALIZATION ═══ -->
     <section class="cin cin--l1" id="cin-l1">
       <div class="l1-visual">
         <div class="l1-ring l1-ring--1"></div>
@@ -102,19 +109,14 @@
       </div>
     </section>
 
-    <!-- ═══ SECTION 3 — ABOUT 12⋮12 (LangSmith-style reveal) ═══ -->
     <section class="info-reveal" id="info-reveal">
-
-      <!-- Big text with character sweep -->
       <div class="info-reveal__hero">
         <h2 class="info-reveal__headline" id="headline-sweep">
           A digital ecosystem built on frequency, autonomy and pattern recognition.
         </h2>
       </div>
 
-      <!-- Split sections with vertical line -->
       <div class="info-reveal__splits">
-
         <div class="info-split" id="info-split-1">
           <div class="info-split__left">
             <h3 class="info-split__title">The Signal</h3>
@@ -153,11 +155,9 @@
             <p class="info-split__text">Six nodes across three dimensions. Rooom and Dragon12 operate in the physical. 36912ai and the Store exist in the digital. The Wormhole and Last Survivors bridge the ethereal.</p>
           </div>
         </div>
-
       </div>
     </section>
 
-    <!-- ═══ JOIN WORMHOLE CTA ═══ -->
     <section class="home-section home-section--cta" id="section-cta">
       <div class="home-section__inner reveal-up">
         <div class="cta-block">
@@ -172,7 +172,6 @@
       </div>
     </section>
 
-    <!-- ═══ FOOTER ═══ -->
     <footer class="site-footer">
       <div class="site-footer__inner">
         <div class="site-footer__brand">
@@ -522,7 +521,6 @@
       </a>
       <div class="sub__wrap lab-wrap">
 
-        <!-- ═══ S1 — HERO ═══ -->
         <header class="lab-hero">
           <div class="lab-hero__tag">Research Division — 12⋮12am™</div>
           <h1 class="lab-hero__title">Last Survivors<br><span>Research Lab</span></h1>
@@ -531,7 +529,6 @@
           <div class="lab-hero__line"></div>
         </header>
 
-        <!-- ═══ S2 — RESEARCH DOMAINS ═══ -->
         <section class="lab-section" id="lab-domains">
           <div class="lab-section__header">
             <span class="lab-section__idx">01</span>
@@ -571,7 +568,6 @@
           </div>
         </section>
 
-        <!-- ═══ S3 — LATEST RESEARCH ═══ -->
         <section class="lab-section" id="lab-research">
           <div class="lab-section__header">
             <span class="lab-section__idx">02</span>
@@ -670,7 +666,6 @@
           </div>
         </section>
 
-        <!-- ═══ S4 — FIELD NOTES ═══ -->
         <section class="lab-section" id="lab-fieldnotes">
           <div class="lab-section__header">
             <span class="lab-section__idx">03</span>
@@ -706,7 +701,6 @@
           </div>
         </section>
 
-        <!-- ═══ S5 — THE MANUAL ═══ -->
         <section class="lab-section" id="lab-manual">
           <div class="lab-section__header">
             <span class="lab-section__idx">04</span>
@@ -731,7 +725,6 @@
           </div>
         </section>
 
-        <!-- ═══ S6 — PRINCIPLES ═══ -->
         <section class="lab-section" id="lab-principles">
           <div class="lab-section__header">
             <span class="lab-section__idx">05</span>
@@ -757,7 +750,6 @@
           </div>
         </section>
 
-        <!-- ═══ S7 — CONTRIBUTE ═══ -->
         <section class="lab-section lab-section--contribute" id="lab-contribute">
           <div class="lab-contribute-box">
             <h2 class="lab-contribute-box__title">Open Lab</h2>
@@ -766,7 +758,6 @@
           </div>
         </section>
 
-        <!-- ═══ FOOTER ═══ -->
         <footer class="lab-footer">
           <div class="lab-footer__line"></div>
           <div class="lab-footer__row">
