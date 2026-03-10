@@ -565,6 +565,20 @@ button { font-family:inherit; cursor:pointer; }
   letter-spacing: 1px;
 }
 
+/* ── Rooom balloons background ── */
+.rooom-balloons {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+.rooom-balloons canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
 /* ── Scroll-reveal animation ── */
 .reveal-up {
   opacity: 0;
