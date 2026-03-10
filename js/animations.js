@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // ── Scroll hint: click to scroll down ──
   const homeEl = document.getElementById('pg-home');
   const scrollHintBtn = document.getElementById('scroll-hint-btn');
-  const firstSection = document.getElementById('section-signal');
+  const firstSection = document.getElementById('cin-curse');
 
   if (scrollHintBtn && homeEl && firstSection) {
     scrollHintBtn.addEventListener('click', () => {
@@ -67,8 +67,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }, { passive: true });
   }
 
-  // ── Eco-card navigation ──
-  document.querySelectorAll('.eco-card[data-page]').forEach(card => {
+  // ── Eco-panel and eco-card navigation ──
+  document.querySelectorAll('.eco-card[data-page], .eco-panel[data-page]').forEach(card => {
     card.addEventListener('click', (e) => {
       e.preventDefault();
       const page = card.getAttribute('data-page');
