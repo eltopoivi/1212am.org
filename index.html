@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="/css/shop.css">
   <link rel="stylesheet" href="/css/chat.css">
+  <link rel="stylesheet" href="/css/lab.css">
   
   <script src="https://js.stripe.com/v3/"></script>
 </head>
@@ -548,12 +549,261 @@
       <a class="nav__logo sub__logo-back" data-home>
         12<span class="vdots">⋮</span>12<span class="am">am</span><span class="tm">™</span>
       </a>
-      <div class="sub__wrap">
-        <div class="section-hero">
-          <div class="section-hero__icon">⚔️</div>
-          <h1 class="section-hero__title">Last Survivors</h1>
-          <p class="section-hero__desc">The ultimate survival game. Do you have what it takes to be the last one standing?</p>
-        </div>
+      <div class="sub__wrap lab-wrap">
+
+        <!-- ═══ S1 — HERO ═══ -->
+        <header class="lab-hero">
+          <div class="lab-hero__tag">Research Division — 12⋮12am™</div>
+          <h1 class="lab-hero__title">Last Survivors<br><span>Research Lab</span></h1>
+          <p class="lab-hero__subtitle">Independent research on systems, autonomy and pattern recognition.</p>
+          <p class="lab-hero__text">The Last Survivors Lab documents patterns observed across biological, social and digital systems. This is not opinion. This is observation.</p>
+          <div class="lab-hero__line"></div>
+        </header>
+
+        <!-- ═══ S2 — RESEARCH DOMAINS ═══ -->
+        <section class="lab-section" id="lab-domains">
+          <div class="lab-section__header">
+            <span class="lab-section__idx">01</span>
+            <h2 class="lab-section__title">Research Domains</h2>
+          </div>
+          <div class="lab-domains-grid">
+            <div class="lab-domain-card">
+              <div class="lab-domain-card__num">L1</div>
+              <h3 class="lab-domain-card__title">Natural Law</h3>
+              <p class="lab-domain-card__desc">Research about biology, energy, and physical constraints. The rules that cannot be negotiated.</p>
+              <button class="lab-domain-card__btn" data-labfilter="layer-1">Explore →</button>
+            </div>
+            <div class="lab-domain-card">
+              <div class="lab-domain-card__num">L2</div>
+              <h3 class="lab-domain-card__title">Human Systems</h3>
+              <p class="lab-domain-card__desc">Research about institutions, incentives and coordination systems. The structures humans build on top of nature.</p>
+              <button class="lab-domain-card__btn" data-labfilter="layer-2">Explore →</button>
+            </div>
+            <div class="lab-domain-card">
+              <div class="lab-domain-card__num">L3</div>
+              <h3 class="lab-domain-card__title">Digital Environments</h3>
+              <p class="lab-domain-card__desc">Research about algorithms, platforms and attention systems. The digital layer extracting from the biological one.</p>
+              <button class="lab-domain-card__btn" data-labfilter="layer-3">Explore →</button>
+            </div>
+            <div class="lab-domain-card">
+              <div class="lab-domain-card__num">EN</div>
+              <h3 class="lab-domain-card__title">Energy Economy</h3>
+              <p class="lab-domain-card__desc">Research about attention, decision cost and energy preservation. The currency no one tracks but everyone spends.</p>
+              <button class="lab-domain-card__btn" data-labfilter="energy">Explore →</button>
+            </div>
+            <div class="lab-domain-card">
+              <div class="lab-domain-card__num">IR</div>
+              <h3 class="lab-domain-card__title">IRL Game Mechanics</h3>
+              <p class="lab-domain-card__desc">Research about behavioral patterns and autonomy. The real-world game most people never realize they're playing.</p>
+              <button class="lab-domain-card__btn" data-labfilter="irl">Explore →</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ═══ S3 — LATEST RESEARCH ═══ -->
+        <section class="lab-section" id="lab-research">
+          <div class="lab-section__header">
+            <span class="lab-section__idx">02</span>
+            <h2 class="lab-section__title">Latest Research</h2>
+          </div>
+
+          <div class="lab-filters" id="lab-filter-row">
+            <button class="lab-filter-btn active" data-labcat="all">All</button>
+            <button class="lab-filter-btn" data-labcat="layer-1">Layer 1</button>
+            <button class="lab-filter-btn" data-labcat="layer-2">Layer 2</button>
+            <button class="lab-filter-btn" data-labcat="layer-3">Layer 3</button>
+            <button class="lab-filter-btn" data-labcat="energy">Energy</button>
+            <button class="lab-filter-btn" data-labcat="irl">IRL Mechanics</button>
+          </div>
+
+          <div class="lab-research-list" id="lab-research-list">
+
+            <article class="lab-pub" data-cat="energy">
+              <div class="lab-pub__meta">
+                <span class="lab-pub__cat">Energy Economy</span>
+                <span class="lab-pub__date">2025.06.11</span>
+              </div>
+              <h3 class="lab-pub__title">The Energy Cost of Reaction</h3>
+              <p class="lab-pub__abstract">An analysis of how reaction-based behavior drains cognitive and biological energy in modern digital systems. Every notification is a tax. Every opinion demanded is a withdrawal.</p>
+              <div class="lab-pub__foot">
+                <span class="lab-pub__time">8 min read</span>
+                <span class="lab-pub__id">LS-2025-017</span>
+              </div>
+            </article>
+
+            <article class="lab-pub" data-cat="layer-1">
+              <div class="lab-pub__meta">
+                <span class="lab-pub__cat">Natural Law</span>
+                <span class="lab-pub__date">2025.05.28</span>
+              </div>
+              <h3 class="lab-pub__title">Sleep as System Recovery</h3>
+              <p class="lab-pub__abstract">Documenting the correlation between biological recovery cycles and decision quality. Systems that ignore maintenance protocols degrade. Organisms are no different.</p>
+              <div class="lab-pub__foot">
+                <span class="lab-pub__time">6 min read</span>
+                <span class="lab-pub__id">LS-2025-016</span>
+              </div>
+            </article>
+
+            <article class="lab-pub" data-cat="layer-2">
+              <div class="lab-pub__meta">
+                <span class="lab-pub__cat">Human Systems</span>
+                <span class="lab-pub__date">2025.05.14</span>
+              </div>
+              <h3 class="lab-pub__title">The Incentive Trap</h3>
+              <p class="lab-pub__abstract">How institutional incentive structures produce outcomes that contradict their stated missions. A pattern observed in education, healthcare, and governance simultaneously.</p>
+              <div class="lab-pub__foot">
+                <span class="lab-pub__time">11 min read</span>
+                <span class="lab-pub__id">LS-2025-015</span>
+              </div>
+            </article>
+
+            <article class="lab-pub" data-cat="layer-3">
+              <div class="lab-pub__meta">
+                <span class="lab-pub__cat">Digital Environments</span>
+                <span class="lab-pub__date">2025.04.30</span>
+              </div>
+              <h3 class="lab-pub__title">Algorithmic Autonomy Erosion</h3>
+              <p class="lab-pub__abstract">Mapping how recommendation engines systematically reduce individual decision-making capacity over time. The feed replaces the choice.</p>
+              <div class="lab-pub__foot">
+                <span class="lab-pub__time">9 min read</span>
+                <span class="lab-pub__id">LS-2025-014</span>
+              </div>
+            </article>
+
+            <article class="lab-pub" data-cat="irl">
+              <div class="lab-pub__meta">
+                <span class="lab-pub__cat">IRL Mechanics</span>
+                <span class="lab-pub__date">2025.04.12</span>
+              </div>
+              <h3 class="lab-pub__title">NPC Behavior Patterns</h3>
+              <p class="lab-pub__abstract">Identifying and categorizing repetitive behavioral loops in daily human activity. Most people follow scripts they never authored. Recognition is the first step toward autonomy.</p>
+              <div class="lab-pub__foot">
+                <span class="lab-pub__time">7 min read</span>
+                <span class="lab-pub__id">LS-2025-013</span>
+              </div>
+            </article>
+
+            <article class="lab-pub" data-cat="energy">
+              <div class="lab-pub__meta">
+                <span class="lab-pub__cat">Energy Economy</span>
+                <span class="lab-pub__date">2025.03.22</span>
+              </div>
+              <h3 class="lab-pub__title">The Decision Fatigue Cycle</h3>
+              <p class="lab-pub__abstract">Mapping the relationship between unnecessary choices and systemic energy depletion. Every low-value decision weakens the capacity for high-value ones.</p>
+              <div class="lab-pub__foot">
+                <span class="lab-pub__time">5 min read</span>
+                <span class="lab-pub__id">LS-2025-012</span>
+              </div>
+            </article>
+
+          </div>
+        </section>
+
+        <!-- ═══ S4 — FIELD NOTES ═══ -->
+        <section class="lab-section" id="lab-fieldnotes">
+          <div class="lab-section__header">
+            <span class="lab-section__idx">03</span>
+            <h2 class="lab-section__title">Field Notes</h2>
+          </div>
+          <p class="lab-section__desc">Short observations. Patterns captured in real time.</p>
+
+          <div class="lab-notes-grid">
+            <div class="lab-note">
+              <div class="lab-note__id">FN-042</div>
+              <p class="lab-note__text">People protect their phone battery more aggressively than their biological energy. The device is maintained. The operator is not.</p>
+            </div>
+            <div class="lab-note">
+              <div class="lab-note__id">FN-041</div>
+              <p class="lab-note__text">The most expensive thing in a modern city is not rent. It is the cognitive overhead of navigating systems designed to extract attention.</p>
+            </div>
+            <div class="lab-note">
+              <div class="lab-note__id">FN-040</div>
+              <p class="lab-note__text">Silence is a competitive advantage. Most people have voluntarily eliminated it from their day.</p>
+            </div>
+            <div class="lab-note">
+              <div class="lab-note__id">FN-039</div>
+              <p class="lab-note__text">The default state of a human without external input is calm. Everything else is a system acting on you.</p>
+            </div>
+            <div class="lab-note">
+              <div class="lab-note__id">FN-038</div>
+              <p class="lab-note__text">Observation: people who protect their mornings outperform those who optimize their afternoons. Energy is front-loaded.</p>
+            </div>
+            <div class="lab-note">
+              <div class="lab-note__id">FN-037</div>
+              <p class="lab-note__text">A pattern repeated across 12 subjects: removing one social platform increased reported clarity within 72 hours. Every time.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ═══ S5 — THE MANUAL ═══ -->
+        <section class="lab-section" id="lab-manual">
+          <div class="lab-section__header">
+            <span class="lab-section__idx">04</span>
+            <h2 class="lab-section__title">Core Document</h2>
+          </div>
+          <div class="lab-manual-card">
+            <div class="lab-manual-card__badge">Featured</div>
+            <div class="lab-manual-card__body">
+              <div class="lab-manual-card__icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><line x1="9" y1="7" x2="17" y2="7"/><line x1="9" y1="11" x2="15" y2="11"/>
+                </svg>
+              </div>
+              <h3 class="lab-manual-card__title">IRL RPG Player Manual</h3>
+              <p class="lab-manual-card__desc">A framework describing the structure of the real-world game and the stages of autonomy. The document that maps the territory most people never see.</p>
+              <div class="lab-manual-card__meta">
+                <span>Version 1.0</span>
+                <span>Last Survivors Lab</span>
+              </div>
+            </div>
+            <button class="lab-manual-card__btn">Read Manual →</button>
+          </div>
+        </section>
+
+        <!-- ═══ S6 — PRINCIPLES ═══ -->
+        <section class="lab-section" id="lab-principles">
+          <div class="lab-section__header">
+            <span class="lab-section__idx">05</span>
+            <h2 class="lab-section__title">Research Principles</h2>
+          </div>
+          <div class="lab-principles-list">
+            <div class="lab-principle">
+              <span class="lab-principle__num">I</span>
+              <p class="lab-principle__text">Pattern consistency over ideology</p>
+            </div>
+            <div class="lab-principle">
+              <span class="lab-principle__num">II</span>
+              <p class="lab-principle__text">Evidence over narratives</p>
+            </div>
+            <div class="lab-principle">
+              <span class="lab-principle__num">III</span>
+              <p class="lab-principle__text">Function over status</p>
+            </div>
+            <div class="lab-principle">
+              <span class="lab-principle__num">IV</span>
+              <p class="lab-principle__text">Energy preservation over activity</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ═══ S7 — CONTRIBUTE ═══ -->
+        <section class="lab-section lab-section--contribute" id="lab-contribute">
+          <div class="lab-contribute-box">
+            <h2 class="lab-contribute-box__title">Open Lab</h2>
+            <p class="lab-contribute-box__text">The lab is open to contributors exploring systems, autonomy and pattern recognition. If you've observed a pattern worth documenting, the lab wants to hear it.</p>
+            <a href="https://discord.gg/G39VtBCw" target="_blank" rel="noopener" class="lab-contribute-box__btn">Submit Insight →</a>
+          </div>
+        </section>
+
+        <!-- ═══ FOOTER ═══ -->
+        <footer class="lab-footer">
+          <div class="lab-footer__line"></div>
+          <div class="lab-footer__row">
+            <span class="lab-footer__label">Last Survivors Research Lab</span>
+            <span class="lab-footer__label">12⋮12am™ — The time is now.</span>
+          </div>
+        </footer>
+
       </div>
     </div>
   </div>
@@ -578,7 +828,8 @@
   <script src="/js/router.js"></script> 
   <script src="/js/animations.js"></script>
   <script src="/js/shop.js"></script> 
-  <script src="/js/chat.js"></script> 
+  <script src="/js/chat.js"></script>
+  <script src="/js/lab.js"></script>
 
 </body>
 </html>
