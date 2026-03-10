@@ -1,5 +1,6 @@
 /* ====================================================
    12⋮12am™ — CINEMATIC LANDING
+   GSAP powered — scroll storytelling only
    ==================================================== */
 
 /* ═══ LANGSMITH SPLIT UI (NUEVA SECTION 1) ═══ */
@@ -9,6 +10,7 @@
   background: var(--bk);
   display: flex;
   justify-content: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.03);
 }
 
 .ls-split {
@@ -27,7 +29,7 @@
 .ls-split__title {
   font-family: 'Exo 2', sans-serif;
   font-weight: 300;
-  font-size: clamp(3rem, 6vw, 5.5rem); /* Extra grande como en la imagen de referencia */
+  font-size: clamp(3rem, 6vw, 5.5rem); /* Tamaño masivo para destacar */
   line-height: 1.1;
   letter-spacing: -1px;
   margin: 0;
@@ -36,7 +38,7 @@
 .highlight-y {
   color: var(--y);
   font-weight: 600;
-  text-shadow: 0 0 30px var(--y-glow-s);
+  text-shadow: 0 0 30px var(--y-glow-s); /* Brillo amarillo */
 }
 
 .highlight-w {
@@ -47,7 +49,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 120%; /* Para que la línea sobrepase un poco verticalmente */
+  height: 120%; 
   min-height: 300px;
   position: relative;
 }
@@ -103,24 +105,14 @@
 }
 
 @media (max-width: 900px) {
-  .ls-split {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-  .ls-split__center {
-    display: none; /* En móvil se oculta la línea central para no romper el diseño */
-  }
-  .ls-split__left {
-    text-align: left;
-  }
-  .ls-split__right {
-    padding-left: 0;
-    border-top: 1px solid rgba(255, 214, 0, 0.15);
-    padding-top: 2rem;
-  }
+  .ls-split { grid-template-columns: 1fr; gap: 2rem; }
+  .ls-split__center { display: none; }
+  .ls-split__left { text-align: left; }
+  .ls-split__right { padding-left: 0; border-top: 1px solid rgba(255, 214, 0, 0.15); padding-top: 2rem; }
 }
 
-/* ═══ L1 VISUALIZATION (Antigua SECTION 2) ═══ */
+
+/* ═══ L1 VISUALIZATION ═══ */
 .cin {
   position: relative;
   min-height: 100vh;
@@ -147,7 +139,6 @@
 .cin__line--gold { color: var(--y); font-weight: 500; text-shadow: 0 0 40px var(--y-glow-s); }
 .cin__line--italic { font-style: italic; font-size: clamp(1.2rem, 2.5vw, 1.6rem); }
 
-/* ═══ L1 VISUALIZATION ═══ */
 .cin--l1 { min-height: 80vh; }
 .l1-visual { position: relative; width: clamp(200px, 32vw, 320px); height: clamp(200px, 32vw, 320px); margin-bottom: 4rem; }
 .l1-ring { position: absolute; border-radius: 50%; border: 1px solid rgba(255, 214, 0, 0.05); will-change: transform; }
@@ -166,7 +157,7 @@
 }
 
 /* ═══════════════════════════════════════════
-   INFO REVEAL — LangSmith-style big text + splits
+   INFO REVEAL — LangSmith-style big text + splits (AMARILLO APLICADO)
    ═══════════════════════════════════════════ */
 
 .info-reveal {
@@ -178,6 +169,7 @@
   max-width: 900px;
   margin: 0 auto 6rem;
 }
+
 .info-reveal__headline {
   font-family: 'Exo 2', sans-serif;
   font-weight: 300;
@@ -188,11 +180,12 @@
 }
 .info-reveal__headline .char {
   display: inline-block;
-  transition: color 0.4s ease;
+  transition: color 0.4s ease, text-shadow 0.4s ease;
   will-change: color;
 }
 .info-reveal__headline .char.is-lit {
-  color: #8ecae6;
+  color: var(--y); /* Cambiado a amarillo */
+  text-shadow: 0 0 20px var(--y-glow-s); /* Brillo extra añadido */
 }
 .info-reveal__headline .char-space {
   display: inline;
@@ -223,13 +216,15 @@
   justify-content: flex-end;
   padding: 2rem 2rem 2rem 0;
 }
+
 .info-split__title {
   font-family: 'Exo 2', sans-serif;
   font-weight: 500;
   font-size: clamp(1.6rem, 3.5vw, 2.6rem);
-  color: #8ecae6;
+  color: var(--y); /* Cambiado a amarillo */
   line-height: 1.2;
   text-align: right;
+  text-shadow: 0 0 15px var(--y-glow-s);
 }
 
 .info-split__divider {
@@ -239,17 +234,19 @@
   height: 100%;
   position: relative;
 }
+
 .info-split__line {
   width: 1px;
   flex: 1;
-  background: rgba(142, 202, 230, 0.15);
+  background: linear-gradient(to bottom, rgba(255, 214, 0, 0.25), transparent); /* Línea amarilla */
 }
+
 .info-split__dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #8ecae6;
-  box-shadow: 0 0 10px rgba(142, 202, 230, 0.4);
+  background: var(--y); /* Punto amarillo */
+  box-shadow: 0 0 15px var(--y);
   flex-shrink: 0;
   margin: 0.5rem 0;
 }
@@ -259,6 +256,7 @@
   align-items: flex-start;
   padding: 2rem 0 2rem 2rem;
 }
+
 .info-split__text {
   font-family: 'Share Tech Mono', monospace;
   font-size: clamp(0.8rem, 1.2vw, 0.95rem);
